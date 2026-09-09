@@ -63,6 +63,8 @@ When launching a subagent, include:
 
 After each phase, update `SESSION.md` (phase status, one-line summary, artifact paths).
 
+**Immediate bookkeeping on implementer return:** If implementer reports `status: blocked` / outcome `aborted_dirty` / `non_ff` (or equivalent), set `SESSION.md` **`blocked`** + `blocker_type` **in the same turn** — do not leave `in_progress` until audit/close. Auditor Low findings for lag are process debt, not implementer fail.
+
 If `auditor` cannot write files (`readonly`), persist its returned report into `05-audit/report.md` yourself — that is session bookkeeping, not product implementation.
 
 ## User communication
@@ -73,20 +75,23 @@ If `auditor` cannot write files (`readonly`), persist its returned report into `
 - **Plan gate:** If the plan includes **FS moves/renames/deletes** outside org-repo documentation (or any unsupervised corpus mutation), **pause after planner** until the user explicitly approves that batch — then launch implementer. Present the move map as an **intent preview** (what will change on disk; paths; reversibility notes from the plan). Pure docs/index cycles may proceed when `ready_to_implement: yes` without a pause unless the user asked to review.
 - Do not dump subagent internals; relay decisions and file paths.
 
-## Credential / external blockers
+## Credential / external / dirty-tree blockers
 
-- If implementer or auditor reports push/auth failure:
+- If implementer or auditor reports push/pull/auth failure, **unrelated** dirty-abort, or **non-ff**:
   - Set `SESSION.md` status to **`blocked`** with remediation by `blocker_type`:
+    - **`dirty_working_tree`** — pull/sync aborted because WT has paths **outside** the FAW allowlist; auth may be green. Remediate: user clean/stash/commit those paths, then a **new** cycle — do not relaunch implementer on the same unrelated dirty tree for the same goal. (Allowlisted-only dirt is agent auto-commit — not this blocker.)
+    - **`other`** / non-ff — allowlist commit diverged from remote; `--ff-only` refused. Keep WIP commit; do not merge/rebase unless user changes combine strategy.
     - **`agent_environment`** — wrong git on PATH (e.g. MSYS without helper), sandbox/Legacy Terminal; remediate: prefer Git for Windows absolute path / Cursor Run Modes — not “re-login” alone.
     - **`user_credentials`** — no credential store / need `gh auth login` / SSH setup.
   - Do **not** treat missing `gh` alone as `user_credentials` when session notes say GCM/GfW works.
-  - Do **not** relaunch `implementer` solely to retry push until the user confirms remediation.
-  - Do **not** tell the user the goal is complete.
+  - Do **not** collapse unrelated dirty-abort into `agent_environment` / `user_credentials`.
+  - Do **not** relaunch `implementer` solely to retry push/pull until the user confirms remediation (or unrelated tree is clean / combine strategy changed for non-ff).
+  - Do **not** tell the user the goal is complete; unrelated dirty-abort or non-ff ≠ pull success.
   - Still run **`self-improver`** (mandatory on fail/blocked).
 
 ## Completion
 
 1. Ensure `auditor` report exists.
 2. Launch `self-improver` with full session context.
-3. Mark `SESSION.md` status `complete`, or **`blocked`** with reason (never `complete` if Critical acceptance criteria unmet).
+3. Mark `SESSION.md` status `complete`, or **`blocked`** with reason (never `complete` if Critical acceptance criteria unmet — including unmet pull/sync AC after correct unrelated dirty-abort or expected non-ff).
 4. Tell the user: session path, audit verdict, and what self-improvement changed.

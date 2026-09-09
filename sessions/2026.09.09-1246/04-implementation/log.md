@@ -48,4 +48,13 @@
 - 12:58 — dual preflight (GfW+GCM) — pass
 - 12:59 — wrote pre-commit `log.md` / `changes.md`; zero-move attestation recorded
 - 12:59 — secrets name-scan — clean
-- _(commit / push / post-push lines appended after those steps)_
+- 13:00 — `git add -A` (this root only); staged_count=91; staged secret scan clean; root boundary OK
+- 13:00 — one BOM-safe commit `f5012d6` — subject: `Publish organisation catch-up so origin/main matches local FAW work.` — `leading_BOM=False`
+- 13:01 — GfW non-force `push origin main` — exit 0 (`4de6aeb..f5012d6  main -> main`)
+- 13:01 — post-push: `main...origin/main` in sync; HEAD = origin/main = `f5012d6f2d15008e4c211a3167a6682f0a1c7b07`
+
+## Post-push finalize (expected dirty; Q7=A)
+
+- Appended this section after the publish commit; **not** included in `f5012d6` (single-commit publish tradeoff).
+- Optional tiny session-only follow-up commit: **out of scope** unless user asks.
+- **status:** complete — agent push succeeded; `blocker_type: none`

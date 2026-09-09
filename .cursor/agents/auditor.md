@@ -81,6 +81,16 @@ When the plan is **`fs_mutation`**:
 - [ ] Optional smoke: agent Shell GfW `git push --dry-run` (or fill without logging secrets) succeeds, **or** session correctly `blocked` with right `blocker_type` — never false `complete` with unmet push criterion
 - [ ] Wrong-git / sandbox gaps may be environment (user-settings remediation without “re-login”); true missing credentials → `rework_owner: user`
 
+### Pull / sync checklist (when goal includes git pull / sync from origin)
+
+- [ ] Org-root only; dual preflight + **GfW** for dirty gate, allowlist commit, **and** pull (not PATH/MSYS alone)
+- [ ] FAW dirty default = allowlisted auto-commit then `--ff-only`; **unrelated** porcelain only → abort, `blocker_type` **`dirty_working_tree`** (not auth/env); session **`blocked`** — never false `complete`
+- [ ] Allowlisted dirt committed then pull attempted = **correct path** (not “user must clean session dirt”)
+- [ ] Correct **unrelated** dirty-abort = **process pass** with sync/pull-success AC **unmet**; `rework_owner: user` — **not** implementer rework
+- [ ] Expected post-allowlist **non-ff** block = **process pass** + session `blocked` + `blocker_type` `other`/`non_ff` (WIP commit kept) — **not** implementer defect for refusing merge/rebase
+- [ ] Auth failure / wrong binary typed as `user_credentials` or `agent_environment` as appropriate
+- [ ] No secrets in logs; taxonomy/must-preserve not used as pull blockers unless in scope
+
 ### Single-commit publish + post-push session files
 
 When the plan required **exactly one** commit and push succeeded (HEAD == `origin/<branch>`):
@@ -91,7 +101,7 @@ When the plan required **exactly one** commit and push succeeded (HEAD == `origi
 
 If `rework_needed` is yes:
 
-- **`rework_owner: user`** (true credential gaps, interactive auth, secrets the agent must not create) → orchestrator must **not** relaunch implementer; mark session `blocked`; still run self-improver.
+- **`rework_owner: user`** (true credential gaps, interactive auth, secrets the agent must not create, **or** unrelated dirty-tree cleanup before pull) → orchestrator must **not** relaunch implementer; mark session `blocked`; still run self-improver.
 - Environment/PATH/git remediation may still need the user (settings) without implying credential re-login.
 - **`rework_owner: implementer`** (or earlier phase) with Critical → relaunch that phase, then re-audit, then self-improver.
 - Otherwise proceed to self-improvement with gaps documented.

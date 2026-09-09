@@ -59,7 +59,7 @@ Launch each custom subagent with a handoff matching [handoff-templates.md](refer
 | Audit | `auditor` |
 | Self-improve | `self-improver` |
 
-Pause for user answers during prompt-betterment. If answers include **Choose**, prompt-betterment must decide and document — do not forward “Choose” downstream.
+Pause for user answers during prompt-betterment. If answers include **Choose**, or pack items stay **unanswered** after a partial reply with disclosed defaults, prompt-betterment must decide and document — do not forward “Choose”/blanks downstream. For publish / git add-commit-push goals, use [publish-cycle.md](references/publish-cycle.md) (question pack + org-repo git-root boundary). For **git pull / sync-from-origin** goals, use [pull-cycle.md](references/pull-cycle.md) (same pattern; FAW default = allowlisted auto-commit then `--ff-only`; abort only for unrelated dirty; GfW for gate+commit+pull).
 
 **Informed consent (all user pauses):**
 
@@ -77,15 +77,17 @@ Pause for user answers during prompt-betterment. If answers include **Choose**, 
 ### Rework
 
 - Audit `rework_needed: yes` with Critical and `rework_owner: implementer` (or earlier phase) → relaunch that phase, then re-audit.
-- Audit Critical with `rework_owner: user` (true credential gaps / push auth) → **do not** relaunch implementer; set `SESSION.md` to `blocked` with remediation by `blocker_type`; still run `self-improver`.
-- Never report the cycle as complete when Critical acceptance criteria remain unmet.
+- Audit Critical with `rework_owner: user` (true credential gaps / push auth / **unrelated dirty-tree cleanup before pull**) → **do not** relaunch implementer; set `SESSION.md` to `blocked` with remediation by `blocker_type`; still run `self-improver`. Allowlisted session/FAW-meta dirt is agent auto-commit territory — not user cleanup by default.
+- Never report the cycle as complete when Critical acceptance criteria remain unmet (including unmet pull-sync AC after correct unrelated dirty-abort or expected non-ff block — process may **pass**, session stays **`blocked`**).
 - Always run `self-improver` after audit (pass, fail, or blocked).
+- **Orchestrator bookkeeping:** when implementer returns `blocked` / `aborted_dirty` / `non_ff`, flip `SESSION.md` to `blocked` **immediately** (do not leave `in_progress` until audit).
 
-### Critical: auth / push (Windows HTTPS Option A)
+### Critical: auth / push / pull (Windows HTTPS Option A)
 
-- **Dual preflight** before commit+push: remote scheme + tracking; **agent** git path / `credential.helper` / prefer **Git for Windows** when PATH `git` is MSYS without GCM; optional user-terminal note; `gh` present/absent recorded but **not** sole credential signal when GCM works.
-- Invoke agent push with GfW absolute `git.exe` when needed; do not require machine-wide PATH rewrite.
-- Fail-closed: agent push/preflight fail → session `blocked` (never `complete`); `blocker_type` **`agent_environment`** vs **`user_credentials`**; do not relaunch implementer until remediated; **self-improver still runs**.
+- **Dual preflight** before commit+push **or** pull: remote scheme + tracking; **agent** git path / `credential.helper` / prefer **Git for Windows** when PATH `git` is MSYS without GCM; optional user-terminal note; `gh` present/absent recorded but **not** sole credential signal when GCM works.
+- Invoke agent push/pull with GfW absolute `git.exe` when needed; use the **same** binary for dirty `status` gate, allowlist commit, and pull; do not require machine-wide PATH rewrite.
+- **Dirty policy (FAW default):** allowlisted auto-commit (`sessions/**`, `.cursor/skills/full-agent-workflow/**`, `.cursor/agents/**`, `.cursor/rules/**`, `AGENTS.md`, `sessions/_templates/**`) then `--ff-only`; abort only for unrelated dirty → `dirty_working_tree`. Post-allowlist non-ff → `other`/`non_ff`, keep WIP commit; no merge/rebase unless user changes Q2.
+- Fail-closed: agent push/pull/preflight fail, unrelated dirty-abort, or non-ff refuse → session `blocked` (never `complete`); `blocker_type` **`dirty_working_tree`** | **`agent_environment`** | **`user_credentials`** | **`other`** (e.g. non-ff); do not relaunch implementer until remediated; **self-improver still runs**.
 - **Never** log secrets, PATs, credential fill passwords, or full env dumps (`GITHUB_TOKEN` existence boolean-only).
 - Fallbacks only if GfW+GCM fails after PATH/git fix: `gh auth git-credential`, or SSH remote + key (do not rewrite `origin` to SSH by default); Cursor Run Modes / Legacy Terminal if sandbox blocks GCM.
 - **Single-commit vs session finalize:** write pre-push `04-implementation` notes before commit; post-push hash/status lines cannot be in that commit — leave them dirty (known tradeoff) or allow a tiny follow-up session-only commit if the plan/user permits. Auditor: expected dirty finalize = Low, not rework.
@@ -100,5 +102,7 @@ Pause for user answers during prompt-betterment. If answers include **Choose**, 
 
 - [session-structure.md](references/session-structure.md)
 - [handoff-templates.md](references/handoff-templates.md)
+- [publish-cycle.md](references/publish-cycle.md) — org-repo publish question pack + git-root boundary
+- [pull-cycle.md](references/pull-cycle.md) — org-repo pull/sync question pack + allowlisted auto-commit default + GfW gate
 - Agents: `.cursor/agents/*.md`
 - Best practices: `AGENT-AND-WORKFLOW-BEST-PRACTICES.md`

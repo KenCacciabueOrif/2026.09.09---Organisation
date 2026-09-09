@@ -34,6 +34,10 @@ Bootstrap may copy **empty** `06-*` templates into the session. That does **not*
 
 For “one commit then push” goals: stage `log.md`/`changes.md` **before** the publish commit with preflight/stage/secrets filled in. After push, appending hash/push/`git status` will dirty the tree again — that is normal unless a follow-up session-only commit is planned.
 
+### Pull / sync sessions
+
+Use `references/pull-cycle.md`. FAW default = allowlisted auto-commit then `--ff-only`. Unrelated dirty-abort → session **`blocked`** with `blocker_type: dirty_working_tree`. Expected post-allowlist non-ff → **`blocked`** with `other`/`non_ff` (WIP commit kept). Do not mark `complete` on unmet sync AC. Orchestrator updates SESSION status as soon as implementer returns blocked.
+
 ## SESSION.md
 
 Must track: raw goal, refined goal link, status, phase checklist, artifact links, final audit verdict, self-improvement summary.

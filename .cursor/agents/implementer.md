@@ -63,23 +63,29 @@ Run **before** commit+push (**dual preflight**): user terminal push success ≠ 
 4. **`gh`:** Record present/absent. Missing `gh` alone is **not** a credential failure when GCM fill/dry-run succeeds.
 5. **Never log secrets:** no PATs, tokens, credential fill `password=` lines, or full env dumps. `GITHUB_TOKEN` existence may be noted boolean-only.
 
-### Status honesty (push / credentials)
+### Status honesty (push / pull / credentials)
 
 - If a required `git push` or agent push preflight fails: set **`status: blocked`**, leave any local commit in place, report remediation by `blocker_type`. Do **not** use `complete`.
+- If a required **`git pull` / sync** aborts on **unrelated** dirty tree, or fails auth/non-ff: set **`status: blocked`**, outcome e.g. `aborted_dirty` / `non_ff`, `blocker_type: dirty_working_tree` | `other` | auth types. Do **not** claim pull succeeded; do **not** use `complete`.
+- When dirt ⊆ allowlist only: **auto-commit** allowlisted paths (BOM-safe message), then `git pull --ff-only` with the same GfW binary. Do **not** merge/rebase on non-ff unless plan/user changed combine strategy.
+- Prefer **GfW absolute path** for dirty gate, allowlist commit, **and** pull (same binary) — PATH/MSYS alone can skew porcelain and credentials.
 - `partial` is only for unfinished planned work that is still actionable by implementer without user secrets/auth.
-- Never claim Done when any acceptance criterion (e.g. push OK) is unmet.
+- Never claim Done when any acceptance criterion (e.g. push OK / pull sync OK) is unmet.
 
-### `blocker_type` (push failures)
+### `blocker_type` (push / pull failures)
 
 | Value | Meaning | Example remediation |
 | --- | --- | --- |
 | `none` | No blocker | — |
+| `dirty_working_tree` | Pull/sync aborted: **unrelated** (non-allowlist) dirty under abort policy (auth may be green) | User clean/stash/commit those paths; **new** pull cycle — do not relaunch on same unrelated dirty tree |
 | `agent_environment` | Wrong git on PATH, missing helper on default binary, sandbox/Legacy Terminal blocking GCM | Use GfW absolute `git.exe`; Cursor Run Modes / less sandbox / Legacy Terminal ([Run Modes](https://cursor.com/docs/agent/security/run-modes)) |
 | `user_credentials` | No credential store entry / need login / SSH key setup | User `gh auth login`, GCM re-auth, or SSH setup |
 | `plan_gap` | Plan incomplete or wrong | Return to planner |
-| `other` | Unclassified | State evidence + ask orchestrator |
+| `other` | Unclassified **or** expected non-ff / history diverge after allowlist commit | State evidence + ask orchestrator; keep WIP commit; do not merge/rebase unless user changes Q2 |
 
 Do **not** classify as `user_credentials` solely because `gh` is missing when GCM works.
+Do **not** classify unrelated dirty-abort as `agent_environment` or `user_credentials`.
+Do **not** use `dirty_working_tree` when dirt was allowlisted-only and agent auto-committed — use `other`/`non_ff` if `--ff-only` then refuses.
 
 ### Fallbacks (secondary; only if GfW+GCM still fails after PATH/git fix)
 
@@ -95,6 +101,6 @@ Do **not** classify as `user_credentials` solely because `gh` is missing when GC
 - changes_path: ...
 - log_path: ...
 - verification: pass | fail | skipped (why)
-- blocker_type: none | user_credentials | agent_environment | plan_gap | other
+- blocker_type: none | dirty_working_tree | user_credentials | agent_environment | plan_gap | other
 - deviations_from_plan: [none | list]
 ```

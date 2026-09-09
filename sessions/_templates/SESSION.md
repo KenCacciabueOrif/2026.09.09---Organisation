@@ -2,10 +2,13 @@
 
 - **Date folder:** `yyyy.mm.dd`
 - **Status:** `in_progress` | `blocked` | `complete`
+- **Blocker (if blocked):** `dirty_working_tree` | `agent_environment` | `user_credentials` | `other` (e.g. non-ff) | … (or n/a)
 - **Raw goal:** 
 - **Refined prompt:** `01-prompt-betterment/refined-prompt.md`
 - **Audit verdict:** 
 - **Self-improvement:** `06-self-improvement/changes-applied.md`
+
+Note: When implementer returns `blocked` / `aborted_dirty` / `non_ff`, orchestrator sets **Status** to `blocked` in that turn (do not leave `in_progress` until audit). Correct unrelated dirty-abort or expected non-ff = process may pass audit while session stays **`blocked`** — never claim pull succeeded.
 
 ## Program framing (optional)
 

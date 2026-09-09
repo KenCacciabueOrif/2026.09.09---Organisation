@@ -29,10 +29,14 @@ You gather **evidence** so planning and implementation are grounded.
    - Optional user-terminal note (e.g. user already pushed) — never treat alone as agent-ready
    - Whether `gh` is installed; if yes, `gh auth status` (non-interactive). Absence of `gh` is **optional evidence**, not sole credential signal when GCM works
    - Classify blockers: **`agent_environment`** (wrong git/helper/sandbox) vs **`user_credentials`** (no store / need login / SSH). Do **not** say “blockers: none” when agent git cannot push non-interactively
-5. Synthesize `research-brief.md`:
+5. **Pull / sync preflight (when goal includes `git pull` or sync from origin)** — Same dual preflight as push, plus dirty readiness:
+   - Prefer **GfW** for `status --porcelain`, allowlist commit, **and** any pull/fetch probes (MSYS porcelain may skew)
+   - Separate **auth readiness** from **dirty-tree readiness**; partition porcelain into **allowlist** vs **unrelated**. Unrelated dirty under abort policy → blocker **`dirty_working_tree`** (not auth). Allowlisted-only dirt → agent may auto-commit then pull (not “sync not ready”).
+   - Do **not** claim agent sync-ready when WT has **unrelated** dirty under abort policy
+6. Synthesize `research-brief.md`:
    - Recommended approach options (max 3) with tradeoffs
    - Required facts and unknowns
-   - Risks and blockers (include auth when relevant)
+   - Risks and blockers (include auth / dirty_working_tree / non-ff when relevant)
    - Links to canonical references
 
 Prefer recent, official sources. Do not invent APIs.

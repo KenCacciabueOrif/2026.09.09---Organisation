@@ -1,10 +1,10 @@
 # Session
 
 - **Date folder:** `2026.09.09-1246`
-- **Status:** `in_progress`
+- **Status:** `complete`
 - **Raw goal:** `/full-agent-workflow` do git add commit push
 - **Refined prompt:** `01-prompt-betterment/refined-prompt.md`
-- **Audit verdict:**
+- **Audit verdict:** pass (no rework) — `f5012d6` on `origin/main`
 - **Self-improvement:** `06-self-improvement/changes-applied.md`
 
 ## Program framing
@@ -23,9 +23,9 @@
 - [x] 01 prompt-betterment
 - [x] 02 research
 - [x] 03 plan
-- [ ] 04 implementation
-- [ ] 05 audit
-- [ ] 06 self-improvement
+- [x] 04 implementation
+- [x] 05 audit
+- [x] 06 self-improvement
 
 ## Phase summaries
 
@@ -34,7 +34,6 @@
 | 01 | complete | Publish AC locked; org-root-only; agent push origin/main | `01-prompt-betterment/` |
 | 02 | complete | GfW+GCM ready; Option A stage-all → one commit → push | `02-research/` |
 | 03 | complete | docs_only publish plan; ready_to_implement yes | `03-plan/` |
-| 04 | pending | | |
-| 04 | | | |
-| 05 | | | |
-| 06 | | | |
+| 04 | complete | One commit `f5012d6` pushed to origin/main via GfW; zero corpus FS moves | `04-implementation/` |
+| 05 | complete | pass — push verified; post-push dirty Low only | `05-audit/` |
+| 06 | complete | Publish question pack + git-root boundary into skill/agents | `06-self-improvement/` |

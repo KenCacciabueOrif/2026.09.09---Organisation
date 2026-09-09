@@ -10,9 +10,11 @@ For each question, record (or paste the user-facing ask):
 
 ## Answers
 
-(Include agent decisions when the user said **Choose** — concrete option + rationale.)
+(Include agent decisions when the user said **Choose**, or when items were **unanswered** after a partial batch — concrete option + Source `Choose` / `Choose (unanswered→default)` + one-line rationale.)
 
 ## Continuity (locked — do not re-ask)
+
+(For publish cycles: git root path; stage scope; agent-push required?; remote/branch; one-commit?; include current session?; excludes.)
 
 ## Assumptions
 
