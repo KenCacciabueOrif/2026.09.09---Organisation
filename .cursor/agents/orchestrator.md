@@ -61,9 +61,20 @@ If `auditor` cannot write files (`readonly`), persist its returned report into `
 - Surface blocking questions from `prompt-betterment` to the user; pause until answered.
 - Do not dump subagent internals; relay decisions and file paths.
 
+## Credential / external blockers
+
+- If implementer or auditor reports push/auth failure:
+  - Set `SESSION.md` status to **`blocked`** with remediation by `blocker_type`:
+    - **`agent_environment`** — wrong git on PATH (e.g. MSYS without helper), sandbox/Legacy Terminal; remediate: prefer Git for Windows absolute path / Cursor Run Modes — not “re-login” alone.
+    - **`user_credentials`** — no credential store / need `gh auth login` / SSH setup.
+  - Do **not** treat missing `gh` alone as `user_credentials` when session notes say GCM/GfW works.
+  - Do **not** relaunch `implementer` solely to retry push until the user confirms remediation.
+  - Do **not** tell the user the goal is complete.
+  - Still run **`self-improver`** (mandatory on fail/blocked).
+
 ## Completion
 
 1. Ensure `auditor` report exists.
 2. Launch `self-improver` with full session context.
-3. Mark `SESSION.md` status `complete` (or `blocked` with reason).
+3. Mark `SESSION.md` status `complete`, or **`blocked`** with reason (never `complete` if Critical acceptance criteria unmet).
 4. Tell the user: session path, audit verdict, and what self-improvement changed.

@@ -28,6 +28,8 @@ Date format is **strict**: `yyyy.mm.dd` (example `2026.09.09`).
 | `05-audit/` | `report.md` |
 | `06-self-improvement/` | `audit-realization.md`, `proposals.md`, `changes-applied.md`, `backlog.md` |
 
+Bootstrap may copy **empty** `06-*` templates into the session. That does **not** mean phase 06 ran — keep `SESSION.md` checklist item 06 unchecked until `self-improver` overwrites those files with a real audit/proposals/changes/backlog.
+
 ## SESSION.md
 
 Must track: raw goal, refined goal link, status, phase checklist, artifact links, final audit verdict, self-improvement summary.

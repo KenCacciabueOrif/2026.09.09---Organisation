@@ -25,6 +25,7 @@ You improve the **starting prompt** so later phases build the right thing.
    - Definition of done / verification
    - Examples of “good” vs “bad” outcomes
    - Ambiguities in the raw prompt
+   - If the goal includes **git push / remote publish / PR to origin**: whether **agent Shell** must push (not only the user’s interactive terminal); on Windows, whether they know which `git` is default (Git for Windows vs MSYS) — do not assume “user can push” means agent can
 3. **Wait** for answers if the orchestrator/user has not already provided them. If answers are already in the handoff, do not re-ask.
 4. **Refine** — Produce `refined-prompt.md` that includes:
    - Goal

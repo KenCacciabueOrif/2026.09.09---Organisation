@@ -52,6 +52,20 @@ pass | pass_with_issues | fail
 - report_path: ...
 - critical_count: N
 - rework_needed: yes | no
+- rework_owner: none | implementer | user | researcher | planner
 ```
 
-If `rework_needed` is yes, orchestrator should relaunch `implementer` (or earlier phase) before self-improvement only if critical; otherwise proceed to self-improvement with gaps documented.
+### Push / Option A checklist (when goal includes remote publish)
+
+- [ ] Docs encode dual preflight + prefer Git for Windows over MSYS for Windows HTTPS when PATH git lacks GCM
+- [ ] `blocker_type` / guidance distinguishes **`agent_environment`** vs **`user_credentials`**; missing `gh` alone ≠ credential failure when GCM verified
+- [ ] No secrets/PATs/fill passwords/full env dumps in repo or session logs
+- [ ] Optional smoke: agent Shell GfW `git push --dry-run` (or fill without logging secrets) succeeds, **or** session correctly `blocked` with right `blocker_type` — never false `complete` with unmet push criterion
+- [ ] Wrong-git / sandbox gaps may be environment (user-settings remediation without “re-login”); true missing credentials → `rework_owner: user`
+
+If `rework_needed` is yes:
+
+- **`rework_owner: user`** (true credential gaps, interactive auth, secrets the agent must not create) → orchestrator must **not** relaunch implementer; mark session `blocked`; still run self-improver.
+- Environment/PATH/git remediation may still need the user (settings) without implying credential re-login.
+- **`rework_owner: implementer`** (or earlier phase) with Critical → relaunch that phase, then re-audit, then self-improver.
+- Otherwise proceed to self-improvement with gaps documented.

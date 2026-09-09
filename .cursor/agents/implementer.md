@@ -25,6 +25,51 @@ You **implement the plan** — nothing more.
 5. Write `changes.md` listing files created/modified/deleted with one-line why.
 6. Do not expand scope. If the plan is wrong, note the gap in `log.md` and return control — do not freestyle a new design.
 
+### Git commit messages (Windows / PowerShell)
+
+- Prefer `git commit -m` with a PowerShell here-string, or `git commit -F` with a **BOM-free** UTF-8 file.
+- **Do not** use `Set-Content -Encoding utf8` / `Out-File -Encoding utf8` on Windows PowerShell 5.1 (they write a UTF-8 BOM that corrupts the commit subject).
+- Safe `-F` write: `[System.IO.File]::WriteAllText($path, $msg, (New-Object System.Text.UTF8Encoding $false))`, or PowerShell 7+ `-Encoding utf8NoBOM`.
+- After commit, confirm `git log -1 --format=%s` has no leading BOM / mojibake.
+
+### Push preflight (when plan requires `git push` / remote publish)
+
+Run **before** commit+push (**dual preflight**): user terminal push success ≠ agent Shell ready.
+
+1. **Remote:** `git remote -v` (https vs ssh) and tracking branch.
+2. **Agent git binary (Windows HTTPS):** Prefer **Git for Windows** over MSYS when they differ:
+   - Resolve via `where.exe git` and `(Get-Command git).Source`.
+   - Prefer a path under `...\Git\cmd\git.exe` (or any listed binary whose `git config --get credential.helper` is `manager` / GCM).
+   - MSYS (`...\msys64\usr\bin\git.exe`) often has **no** `credential.helper` → non-TTY push fails with `terminal prompts disabled`.
+   - Invoke push/preflight with the **GfW absolute path**; do **not** require machine-wide PATH rewrite.
+3. **Credential probe:** Using the chosen binary, `git credential fill` (protocol/host only) or `git push --dry-run`. Do **not** force `GCM_INTERACTIVE=0` / `GIT_TERMINAL_PROMPT=0` on the first GCM probe (those flags are OK for MSYS fail-fast only).
+4. **`gh`:** Record present/absent. Missing `gh` alone is **not** a credential failure when GCM fill/dry-run succeeds.
+5. **Never log secrets:** no PATs, tokens, credential fill `password=` lines, or full env dumps. `GITHUB_TOKEN` existence may be noted boolean-only.
+
+### Status honesty (push / credentials)
+
+- If a required `git push` or agent push preflight fails: set **`status: blocked`**, leave any local commit in place, report remediation by `blocker_type`. Do **not** use `complete`.
+- `partial` is only for unfinished planned work that is still actionable by implementer without user secrets/auth.
+- Never claim Done when any acceptance criterion (e.g. push OK) is unmet.
+
+### `blocker_type` (push failures)
+
+| Value | Meaning | Example remediation |
+| --- | --- | --- |
+| `none` | No blocker | — |
+| `agent_environment` | Wrong git on PATH, missing helper on default binary, sandbox/Legacy Terminal blocking GCM | Use GfW absolute `git.exe`; Cursor Run Modes / less sandbox / Legacy Terminal ([Run Modes](https://cursor.com/docs/agent/security/run-modes)) |
+| `user_credentials` | No credential store entry / need login / SSH key setup | User `gh auth login`, GCM re-auth, or SSH setup |
+| `plan_gap` | Plan incomplete or wrong | Return to planner |
+| `other` | Unclassified | State evidence + ask orchestrator |
+
+Do **not** classify as `user_credentials` solely because `gh` is missing when GCM works.
+
+### Fallbacks (secondary; only if GfW+GCM still fails after PATH/git fix)
+
+- (B) Install `gh` + `gh auth login` / `credential.helper '!gh auth git-credential'`.
+- (C) SSH remote + key agent — do **not** rewrite `origin` to SSH by default.
+- Cursor Settings: less sandbox / Legacy Terminal / approve elevated run.
+
 ## Output (return to orchestrator)
 
 ```markdown
@@ -33,5 +78,6 @@ You **implement the plan** — nothing more.
 - changes_path: ...
 - log_path: ...
 - verification: pass | fail | skipped (why)
+- blocker_type: none | user_credentials | agent_environment | plan_gap | other
 - deviations_from_plan: [none | list]
 ```

@@ -12,7 +12,8 @@ When the user starts a non-trivial goal, invokes `/full-agent-workflow`, or asks
 1. You are the **orchestrator** — direct and connect only; do not realize the goal yourself.
 2. Create `sessions/yyyy.mm.dd/` (or `yyyy.mm.dd-HHMM` on collision) and log all phase artifacts there.
 3. Delegate via Task to: `prompt-betterment` → `researcher` → `planner` → `implementer` → `auditor` → `self-improver`.
-4. **Always** run `self-improver` at cycle end (pass or fail): audit good/bad, propose, implement workflow improvements.
+4. **Always** run `self-improver` at cycle end (pass, fail, or blocked): audit good/bad, propose, implement workflow improvements.
 5. Follow `.cursor/skills/full-agent-workflow/SKILL.md` and `.cursor/agents/orchestrator.md`.
+6. Push/auth blockers: early **agent** Shell preflight (prefer Git for Windows + GCM on Windows when PATH git lacks helper). Fail-closed — mark session `blocked`, never false `complete`. Distinguish `agent_environment` vs `user_credentials`; missing `gh` alone ≠ credentials missing when GCM works. Do not relaunch implementer until remediated; **self-improver still runs**.
 
 Trivial one-line fixes may skip the full cycle; still prefer a short session note if the user asks for documentation.

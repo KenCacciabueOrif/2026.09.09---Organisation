@@ -34,6 +34,8 @@ Do not skip self-improvement after a cycle.
 - Prefer explicit acceptance criteria in the plan before implementation.
 - After implementation, prefer tests/typecheck/lint named in the plan.
 - Prefer revert + better plan over compounding a bad run.
+- Goals that require `git push`: early dual preflight (remote + **agent** git/GCM — on Windows prefer Git for Windows when PATH git is MSYS without helper); user terminal push ≠ agent ready; missing `gh` alone ≠ missing credentials when GCM works. Fail-closed: never mark complete if agent push failed; `blocker_type` `agent_environment` vs `user_credentials`; still run self-improver. Optional user tip: put Git for Windows `cmd` before MSYS on PATH; agents still invoke GfW via absolute path when needed.
+- On Windows PowerShell, write commit message files **without** a UTF-8 BOM (`utf8NoBOM` / `UTF8Encoding($false)` / here-string `-m`); Windows PS 5.1 `Set-Content -Encoding utf8` adds a BOM.
 
 ## Safety
 

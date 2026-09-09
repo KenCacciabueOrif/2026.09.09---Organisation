@@ -36,3 +36,7 @@ orchestrator (direct only)
 ## Session folders
 
 Named `yyyy.mm.dd` (example `2026.09.09`). Same-day collision uses `yyyy.mm.dd-HHMM`.
+
+## Windows git push (agent Shell)
+
+Goals that `git push` from the **agent** (not only your interactive terminal) need Git Credential Manager via **Git for Windows**, not MSYS git without a helper. Agents prefer the GfW absolute `git.exe` path; optional tip: put `...\Git\cmd` **before** MSYS on your user PATH so default `git` matches. Details: `AGENTS.md` (Commands / verification). Missing `gh` alone is not a credential failure when GCM works.
