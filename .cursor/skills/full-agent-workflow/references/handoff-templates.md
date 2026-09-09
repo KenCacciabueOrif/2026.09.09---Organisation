@@ -14,7 +14,7 @@ Pending user gates from prior cycle (if any): taxonomy final sign-off? must-pres
 Write online-prompt-tips.md, ask clarifying questions (or use answers below), then refined-prompt.md and notes.md.
 Clarifying questions MUST include: plain-language explanation of what is asked + what “yes” commits to, and pros/cons (tradeoffs) per option. Do not assume jargon literacy; define gate terms in one sentence if used.
 If goal is publish / git add-commit-push: use references/publish-cycle.md question pack; hard AC = this org-repo git root only (never stage sibling C:\\Project trees).
-If goal is git pull / sync from origin: use references/pull-cycle.md question pack; hard AC = org-repo root only; FAW default dirty = order-aware allowlisted autonomy + --ff-only (behind+allowlisted → stash→ff→pop / Q3c; else commit-then-pull; abort only for unrelated → blocker_type dirty_working_tree); GfW for status gate, allowlist commit/stash, and pull.
+If goal is git pull / sync from origin: use references/pull-cycle.md question pack; hard AC = org-repo root only; FAW default dirty = order-aware allowlisted autonomy + --ff-only (behind+allowlisted → stash→ff→pop / Q3c; else commit-then-pull; abort only for unrelated → blocker_type dirty_working_tree); Q3b default A abort on conflict (B = allowlist-only resolve only if Choose); GfW for status gate, allowlist commit/stash, and pull.
 If user answers "Choose" OR leaves pack items unanswered after a partial reply → you decide using disclosed defaults, lock in notes.md Answers (Source Choose / unanswered→default), encode in AC — do not leave blanks for later phases.
 Taxonomy/must-preserve language: proposed-ratified — ready for user sign-off; draft — not auto-locked (never claim final without explicit approval).
 Prior answers (if any):
@@ -69,7 +69,7 @@ Write log.md and changes.md. Do not expand scope.
 docs_only → zero-move attestation; fs_mutation → approved batch only; git roots atomic; no secret contents; reverse-move notes for each successful move.
 Do not upgrade proposed-ratified/draft labels to "final"/"locked" unless plan AC and session evidence say so.
 Push goals: prefer GfW absolute git on Windows HTTPS (not PATH/MSYS alone); confirm rev-parse toplevel = org root before stage; blocker_type agent_environment vs user_credentials; no secret logging.
-Pull goals: same GfW for status --porcelain, allowlist commit/stash, and pull; unrelated dirty abort → blocked + dirty_working_tree; behind+allowlisted → stash→ff→pop; not-behind allowlist → auto-commit then --ff-only; non-ff → blocked + other/non_ff (keep WIP/stash); never claim pull success on block; auth/env types unchanged.
+Pull goals: same GfW for status --porcelain, allowlist commit/stash, and pull; unrelated dirty abort → blocked + dirty_working_tree; behind+allowlisted → stash→ff→pop; not-behind allowlist → auto-commit then --ff-only; non-ff → blocked + other/non_ff; content-conflict abort under Q3b=A → blocked + other/merge_conflict (keep WIP/stash); Q3b=B resolve only if all conflicts ⊆ allowlist + documented rule; never claim pull success on block; auth/env types unchanged.
 ```
 
 ## auditor
@@ -95,5 +95,5 @@ Read SESSION.md and all phase artifacts especially 05-audit/report.md.
 3) implement safe improvements to .cursor/agents, skill, rules, templates
 4) changes-applied.md + backlog.md
 This step is mandatory.
-Focus when relevant: publish/pull question packs / Q3c behind+allowlisted stash path / allowlisted auto-commit / git-root staging / GfW vs MSYS / dirty_working_tree (unrelated) vs non_ff/other vs agent_environment vs user_credentials / SESSION blocked bookkeeping on implementer return / unanswered→Choose defaults / post-push dirty=Low; proposed-ratified vs final; draft must-preserve; ROADMAP continuity; informed-consent asks if jargon friction appeared.
+Focus when relevant: publish/pull question packs / Q3c behind+allowlisted stash path / Q3b allowlist-only conflict resolve / allowlisted auto-commit / git-root staging / GfW vs MSYS / dirty_working_tree (unrelated) vs non_ff|merge_conflict/other vs agent_environment vs user_credentials / SESSION blocked bookkeeping on implementer return / unanswered→Choose defaults / post-push dirty=Low; proposed-ratified vs final; draft must-preserve; ROADMAP continuity; informed-consent asks if jargon friction appeared.
 ```

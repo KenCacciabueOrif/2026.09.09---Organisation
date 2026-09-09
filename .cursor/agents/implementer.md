@@ -66,11 +66,12 @@ Run **before** commit+push (**dual preflight**): user terminal push success ≠ 
 ### Status honesty (push / pull / credentials)
 
 - If a required `git push` or agent push preflight fails: set **`status: blocked`**, leave any local commit in place, report remediation by `blocker_type`. Do **not** use `complete`.
-- If a required **`git pull` / sync** aborts on **unrelated** dirty tree, or fails auth/non-ff: set **`status: blocked`**, outcome e.g. `aborted_dirty` / `non_ff`, `blocker_type: dirty_working_tree` | `other` | auth types. Do **not** claim pull succeeded; do **not** use `complete`.
+- If a required **`git pull` / sync** aborts on **unrelated** dirty tree, fails auth/non-ff, or aborts on content conflict under Q3b=A: set **`status: blocked`**, outcome e.g. `aborted_dirty` / `non_ff` / `blocked_conflict`, `blocker_type: dirty_working_tree` | `other` | auth types. Do **not** claim pull succeeded; do **not** use `complete`.
 - Before the dirty handler: **fetch/count ahead-behind**. When dirt ⊆ allowlist only:
   - **Behind > 0:** **stash allowlist → `git pull --ff-only` → stash pop** (same GfW binary); optional allowlist commit after pop. Never `stash drop` on conflict — fail-closed, leave stash recoverable.
   - **Not behind:** **auto-commit** allowlisted paths (BOM-safe message), then `git pull --ff-only`.
   - Do **not** merge/rebase on non-ff unless plan/user changed combine strategy (Q2≠A).
+- On **content conflicts** during combine: follow locked **Q3b**. Default **A** = abort (`merge --abort` preferred), tip recoverable, `other`/`merge_conflict`. **B** = resolve **only** if every unmerged path ⊆ allowlist, using the documented ours/theirs/combined rule from `notes.md`; any outside-allowlist conflict → abort like A. Never silent-resolve under A.
 - Prefer **GfW absolute path** for dirty gate, allowlist commit/stash, **and** pull (same binary) — PATH/MSYS alone can skew porcelain and credentials.
 - `partial` is only for unfinished planned work that is still actionable by implementer without user secrets/auth.
 - Never claim Done when any acceptance criterion (e.g. push OK / pull sync OK) is unmet.
@@ -84,7 +85,7 @@ Run **before** commit+push (**dual preflight**): user terminal push success ≠ 
 | `agent_environment` | Wrong git on PATH, missing helper on default binary, sandbox/Legacy Terminal blocking GCM | Use GfW absolute `git.exe`; Cursor Run Modes / less sandbox / Legacy Terminal ([Run Modes](https://cursor.com/docs/agent/security/run-modes)) |
 | `user_credentials` | No credential store entry / need login / SSH key setup | User `gh auth login`, GCM re-auth, or SSH setup |
 | `plan_gap` | Plan incomplete or wrong | Return to planner |
-| `other` | Unclassified **or** expected **non_ff** / history diverge (often after commit-while-behind, or any tip that is not an ancestor of remote) | Session **`blocked`**; sync unmet; **do not** claim pull succeeded. Keep WIP commit/stash recoverable; do not merge/rebase unless user changes Q2. Next cycle: Choose Q2 B/C **or** recover allowlist-only tip + Q3c stash path |
+| `other` | Unclassified **or** expected **`non_ff`** (history diverge / ff-only refuse) **or** **`merge_conflict`** / outcome `blocked_conflict` (content conflicts; Q3b=A abort or non-allowlist conflict) | Session **`blocked`**; sync unmet; **do not** claim pull succeeded. Keep WIP/stash recoverable. Next: for `non_ff` Choose Q2 B/C or recover+Q3c; for `merge_conflict` Choose Q3b=B (allowlist-only resolve) or user resolves (Q3b=C) then continue — still no force/hard reset |
 
 Do **not** classify as `user_credentials` solely because `gh` is missing when GCM works.
 Do **not** classify unrelated dirty-abort as `agent_environment` or `user_credentials`.

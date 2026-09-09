@@ -25,9 +25,10 @@ Plain-language intent preview for the orchestrator plan gate:
 
 ## Steps
 
-1. **Auth/preflight** (required when plan includes `git push`) — dual preflight: remote scheme + tracking; agent git path / helper / GfW preference (Windows); GCM evidence boolean; `gh` present? (not sole signal); user-terminal note optional; `blocker_type` agent_environment vs user_credentials — verify: agent can push non-interactively or ready_to_implement no
-2. **Step** — paths — action — verify: 
-3. 
+1. **Auth/preflight** (required when plan includes `git push` or `git pull`) — dual preflight: remote scheme + tracking; agent git path / helper / GfW preference (Windows); GCM evidence boolean; `gh` present? (not sole signal); user-terminal note optional; `blocker_type` agent_environment vs user_credentials — verify: agent can push/pull non-interactively or ready_to_implement no
+2. **Pull/sync plans** — document success path vs fail-closed outcomes: `dirty_working_tree` | `other`/`non_ff` | `other`/`merge_conflict` (`blocked_conflict`); lock Q2 + Q3b; never claim sync complete on abort
+3. **Step** — paths — action — verify: 
+4. 
 
 ## Non-goals
 

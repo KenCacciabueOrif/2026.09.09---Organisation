@@ -63,7 +63,7 @@ When launching a subagent, include:
 
 After each phase, update `SESSION.md` (phase status, one-line summary, artifact paths).
 
-**Immediate bookkeeping on implementer return:** If implementer reports `status: blocked` / outcome `aborted_dirty` / `non_ff` (or equivalent), set `SESSION.md` **`blocked`** + `blocker_type` **in the same turn** — do not leave `in_progress` until audit/close. Auditor Low findings for lag are process debt, not implementer fail.
+**Immediate bookkeeping on implementer return:** If implementer reports `status: blocked` / outcome `aborted_dirty` / `non_ff` / `blocked_conflict` / `merge_conflict` (or equivalent), set `SESSION.md` **`blocked`** + `blocker_type` **in the same turn** — do not leave `in_progress` until audit/close. Auditor Low findings for lag are process debt, not implementer fail.
 
 If `auditor` cannot write files (`readonly`), persist its returned report into `05-audit/report.md` yourself — that is session bookkeeping, not product implementation.
 
@@ -77,21 +77,22 @@ If `auditor` cannot write files (`readonly`), persist its returned report into `
 
 ## Credential / external / dirty-tree blockers
 
-- If implementer or auditor reports push/pull/auth failure, **unrelated** dirty-abort, or **non-ff**:
+- If implementer or auditor reports push/pull/auth failure, **unrelated** dirty-abort, **non-ff**, or **merge_conflict** / `blocked_conflict`:
   - Set `SESSION.md` status to **`blocked`** with remediation by `blocker_type`:
     - **`dirty_working_tree`** — pull/sync aborted because WT has paths **outside** the FAW allowlist; auth may be green. Remediate: user clean/stash/commit those paths, then a **new** cycle — do not relaunch implementer on the same unrelated dirty tree for the same goal. (Allowlisted-only dirt is agent auto-commit — not this blocker.)
     - **`other`** / **`non_ff`** — `--ff-only` refused (histories diverged; often commit-while-behind). Process may pass; session **`blocked`**; sync unmet; **never** claim pull succeeded. Keep WIP commit/stash; do not merge/rebase unless user changes combine strategy (next cycle Choose Q2 B/C or recover + Q3c).
+    - **`other`** / **`merge_conflict`** — combine hit content conflicts; Q3b=A abort (or non-allowlist conflict). Process may pass; sync unmet; tip recoverable. **Next cycle:** Choose Q3b=B (allowlist-only resolve + documented rule) or user resolves then continues — do not silent-resolve under Q3b=A.
     - **`agent_environment`** — wrong git on PATH (e.g. MSYS without helper), sandbox/Legacy Terminal; remediate: prefer Git for Windows absolute path / Cursor Run Modes — not “re-login” alone.
     - **`user_credentials`** — no credential store / need `gh auth login` / SSH setup.
   - Do **not** treat missing `gh` alone as `user_credentials` when session notes say GCM/GfW works.
   - Do **not** collapse unrelated dirty-abort into `agent_environment` / `user_credentials`.
-  - Do **not** relaunch `implementer` solely to retry push/pull until the user confirms remediation (or unrelated tree is clean / combine strategy changed for non-ff).
-  - Do **not** tell the user the goal is complete; unrelated dirty-abort or non-ff ≠ pull success.
+  - Do **not** relaunch `implementer` solely to retry push/pull until the user confirms remediation (or unrelated tree is clean / Q2 or Q3b policy changed).
+  - Do **not** tell the user the goal is complete; unrelated dirty-abort, non-ff, or merge-conflict abort ≠ pull success.
   - Still run **`self-improver`** (mandatory on fail/blocked).
 
 ## Completion
 
 1. Ensure `auditor` report exists.
 2. Launch `self-improver` with full session context.
-3. Mark `SESSION.md` status `complete`, or **`blocked`** with reason (never `complete` if Critical acceptance criteria unmet — including unmet pull/sync AC after correct unrelated dirty-abort or expected non-ff).
+3. Mark `SESSION.md` status `complete`, or **`blocked`** with reason (never `complete` if Critical acceptance criteria unmet — including unmet pull/sync AC after correct unrelated dirty-abort, expected non-ff, or expected merge-conflict abort).
 4. Tell the user: session path, audit verdict, and what self-improvement changed.
