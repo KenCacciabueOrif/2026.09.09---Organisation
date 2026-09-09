@@ -1,6 +1,6 @@
 # Changes — 2026.09.09-0906
 
-Single commit: encode Option A (GfW+GCM dual preflight) workflow guidance and publish pending session artifacts.
+Single commit `4de6aebdfcc5be72693a2002deef5f7b57f87c26`: encode Option A (GfW+GCM dual preflight) workflow guidance and publish pending session artifacts.
 
 ## Modified
 

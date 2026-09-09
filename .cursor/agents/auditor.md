@@ -55,6 +55,24 @@ pass | pass_with_issues | fail
 - rework_owner: none | implementer | user | researcher | planner
 ```
 
+### Docs-only / FS-mutation checklist (corpus / multi-cycle programs)
+
+When the plan or refined prompt is **`docs_only`** / zero-move:
+
+- [ ] Claimed artefacts exist; no intentional corpus moves/renames/deletes attributable to this cycle
+- [ ] Implementer `log.md` includes zero-move (or equivalent) attestation
+- [ ] No secret **contents** in artefacts (path presence OK if allowed)
+- [ ] If taxonomy AC: status is **proposed-ratified — ready for user sign-off** (or equivalent) — **not** final user ratification without session evidence of sign-off
+- [ ] If must-preserve AC: artefact labelled **draft — not auto-locked** (or equivalent); default-protect distinct from draft candidates
+
+When the plan is **`fs_mutation`**:
+
+- [ ] Evidence of **user batch approval** before implementation (session/handoff/plan note)
+- [ ] Only approved batch paths changed; must-preserve / default-protect paths untouched
+- [ ] Git roots remain atomic unless an explicit git-strategy plan authorized otherwise
+- [ ] Index/docs updated if required by AC; secrets not quoted
+- [ ] First move / Early-simple: taxonomy final sign-off **or** documented user waiver; must-preserve review **or** waiver — else Critical / fail-closed
+
 ### Push / Option A checklist (when goal includes remote publish)
 
 - [ ] Docs encode dual preflight + prefer Git for Windows over MSYS for Windows HTTPS when PATH git lacks GCM
@@ -62,6 +80,14 @@ pass | pass_with_issues | fail
 - [ ] No secrets/PATs/fill passwords/full env dumps in repo or session logs
 - [ ] Optional smoke: agent Shell GfW `git push --dry-run` (or fill without logging secrets) succeeds, **or** session correctly `blocked` with right `blocker_type` — never false `complete` with unmet push criterion
 - [ ] Wrong-git / sandbox gaps may be environment (user-settings remediation without “re-login”); true missing credentials → `rework_owner: user`
+
+### Single-commit publish + post-push session files
+
+When the plan required **exactly one** commit and push succeeded (HEAD == `origin/<branch>`):
+
+- Dirty **only** post-push session finalize (`04-implementation/log.md`, `changes.md`, `SESSION.md`) is **expected** — grade **Low**, not Medium, if live hash/push/status are verified and pre-push log content was included in the publish commit (or clearly staged before commit).
+- Grade **Medium** if the committed `log.md` never recorded preflight/stage/secrets (empty or stub) and closure exists only in an uncommitted WT edit.
+- Do **not** set `rework_needed: yes` / relaunch implementer solely for this chicken-egg; optional follow-up commit is orchestrator/user choice.
 
 If `rework_needed` is yes:
 

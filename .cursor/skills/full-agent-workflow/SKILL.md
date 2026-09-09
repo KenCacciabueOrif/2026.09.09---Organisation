@@ -31,7 +31,7 @@ Workflow progress:
 - [ ] 1. prompt-betterment → 01-prompt-betterment/
 - [ ] 2. researcher → 02-research/
 - [ ] 3. planner → 03-plan/
-- [ ] 4. User plan gate (if user wants approval) → then implementer
+- [ ] 4. User plan gate → then implementer (mandatory if plan mutates corpus FS)
 - [ ] 5. implementer → 04-implementation/
 - [ ] 6. auditor → 05-audit/ (rework loop if critical fail)
 - [ ] 7. self-improver → 06-self-improvement/  (MANDATORY)
@@ -43,7 +43,8 @@ Workflow progress:
 1. Date folder: `sessions/yyyy.mm.dd` (collision → `sessions/yyyy.mm.dd-HHMM`).
 2. Create phase subfolders `01`–`06` as named in [session-structure.md](references/session-structure.md).
 3. Seed files from `sessions/_templates/`.
-4. Write `SESSION.md` with raw goal + checklist.
+4. Write `SESSION.md` with raw goal + checklist. If this is a **program cycle**, fill Program framing (cycle id, docs-only vs mutation, `program/ROADMAP.md` pointer, **locked ROADMAP row**, prior session + **pending user gates**). One session per cycle; do not start moves inside a docs-only FAW after it passes.
+5. If the user did not name the row, **orchestrator chooses** the ROADMAP primary-next (or next sensible slice), documents it, and passes it to prompt-betterment — do not re-litigate mid-cycle.
 
 ### 1–6. Delegate
 
@@ -58,7 +59,20 @@ Launch each custom subagent with a handoff matching [handoff-templates.md](refer
 | Audit | `auditor` |
 | Self-improve | `self-improver` |
 
-Pause for user answers during prompt-betterment. Optionally pause after plan for approval on large/risky work.
+Pause for user answers during prompt-betterment. If answers include **Choose**, prompt-betterment must decide and document — do not forward “Choose” downstream.
+
+**Informed consent (all user pauses):**
+
+- Do **not** assume the user knows FAW jargon (`taxonomy`, `must-preserve`, `plan gate`, `fs_mutation`, `fail-closed`, …).
+- Every clarifying question and every orchestrator-relayed gate must include: short **plain-language explanation** (what is asked + what “yes” commits to) and **pros / cons or tradeoffs** for options.
+- Planner `fs_mutation` plans must include a “What the user is approving” intent-preview block the orchestrator can relay.
+
+**User plan gate (step 4):**
+
+- **Mandatory** when the plan includes moves/renames/deletes (or other corpus FS mutation) outside organisation-repo docs/index work — wait for explicit per-batch approval before implementer.
+- **Optional** for docs-only / index / charter cycles when `ready_to_implement: yes` (still pause if the user asked to review the plan).
+- Never treat a prior cycle’s approval as approval for a new batch.
+- **Early/simple / first move:** also confirm taxonomy final sign-off or explicit waiver, and must-preserve draft review or waiver, before launching implementer on `fs_mutation` — with the same explanation + tradeoffs rule (not jargon-only).
 
 ### Rework
 
@@ -74,6 +88,7 @@ Pause for user answers during prompt-betterment. Optionally pause after plan for
 - Fail-closed: agent push/preflight fail → session `blocked` (never `complete`); `blocker_type` **`agent_environment`** vs **`user_credentials`**; do not relaunch implementer until remediated; **self-improver still runs**.
 - **Never** log secrets, PATs, credential fill passwords, or full env dumps (`GITHUB_TOKEN` existence boolean-only).
 - Fallbacks only if GfW+GCM fails after PATH/git fix: `gh auth git-credential`, or SSH remote + key (do not rewrite `origin` to SSH by default); Cursor Run Modes / Legacy Terminal if sandbox blocks GCM.
+- **Single-commit vs session finalize:** write pre-push `04-implementation` notes before commit; post-push hash/status lines cannot be in that commit — leave them dirty (known tradeoff) or allow a tiny follow-up session-only commit if the plan/user permits. Auditor: expected dirty finalize = Low, not rework.
 
 ### Done criteria
 

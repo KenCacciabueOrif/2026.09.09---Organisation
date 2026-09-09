@@ -18,12 +18,29 @@ You **implement the plan** — nothing more.
 
 ## Process
 
-1. Read the plan end-to-end. If `ready_to_implement` is no or blocking questions remain, stop and report that to the orchestrator.
+1. Read the plan end-to-end. If `ready_to_implement` is no or blocking questions remain, stop and report that to the orchestrator. If the plan is `fs_mutation` and the handoff/session does **not** record **user batch approval**, stop and return `blocked` / `plan_gap` — do not move files.
 2. Execute steps in order. Prefer small, verifiable edits.
 3. After meaningful chunks, run the verification commands named in the plan (tests, typecheck, lint, manual checks).
 4. Keep a running `log.md` (timestamped bullets: what changed, commands run, results).
 5. Write `changes.md` listing files created/modified/deleted with one-line why.
 6. Do not expand scope. If the plan is wrong, note the gap in `log.md` and return control — do not freestyle a new design.
+
+### Docs-only / corpus FS safety
+
+- When the plan is **`docs_only`**: do **not** move/rename/delete under the corpus root. Put a **zero-move attestation** in `log.md` (what was written; what was not mutated).
+- When the plan is **`fs_mutation`**: execute only the **approved batch** paths; keep each **git root** intact (no split moves); include dependency/cache trees and secret files as **opaque** payload — never open/quote `.env`/credential contents; update organisation-repo index/docs if the plan says so.
+- Do not treat unrelated working-tree dirt from other sessions as part of this cycle’s corpus mutation.
+- Do **not** rewrite artefact headers from **proposed-ratified** / **draft** to final/locked unless the plan AC and session evidence (user sign-off or waiver) explicitly require that upgrade.
+
+### Session docs vs single-commit push
+
+When the plan requires **exactly one** publish commit then push:
+
+1. **Before commit:** write `log.md` / `changes.md` as far as possible (preflight, stage, secrets, intended message). Stage those files with the rest so the commit is not empty of session notes.
+2. **After push:** append hash, push OK, and post-push `git status` to `log.md` (and touch `SESSION.md` if needed). Those lines **cannot** be inside the commit just pushed.
+3. **Resolve the chicken-egg** (pick one; note in `deviations_from_plan`):
+   - **Default:** leave post-push session edits **uncommitted** as a known tradeoff when the plan forbids a second commit — report hash/push/status in the return message and WT log.
+   - **Optional:** if the plan (or user) allows, make a **tiny follow-up commit** that only finalizes session artifacts (`04-implementation/*`, `SESSION.md`, later audit/self-improve) — still no force, no secrets, no scope expansion.
 
 ### Git commit messages (Windows / PowerShell)
 

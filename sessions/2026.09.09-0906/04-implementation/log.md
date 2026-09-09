@@ -24,8 +24,16 @@
 ## 2026-09-09 — Secrets gate
 
 - Scanned porcelain + untracked pathnames for `.env`, credentials, keys, tokens, PEM/P12, etc.
-- Suspects: 0 — CLEAR; proceed to stage all
+- Suspects: 0 — CLEAR
+- Re-checked staged index after `git add -A`: CLEAR (53 paths)
 
 ## 2026-09-09 — Stage / commit / push
 
-- (updated after commands)
+- `git add -A` via GfW — 53 paths staged
+- Commit (BOM-safe here-string `-m`, hooks not skipped): exit 0
+- Hash: `4de6aebdfcc5be72693a2002deef5f7b57f87c26`
+- Message: `Encode Option A GfW+GCM dual preflight so agent Shell can push reliably.`
+- Leading BOM on subject: false
+- Push: `& GfW push origin main` — exit 0; `9708f2e..4de6aeb  main -> main`
+- Post-push `git status`: `main...origin/main`, working tree clean
+- status: complete; blocker_type: none

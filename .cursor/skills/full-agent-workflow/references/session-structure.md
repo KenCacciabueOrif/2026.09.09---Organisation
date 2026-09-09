@@ -30,6 +30,12 @@ Date format is **strict**: `yyyy.mm.dd` (example `2026.09.09`).
 
 Bootstrap may copy **empty** `06-*` templates into the session. That does **not** mean phase 06 ran — keep `SESSION.md` checklist item 06 unchecked until `self-improver` overwrites those files with a real audit/proposals/changes/backlog.
 
+### Commit+push sessions
+
+For “one commit then push” goals: stage `log.md`/`changes.md` **before** the publish commit with preflight/stage/secrets filled in. After push, appending hash/push/`git status` will dirty the tree again — that is normal unless a follow-up session-only commit is planned.
+
 ## SESSION.md
 
 Must track: raw goal, refined goal link, status, phase checklist, artifact links, final audit verdict, self-improvement summary.
+
+For **program cycles**, also fill Program framing: roadmap pointer, cycle id, **ROADMAP row locked**, mutation class (`docs_only` | `fs_mutation`), batch approval state, **pending user gates** (taxonomy sign-off / must-preserve review / waivers), prior session / locked answers.

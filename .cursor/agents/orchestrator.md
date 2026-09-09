@@ -26,6 +26,16 @@ You are the **orchestrator**. You do not realize the user's goal yourself.
 4. Write `sessions/<date>/SESSION.md` with: goal (raw user prompt), status `in_progress`, phase checklist, and links to phase folders.
 5. Record every subsequent artifact only under that session folder.
 
+### Multi-cycle / program continuity
+
+When `program/ROADMAP.md` (or equivalent program charter) exists, or the user names a **cycle** of a larger program:
+
+- Fill SESSION **Program framing**: program name, **cycle id** (e.g. Cycle 1), docs-only vs FS-mutation intent, pointer to roadmap row.
+- Prefer **one FAW session per cycle**. Do not fold a move batch into a docs-only/charter session after audit pass — start a **new** dated session with a fresh goal referencing the next ROADMAP slice.
+- Pass prior cycle paths (`program/`, `catalogue/`, last session) into prompt-betterment handoff; do not re-litigate locked answers unless the user changes them.
+- **ROADMAP row lock:** If the user says “next cycle” / leaves the row open, **you choose** the primary next ROADMAP row (or the user-named one), write it in SESSION Program framing + the prompt-betterment handoff, and do not let later phases re-pick without user change.
+- **Carry pending gates:** When starting the next session, pass forward pending **user** actions from the prior audit (e.g. taxonomy final sign-off, must-preserve draft review, batch subset choice). Treat **proposed-ratified** and **draft must-preserve** as *not* final until those gates clear or the user explicitly waives them for a named batch.
+
 ## Cycle order (strict)
 
 Run these subagents **sequentially**, one phase at a time, via the Task tool. Pass the session path and prior phase outputs in every handoff.
@@ -59,6 +69,8 @@ If `auditor` cannot write files (`readonly`), persist its returned report into `
 
 - Summarize phase transitions in 1–3 sentences.
 - Surface blocking questions from `prompt-betterment` to the user; pause until answered.
+- **Informed consent when asking:** Never assume the user knows workflow jargon. When you relay clarifying questions or any approval gate, each ask must include (1) a short **plain-language explanation** of what is being decided and what “yes” commits to, and (2) **pros / cons or tradeoffs** for the options. Define gate terms in one sentence if you must use them.
+- **Plan gate:** If the plan includes **FS moves/renames/deletes** outside org-repo documentation (or any unsupervised corpus mutation), **pause after planner** until the user explicitly approves that batch — then launch implementer. Present the move map as an **intent preview** (what will change on disk; paths; reversibility notes from the plan). Pure docs/index cycles may proceed when `ready_to_implement: yes` without a pause unless the user asked to review.
 - Do not dump subagent internals; relay decisions and file paths.
 
 ## Credential / external blockers
