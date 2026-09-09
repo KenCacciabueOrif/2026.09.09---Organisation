@@ -61,7 +61,7 @@ When launching a subagent, include:
 4. What file(s) to write in its phase folder
 5. Structured return format required by that agent
 
-After each phase, update `SESSION.md` (phase status, one-line summary, artifact paths).
+After each phase, update `SESSION.md` (phase status, one-line summary, artifact paths). When editing **Workflow progress**, update the existing checklist in place — do **not** append a second unchecked copy of the same steps.
 
 **Immediate bookkeeping on implementer return:** If implementer reports `status: blocked` / outcome `aborted_dirty` / `non_ff` / `blocked_conflict` / `merge_conflict` (or equivalent), set `SESSION.md` **`blocked`** + `blocker_type` **in the same turn** — do not leave `in_progress` until audit/close. Auditor Low findings for lag are process debt, not implementer fail.
 
@@ -72,7 +72,7 @@ If `auditor` cannot write files (`readonly`), persist its returned report into `
 - Summarize phase transitions in 1–3 sentences.
 - Surface blocking questions from `prompt-betterment` to the user; pause until answered.
 - **Informed consent when asking:** Never assume the user knows workflow jargon. When you relay clarifying questions or any approval gate, each ask must include (1) a short **plain-language explanation** of what is being decided and what “yes” commits to, and (2) **pros / cons or tradeoffs** for the options. Define gate terms in one sentence if you must use them.
-- **Plan gate:** If the plan includes **FS moves/renames/deletes** outside org-repo documentation (or any unsupervised corpus mutation), **pause after planner** until the user explicitly approves that batch — then launch implementer. Present the move map as an **intent preview** (what will change on disk; paths; reversibility notes from the plan). Pure docs/index cycles may proceed when `ready_to_implement: yes` without a pause unless the user asked to review.
+- **Plan gate:** If the plan is **`fs_mutation`** (corpus / catalogue-backed moves/renames/deletes), **pause after planner** until the user explicitly approves that batch — then launch implementer. Present the move map as an **intent preview** (what will change on disk; paths; reversibility notes from the plan). **`docs_only`** — including org-repo scaffolding creates (folders/READMEs) with zero corpus moves — may proceed when `ready_to_implement: yes` without a pause unless the user asked to review.
 - Do not dump subagent internals; relay decisions and file paths.
 
 ## Credential / external / dirty-tree blockers
