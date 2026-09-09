@@ -11,6 +11,8 @@
 | User approval before implementer | required \| not required (docs_only) |
 | First-move gates (if fs_mutation) | taxonomy sign-off/waiver · must-preserve review/waiver · batch approval |
 
+Note: `docs_only` covers **org-repo scaffolding creates** (folders/READMEs/docs inside this organisation git root) when there are **no** corpus moves/renames/deletes. `fs_mutation` is for corpus / catalogue-backed path batches — not every disk write.
+
 ## What the user is approving (required if `fs_mutation`)
 
 Plain-language intent preview for the orchestrator plan gate:

@@ -69,8 +69,8 @@ Pause for user answers during prompt-betterment. If answers include **Choose**, 
 
 **User plan gate (step 4):**
 
-- **Mandatory** when the plan includes moves/renames/deletes (or other corpus FS mutation) outside organisation-repo docs/index work — wait for explicit per-batch approval before implementer.
-- **Optional** for docs-only / index / charter cycles when `ready_to_implement: yes` (still pause if the user asked to review the plan).
+- **Mandatory** when the plan is **`fs_mutation`**: moves/renames/deletes (or other corpus / catalogue-backed path mutations) — wait for explicit per-batch approval before implementer.
+- **`docs_only` (no mandatory gate):** org-repo scaffolding creates (new folders/READMEs/docs/index inside this organisation git root) and charter/index cycles with **zero** corpus moves — proceed when `ready_to_implement: yes` (still pause if the user asked to review the plan). Creating paths in the org repo ≠ `fs_mutation`.
 - Never treat a prior cycle’s approval as approval for a new batch.
 - **Early/simple / first move:** also confirm taxonomy final sign-off or explicit waiver, and must-preserve draft review or waiver, before launching implementer on `fs_mutation` — with the same explanation + tradeoffs rule (not jargon-only).
 

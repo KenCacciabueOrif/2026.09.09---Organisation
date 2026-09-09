@@ -8,9 +8,11 @@ For each question, record (or paste the user-facing ask):
 2. **Options** — with **pros / cons (tradeoffs)** per option (or for yes/no).
 3. Do not assume jargon literacy; define gate terms in one short sentence if used.
 
+If the user said **Choose** / **Choose all**, keep at least a **one-line ask summary per Q** here (even if full option tables lived in chat).
+
 ## Answers
 
-(Include agent decisions when the user said **Choose** — concrete option + rationale.)
+(Include agent decisions when the user said **Choose** / **Choose all** — concrete option + rationale.)
 
 ## Continuity (locked — do not re-ask)
 
