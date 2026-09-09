@@ -36,7 +36,7 @@ For “one commit then push” goals: stage `log.md`/`changes.md` **before** the
 
 ### Pull / sync sessions
 
-Use `references/pull-cycle.md`. FAW default = allowlisted auto-commit then `--ff-only`. Unrelated dirty-abort → session **`blocked`** with `blocker_type: dirty_working_tree`. Expected post-allowlist non-ff → **`blocked`** with `other`/`non_ff` (WIP commit kept). Do not mark `complete` on unmet sync AC. Orchestrator updates SESSION status as soon as implementer returns blocked.
+Use `references/pull-cycle.md`. FAW default = order-aware allowlisted autonomy + `--ff-only` (**behind+allowlisted → stash→ff→pop**; else commit-then-pull). Unrelated dirty-abort → session **`blocked`** with `blocker_type: dirty_working_tree`. Expected **`other`/`non_ff`** → **`blocked`** (WIP/stash kept; never claim pull succeeded). Do not mark `complete` on unmet sync AC. Orchestrator updates SESSION status as soon as implementer returns blocked.
 
 ## SESSION.md
 

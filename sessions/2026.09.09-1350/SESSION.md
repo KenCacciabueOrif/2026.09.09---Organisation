@@ -1,55 +1,44 @@
 # Session
 
 - **Date folder:** `2026.09.09-1350`
-- **Status:** `in_progress`
-- **Raw goal:** /full-agent-workflow I just made small changes on the project, you should have resolved the git pull to incorporate them as well as the session made elsewhere. you always create sessions when doing git push so the tree will never be clean so, find and implement a way to do the git workflow yourself without user involvment then, git pull again
+- **Status:** `blocked`
+- **Raw goal:** /full-agent-workflow … autonomous git workflow then git pull again
 - **Refined prompt:** `01-prompt-betterment/refined-prompt.md`
-- **Audit verdict:**
-- **Self-improvement:** `06-self-improvement/changes-applied.md`
+- **Audit verdict:** pass (process) — sync AC unmet; non-ff fail-closed correct under Q2=A
+- **Self-improvement:** `06-self-improvement/changes-applied.md` — Q3c stash→ff→pop when behind+allowlisted
 
 ## Program framing
 
-- **Program / roadmap:** `program/ROADMAP.md` (git ops + FAW workflow fix — not a move-batch row)
-- **Cycle id:** Pull-autonomy — fix dirty-tree deadlock for agent git pull/push, then pull again
-- **ROADMAP row locked:** n/a — user named git-workflow + pull goal (not Early/simple or git-strategy)
-- **Mutation class:** `docs_only` expected (org-repo agents/skills/rules/session docs + git ops; no corpus FS moves)
+- **Program / roadmap:** `program/ROADMAP.md` (git ops + FAW workflow fix)
+- **Cycle id:** Pull-autonomy
+- **ROADMAP row locked:** n/a
+- **Mutation class:** `docs_only`
 - **Batch approval:** `n/a`
-- **Pending user gates (carried from program):** taxonomy final sign-off; must-preserve draft review — **out of scope**
-- **Prior session / locked answers:** `sessions/2026.09.09-1332/` blocked `dirty_working_tree` (Q3=A abort); pull-cycle.md added; Choose→all A on prior pull pack
-- **User intent (orchestrator lock):** (1) FAW session dirtiness must not permanently block agent pull — implement autonomous git workflow without requiring user cleanup; (2) then execute git pull to incorporate remote (incl. session made elsewhere) and reconcile with local small changes
-- **Consent UX note:** clarifying Qs and plan gates must ship with plain-language explanation + pros/cons
+- **Pending user gates:** taxonomy / must-preserve — out of scope
+- **Blocker:** `other` (`non_ff`) — HEAD `7ac4783` vs `origin/main` `489f03a` (1/1); allowlist WIP commit kept
+- **Prior session:** `1332` dirty_abort; this session fixed abort deadlock, hit commit-then-ff diverge
+- **Next sync:** new FAW — Choose Q2 B/C, or recover tip + Q3c stash→ff→pop (see `06-self-improvement/backlog.md`)
 
 ## Phase checklist
 
 - [x] 01 prompt-betterment
 - [x] 02 research
 - [x] 03 plan
-- [ ] 04 implementation
-- [ ] 05 audit
-- [ ] 06 self-improvement
+- [x] 04 implementation
+- [x] 05 audit
+- [x] 06 self-improvement
 
 ## Phase summaries
 
 | Phase | Status | One-line summary | Artifacts |
 | --- | --- | --- | --- |
-| 01 | complete | Choose→defaults: allowlist auto-commit then ff-only; same-session docs+pull | `01-prompt-betterment/` |
-| 02 | complete | Auth green; 23 allowlisted/0 unrelated; after commit expect non-ff vs 489f03a | `02-research/` |
-| 03 | complete | docs_only: docs→allowlist commit→ff-only; expect possible non-ff block | `03-plan/` |
-| 04 | in_progress | | `04-implementation/` |
-| 05 | | | |
-| 06 | | | |
+| 01 | complete | Choose→allowlist auto-commit + ff-only; same-session docs+pull | `01-prompt-betterment/` |
+| 02 | complete | Auth green; allowlisted only; predicted non-ff after commit | `02-research/` |
+| 03 | complete | docs→allowlist commit→ff-only; expect possible non-ff | `03-plan/` |
+| 04 | complete | docs+blocked_non_ff — `7ac4783` vs `489f03a` | `04-implementation/` |
+| 05 | complete | pass — blocked correct; no implementer rework | `05-audit/` |
+| 06 | complete | Q3c + non_ff docs; sync finish deferred | `06-self-improvement/` |
 
 ## Workflow progress
 
-- [x] 0. Session bootstrap (`sessions/2026.09.09-1350/`)
-- [x] 1. prompt-betterment → 01-prompt-betterment/
-- [x] 2. researcher → 02-research/
-- [x] 3. planner → 03-plan/
-- [x] 4. User plan gate → n/a (docs_only)
-- [ ] 5. implementer → 04-implementation/
-- [ ] 3. planner → 03-plan/
-- [ ] 4. User plan gate → then implementer (mandatory if plan mutates corpus FS)
-- [ ] 5. implementer → 04-implementation/
-- [ ] 6. auditor → 05-audit/
-- [ ] 7. self-improver → 06-self-improvement/ (MANDATORY)
-- [ ] 8. Close SESSION.md
+- [x] 0–8 all phases closed (session **blocked**, not complete)

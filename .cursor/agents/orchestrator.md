@@ -80,7 +80,7 @@ If `auditor` cannot write files (`readonly`), persist its returned report into `
 - If implementer or auditor reports push/pull/auth failure, **unrelated** dirty-abort, or **non-ff**:
   - Set `SESSION.md` status to **`blocked`** with remediation by `blocker_type`:
     - **`dirty_working_tree`** — pull/sync aborted because WT has paths **outside** the FAW allowlist; auth may be green. Remediate: user clean/stash/commit those paths, then a **new** cycle — do not relaunch implementer on the same unrelated dirty tree for the same goal. (Allowlisted-only dirt is agent auto-commit — not this blocker.)
-    - **`other`** / non-ff — allowlist commit diverged from remote; `--ff-only` refused. Keep WIP commit; do not merge/rebase unless user changes combine strategy.
+    - **`other`** / **`non_ff`** — `--ff-only` refused (histories diverged; often commit-while-behind). Process may pass; session **`blocked`**; sync unmet; **never** claim pull succeeded. Keep WIP commit/stash; do not merge/rebase unless user changes combine strategy (next cycle Choose Q2 B/C or recover + Q3c).
     - **`agent_environment`** — wrong git on PATH (e.g. MSYS without helper), sandbox/Legacy Terminal; remediate: prefer Git for Windows absolute path / Cursor Run Modes — not “re-login” alone.
     - **`user_credentials`** — no credential store / need `gh auth login` / SSH setup.
   - Do **not** treat missing `gh` alone as `user_credentials` when session notes say GCM/GfW works.

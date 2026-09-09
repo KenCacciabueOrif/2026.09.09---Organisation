@@ -31,7 +31,7 @@ You gather **evidence** so planning and implementation are grounded.
    - Classify blockers: **`agent_environment`** (wrong git/helper/sandbox) vs **`user_credentials`** (no store / need login / SSH). Do **not** say “blockers: none” when agent git cannot push non-interactively
 5. **Pull / sync preflight (when goal includes `git pull` or sync from origin)** — Same dual preflight as push, plus dirty readiness:
    - Prefer **GfW** for `status --porcelain`, allowlist commit, **and** any pull/fetch probes (MSYS porcelain may skew)
-   - Separate **auth readiness** from **dirty-tree readiness**; partition porcelain into **allowlist** vs **unrelated**. Unrelated dirty under abort policy → blocker **`dirty_working_tree`** (not auth). Allowlisted-only dirt → agent may auto-commit then pull (not “sync not ready”).
+   - Separate **auth readiness** from **dirty-tree readiness**; partition porcelain into **allowlist** vs **unrelated**. Record **ahead/behind** after fetch. Unrelated dirty under abort policy → blocker **`dirty_working_tree`** (not auth). Allowlisted-only dirt → agent may use **commit-then-pull** when not behind, or **stash→ff→pop** when behind (not “sync not ready”). Flag **commit-while-behind risk** if research shows behind>0 and plan still says commit-first.
    - Do **not** claim agent sync-ready when WT has **unrelated** dirty under abort policy
 6. Synthesize `research-brief.md`:
    - Recommended approach options (max 3) with tradeoffs

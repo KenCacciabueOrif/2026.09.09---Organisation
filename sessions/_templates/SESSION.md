@@ -8,7 +8,7 @@
 - **Audit verdict:** 
 - **Self-improvement:** `06-self-improvement/changes-applied.md`
 
-Note: When implementer returns `blocked` / `aborted_dirty` / `non_ff`, orchestrator sets **Status** to `blocked` in that turn (do not leave `in_progress` until audit). Correct unrelated dirty-abort or expected non-ff = process may pass audit while session stays **`blocked`** — never claim pull succeeded.
+Note: When implementer returns `blocked` / `aborted_dirty` / `non_ff`, orchestrator sets **Status** to `blocked` in that turn (do not leave `in_progress` until audit). Correct unrelated dirty-abort or expected `other`/`non_ff` = process may pass audit while session stays **`blocked`** — never claim pull succeeded. For `non_ff`, remediation is a **new** cycle (Choose Q2 B/C or recover allowlist tip + Q3c stash→ff→pop) — not silent merge under Q2=A.
 
 ## Program framing (optional)
 

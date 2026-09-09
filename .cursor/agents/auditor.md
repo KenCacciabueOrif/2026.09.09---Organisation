@@ -84,10 +84,10 @@ When the plan is **`fs_mutation`**:
 ### Pull / sync checklist (when goal includes git pull / sync from origin)
 
 - [ ] Org-root only; dual preflight + **GfW** for dirty gate, allowlist commit, **and** pull (not PATH/MSYS alone)
-- [ ] FAW dirty default = allowlisted auto-commit then `--ff-only`; **unrelated** porcelain only → abort, `blocker_type` **`dirty_working_tree`** (not auth/env); session **`blocked`** — never false `complete`
-- [ ] Allowlisted dirt committed then pull attempted = **correct path** (not “user must clean session dirt”)
+- [ ] FAW dirty default = order-aware allowlisted autonomy + `--ff-only` (**behind+allowlisted → stash→ff→pop**; else commit-then-pull); **unrelated** porcelain only → abort, `blocker_type` **`dirty_working_tree`** (not auth/env); session **`blocked`** — never false `complete`
+- [ ] Allowlisted dirt handled then pull attempted = **correct path** (not “user must clean session dirt”); commit-first while behind that non-ffs = pack-debt / expected block under old locks — not silent merge
 - [ ] Correct **unrelated** dirty-abort = **process pass** with sync/pull-success AC **unmet**; `rework_owner: user` — **not** implementer rework
-- [ ] Expected post-allowlist **non-ff** block = **process pass** + session `blocked` + `blocker_type` `other`/`non_ff` (WIP commit kept) — **not** implementer defect for refusing merge/rebase
+- [ ] Expected **`other`/`non_ff`** block = **process pass** + session `blocked` + WIP/stash kept — **not** implementer defect for refusing merge/rebase under Q2=A; **do not** treat as pull success
 - [ ] Auth failure / wrong binary typed as `user_credentials` or `agent_environment` as appropriate
 - [ ] No secrets in logs; taxonomy/must-preserve not used as pull blockers unless in scope
 
