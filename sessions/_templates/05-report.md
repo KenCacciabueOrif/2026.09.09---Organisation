@@ -20,6 +20,8 @@ pass | pass_with_issues | fail
 
 ## What did not / gaps
 
+<!-- Shell/porcelain unavailable → Read/Glob path check = Low/process when semantic AC holds (not Critical) -->
+
 ## Findings
 
 | Severity | Finding | Evidence |

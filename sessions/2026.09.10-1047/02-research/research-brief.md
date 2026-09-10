@@ -1,0 +1,110 @@
+# Research brief — Cycle 11 Multi-experiment (`WorkSpace` only / continue strategy)
+
+**Session:** `sessions/2026.09.10-1047/02-research/`  
+**Goal:** Post–hazard-strategy Continuity **Q1=A** — continue strategy from `program/git-strategy-workspace-hazards.md`; re-probe live WorkSpace; refine strategy / INDEX / ROADMAP honesty.  
+**No plan file. No implementation. No corpus FS mutation. No Appendix A execute. No whole-tree archive. No peer reopen.**
+
+## One-line outcome
+
+Live re-probe shows **no material delta** vs Cycle 10 classification; recommend **`docs_only` continue-strategy refinements** (attest + INDEX/ROADMAP honesty) — **classified ≠ cleared**; Multi-experiment stays **in progress / Remaining: `WorkSpace` only**.
+
+## Hazard re-probe vs strategy artifact
+
+| Hazard | Cycle 10 classification | Cycle 11 live | Delta |
+| --- | --- | --- | --- |
+| Multi-remote | Live primary + clones (`origin`+`cada` HTTPS on 3 hermes trees) | Confirmed in `.git/config` | **None** |
+| Unexpected nested roots | Backup + quarantine hermes clones | Both parents + `.git` present | **None** |
+| Primary vs clone | 5 primary / 2 clone; live HEAD ≠ clone HEAD | Live `4fbff573…`; clones `8d60d929…` | **None** |
+| Nested-root count | **7** | **7** (all paths readable) | **None** |
+| Linked worktrees | None | No `.git/worktrees` on live hermes | **None** |
+| Size | XL ~5786 MB | Band **carried** (structure unchanged; shell size re-measure N/A this turn) | **None assumed** |
+| Opaque `.env*` | 17 paths unread | Paths still present (presence only) | **None** |
+| Must-preserve | Draft Medium | Unchanged draft | **None** |
+| SSH origin rewrite | N/A (all HTTPS) | Still HTTPS only | **None** |
+| Appendix A execute | Unused | Still unused; Continuity not B | **None** |
+
+**Clearance for whole-tree archive:** still **NO**.
+
+**INDEX path truth:** WorkSpace still at `C:\Project\WorkSpace`; dated archive destination absent; archived peers at INDEX archive paths (**verify-only**).
+
+## Recommended approach options (max 3)
+
+### Option A (recommended): `docs_only` continue-strategy refine + honesty
+
+- Re-attest Cycle 11 probe in `program/git-strategy-workspace-hazards.md` (no material delta; clearance still NO; Appendix A unused).
+- Update `catalogue/INDEX.md` + `program/ROADMAP.md` Notes for Cycle 11 continue-strategy; keep Multi-experiment **in progress**; **Remaining: `WorkSpace` only**.
+- Zero corpus moves/renames/deletes; do not draft an execute map as Continuity-authorized work.
+- Pros: Matches Q1=A / Q2=A; builds on durable artifact; reversible; avoids Cycle 9 re-defer theater and Appendix A creep.
+- Cons: Physical hazards unchanged; row stays open (correct).
+
+### Option B: Pure Cycle 9-style research+defer with minimal/no strategy touch
+
+- Honesty-only session notes without refining the durable strategy file.
+- Pros: Lowest doc churn.
+- Cons: **Misaligned** with Continuity Q1=A and FAW post–strategy law — treat as **rejected** default.
+
+### Option C: Whole-tree archive or Appendix A execute this cycle
+
+- **Rejected** — Continuity Q1=A locks `docs_only` continue strategy; Appendix A needs Continuity **B** + separate plan gate; whole-tree archive OOS while hazards remain; never Complete while WorkSpace remains.
+
+**Rejected always:** re-proposing archived peers / Medium / Early; remote URL rewrite; `.env` content reads/quotes; force-delete backup/quarantine; Primary-next / Complete jump; inventing substitute move sources.
+
+## Planner guidance — what to update (docs only)
+
+| Artifact | Suggested honesty update |
+| --- | --- |
+| `program/git-strategy-workspace-hazards.md` | Cycle 11 re-probe section / date stamp; “no material delta”; clearance still NO; Appendix A still unused |
+| `catalogue/INDEX.md` | WorkSpace row: Cycle 11 continue-strategy; still root; not moved; not cleared |
+| `program/ROADMAP.md` | Multi-experiment Notes: Cycle 11 session id; Remaining WorkSpace only; not Complete |
+| Optional `catalogue/inventory.md` | Same Cycle 11 honesty line |
+
+Explicit constraints for planner/implementer:
+
+- **No corpus FS mutation this cycle.**
+- **Never whole-tree archive** under ordinary Multi-experiment Continuity.
+- **Never mark Multi-experiment Complete** or jump Primary next / Special git while `WorkSpace` remains.
+- Continuity / “next” ≠ plan-gate move approval; Appendix A remains **future Continuity B + gate** only.
+
+## Required facts
+
+- Corpus candidate only: `C:\Project\WorkSpace`.
+- Strategy anchor exists and remains authoritative.
+- Taxonomy: **proposed-ratified — ready for user sign-off**; must-preserve: **draft — not auto-locked / for user review** (Q3=A — do not re-block).
+- Org-repo only for doc commits; no sibling-tree ops.
+- Push/pull dual preflight: **N/A** (no agent remote sync in refined prompt).
+
+## Unknowns / blockers
+
+| Item | Status |
+| --- | --- |
+| Docs_only continue strategy | **Ready** — no auth/dirty blocker for org-repo doc edits |
+| Whole-tree Multi-experiment archive | **Blocked** (hazards uncleared + Continuity OOS) — constraint, not cycle fail |
+| Appendix A scoped isolation execute | **Out of Continuity this cycle** (needs Q1=B + plan gate later) |
+| Cheap size re-measure | Soft unknown this turn (shell stdout unavailable); carry Cycle 10 band |
+| User remotes/PATH chores | **Not** remediation requirements |
+
+### Push / pull dual preflight
+
+**N/A** — refined prompt is strategy continue + honesty docs; no agent `git push` / `git pull` for corpus.
+
+## Risks
+
+- Treating “next” as Appendix A execute approval.
+- Claiming hazards **cleared** after docs-only re-attest.
+- Re-defaulting to Cycle 9 pure defer while ignoring the durable strategy file.
+- Marking Multi-experiment Complete / Primary next while WorkSpace remains.
+- Silent whole-tree archive or peer reopen.
+- Quoting `.env` contents in session docs.
+
+## Canonical references
+
+- `program/git-strategy-workspace-hazards.md`
+- `sessions/2026.09.10-1047/01-prompt-betterment/refined-prompt.md`
+- `sessions/2026.09.10-1047/01-prompt-betterment/notes.md`
+- `sessions/2026.09.10-1047/02-research/codebase-findings.md`
+- `sessions/2026.09.10-1047/02-research/online-findings.md`
+- `sessions/2026.09.10-0907/` (Cycle 10 strategy write)
+- `catalogue/INDEX.md`, `program/ROADMAP.md`, `catalogue/must-preserve.md`
+- https://git-scm.com/docs/git-worktree.html
+- https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes
+- https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/robocopy

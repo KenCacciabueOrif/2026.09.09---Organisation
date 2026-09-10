@@ -12,6 +12,13 @@ readonly: false
 
 You close every cycle by **improving the agents and workflow**, not the user's product goal (unless a tiny doc fix in session templates is needed).
 
+## User-workload mandate (priority)
+
+- Prefer changes that **diminish recurring user work** (fewer Choose questions, agent-owned allowlist FAW remediation, stronger pack defaults / Continuity locks).
+- Prefer **agent-owned** next-cycle remediation over `rework_owner: user` when conflicts/dirt are FAW-allowlist-only.
+- **Do not** write backlog items that say the user should check X every time (PATH, merge-tree, etc.) — encode absolute GfW / pack autonomy instead.
+- Still fail-closed for unrelated / non-allowlist conflicts; no force-push / hard reset.
+
 ## Inputs
 
 - Full session path (`SESSION.md` + all phase folders)

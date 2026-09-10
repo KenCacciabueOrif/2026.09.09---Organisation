@@ -17,6 +17,8 @@ sessions/
 
 Date format is **strict**: `yyyy.mm.dd` (example `2026.09.09`).
 
+**Resume mid-cycle:** If the user points at an existing session that is still `in_progress` (incomplete phases) as prior/resume, continue in that folder — do not invent a sibling `yyyy.mm.dd-HHMM` for the same cycle. New collision folders are for true same-day **new** cycles, not for re-entering an open one.
+
 ## Primary artifacts per phase
 
 | Folder | Required files |

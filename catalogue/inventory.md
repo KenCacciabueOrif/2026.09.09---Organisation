@@ -2,7 +2,7 @@
 
 **Source:** Cycle 0 baseline + Cycle 1 deepen from `sessions/2026.09.09-1009/02-research/codebase-findings.md`  
 **Scan date:** 2026-09-09  
-**Method:** top-level listing + **cheap size bands** + nested `.git` discovery. Cycle 2 moved three Early/simple folders under `archive` / `paused` (see path notes below).  
+**Method:** top-level listing + **cheap size bands** + nested `.git` discovery. Cycles 2–3 moved all Early/simple folders under `archive` / `paused`; Cycles 4–6 moved all Medium wrappers under `archive` / `paused` (see path notes below).  
 **Secrets:** path presence only — contents not read.  
 **Date labels:** **CreationTime wins** for proposed `yyyy.mm.dd` prefixes (see [`taxonomy.md`](taxonomy.md)); LastWrite = activity / next only.
 
@@ -23,7 +23,7 @@
 | Signal | Value |
 | --- | --- |
 | `C:\Project` itself a git root? | **No** |
-| Top-level entries | **28** (24 dirs + 4 files) after Cycle 2 — three moved under `archive`/`paused`; parents `archive`/`paused` added |
+| Top-level entries | After Cycle 6 — Early/simple + all Medium wrappers under `archive`/`paused`; parents `archive`/`paused` remain |
 | Creation-year mix (top-level) | **2025: 24**, **2026: 5** |
 | Size-band mix (cheap) | **S=17**, **M=9**, **L=1** (`ProjetOrif`), **XL=2** (`WorkSpace`, `Obsidian`) |
 | LastWrite activity (newest → older notable) | Org repo (2026-09-09) → ZedTest → CursorMobileWorkspace → WorkSpace → Obsidian → ProjetOrif → WebCatalogue → … → Simpl / HTTP Battles (2025-06-05) |
@@ -45,28 +45,28 @@
 | --- | --- | --- | --- | --- | --- | --- |
 | `.vscode` | 2025-08-07 | 2025-09-05 | ~0 | S | no-git | Hygiene |
 | `2026.09.09 - Organisation` | 2026-09-09 | 2026-09-09 | 0.34 | S | thin-wrapper-1git | **Default-protect**; freshest LastWrite |
-| `AngularTest` | 2025-08-07 | 2025-08-07 | 5.21 | M | no-git | Early/simple |
-| `CursorMobileWorkspace` | 2026-06-17 | 2026-06-17 | 11.15 | M | thin-wrapper-1git | Medium wrapper; recent |
-| `epsic` | 2025-12-10 | 2025-12-17 | 22.79 | M | no-git | Early/simple; course-like |
-| `GitTest` | 2025-08-08 | 2025-08-08 | 0.29 | S | multi-nested (2) | Multi-experiment |
+| `AngularTest` | 2025-08-07 | 2025-08-07 | 5.21 | M | no-git | Early/simple → **moved Cycle 3** to `C:\Project\archive\2025.08.07 - AngularTest` |
+| `CursorMobileWorkspace` | 2026-06-17 | 2026-06-17 | 11.15 | M | thin-wrapper-1git | Medium → **moved Cycle 6** to `C:\Project\paused\2026.06.17 - CursorMobileWorkspace` |
+| `epsic` | 2025-12-10 | 2025-12-17 | 22.79 | M | no-git | Early/simple → **moved Cycle 3** to `C:\Project\archive\2025.12.10 - epsic` |
+| `GitTest` | 2025-08-08 | 2025-08-08 | 0.29 | S | multi-nested (2) | Multi-experiment → **moved Cycle 7** to `C:\Project\archive\2025.08.08 - GitTest` |
 | `HTTP Battles` | 2025-06-05 | 2025-06-05 | 26.82 | M | **top-git+nested** | Empty parent (0 commits); classify before move |
-| `IA` | 2025-12-12 | 2025-12-12 | 0.01 | S | no-git | Early/simple |
-| `NextPWATraining` | 2025-06-23 | 2025-06-23 | 0.10 | S | thin-wrapper-1git | Medium; `.env` **path present** |
-| `NextTest` | 2025-06-23 | 2025-06-23 | 1.58 | M | thin-wrapper-1git | Medium wrapper |
+| `IA` | 2025-12-12 | 2025-12-12 | 0.01 | S | no-git | Early/simple → **moved Cycle 3** to `C:\Project\archive\2025.12.12 - IA` |
+| `NextPWATraining` | 2025-06-23 | 2025-06-23 | 0.10 | S | thin-wrapper-1git | Medium → **moved Cycle 6** to `C:\Project\archive\2025.06.23 - NextPWATraining`; live on-disk ~L (~380 MB) incl. deps; cheap band still S; `.env` **path present** (opaque) |
+| `NextTest` | 2025-06-23 | 2025-06-23 | 1.58 | M | thin-wrapper-1git | Medium → **moved Cycle 5** to `C:\Project\archive\2025.06.23 - NextTest` |
 | `node_modules` | 2025-06-24 | 2025-11-18 | 25.78 | M | no-git (orphan) | Hygiene — presence only |
 | `Obsidian` | 2026-04-13 | 2026-05-26 | 1576.87 | **XL** | multi-nested (4 incl. worktrees) | **After git-strategy**; high must-preserve candidate |
 | `PlayTestTristan` | 2025-06-23 | 2025-06-23 | 0.18 | S | no-git | Early/simple → **moved Cycle 2** to `C:\Project\archive\2025.06.23 - PlayTestTristan` |
 | `PostManResponses` | 2025-10-01 | 2025-10-01 | 0.04 | S | no-git | Early/simple → **moved Cycle 2** to `C:\Project\archive\2025.10.01 - PostManResponses` |
 | `ProjetOrif` | 2025-08-07 | 2026-01-07 | 187.86 | **L** | multi-nested (7 @ depth 2) | High complexity; after git-strategy |
-| `PWAExemple` | 2025-06-25 | 2025-06-30 | 5.09 | M | multi-nested (2) | Multi-experiment |
-| `PWAExempleTristan` | 2025-07-04 | 2025-07-04 | 1.58 | M | thin-wrapper-1git | Medium wrapper |
-| `ReactRouterTest` | 2025-08-12 | 2025-08-12 | 0.22 | S | thin-wrapper-1git | Medium wrapper |
-| `Simpl` | 2025-06-05 | 2025-06-05 | 0.89 | S | thin-wrapper-1git | Medium wrapper; oldest LastWrite tier |
-| `Simpl_Next` | 2025-06-23 | 2025-06-23 | 1.75 | M | thin-wrapper-1git | Medium wrapper |
-| `TestRyan` | 2025-06-25 | 2025-06-25 | 0.20 | S | thin-wrapper-1git | Medium wrapper |
+| `PWAExemple` | 2025-06-25 | 2025-06-30 | 5.09 | M | multi-nested (3) | Multi-experiment → **moved Cycle 8** to `C:\Project\archive\2025.06.25 - PWAExemple`; SSH nested origin path-only; `.env`×4 opaque |
+| `PWAExempleTristan` | 2025-07-04 | 2025-07-04 | 1.58 | M | thin-wrapper-1git | Medium → **moved Cycle 5** to `C:\Project\archive\2025.07.04 - PWAExempleTristan` |
+| `ReactRouterTest` | 2025-08-12 | 2025-08-12 | 0.22 | S | thin-wrapper-1git | Medium → **moved Cycle 4** to `C:\Project\archive\2025.08.12 - ReactRouterTest` |
+| `Simpl` | 2025-06-05 | 2025-06-05 | 0.89 | S | thin-wrapper-1git | Medium → **moved Cycle 4** to `C:\Project\archive\2025.06.05 - Simpl`; oldest LastWrite tier |
+| `Simpl_Next` | 2025-06-23 | 2025-06-23 | 1.75 | M | thin-wrapper-1git | Medium → **moved Cycle 5** to `C:\Project\archive\2025.06.23 - Simpl_Next` |
+| `TestRyan` | 2025-06-25 | 2025-06-25 | 0.20 | S | thin-wrapper-1git | Medium → **moved Cycle 4** to `C:\Project\archive\2025.06.25 - TestRyan` |
 | `WebCatalogue` | 2025-11-07 | 2025-12-22 | 0.02 | S | **top-git-flat** | Special git; active-looking project |
-| `WorkSpace` | 2026-05-29 | 2026-06-10 | 2308.43 | **XL** | multi-nested (3) | Multi-experiment; large cheap payload |
-| `WorkStationPWA` | 2025-07-01 | 2025-08-12 | 0.62 | S | multi-nested (2) | Multi-experiment |
+| `WorkSpace` | 2026-05-29 | 2026-06-10 | 2308.43 | **XL** | multi-nested (**7** live Cycle 9–13; was undercount 3) | Multi-experiment — remains at `C:\Project\WorkSpace`; Cycle 9 defer; Cycle 10 (`sessions/2026.09.10-0907/`) **docs_only hazard remediation**; Cycle 11 (`sessions/2026.09.10-1047/`) **docs_only continue-strategy**; Cycle 12 (`sessions/2026.09.10-1247/`) **docs_only continue-strategy**; Cycle 13 (`sessions/2026.09.10-1630/`) **docs_only continue-strategy** ([`../program/git-strategy-workspace-hazards.md`](../program/git-strategy-workspace-hazards.md); nested **7**; ~5786 MB re-measured; **no material delta**); **not** moved |
+| `WorkStationPWA` | 2025-07-01 | 2025-08-12 | 0.62 | S | multi-nested (2) | Multi-experiment → **moved Cycle 7** to `C:\Project\archive\2025.07.01 - WorkStationPWA`; SSH nested origin path-only |
 | `ZedTest` | 2026-06-30 | 2026-07-01 | ~0 | S | no-git | Early/simple → **moved Cycle 2** to `C:\Project\paused\2026.06.30 - ZedTest` |
 | `.dockerignore` | 2025-09-05 | 2025-09-05 | — | S | orphan file | Hygiene |
 | `Dockerfile` | 2025-09-05 | 2025-09-05 | — | S | orphan file | Hygiene |
@@ -95,20 +95,20 @@
 ### Depth 1
 
 - `2026.09.09 - Organisation\2026.09.09---Organisation` (**default-protect**)
-- `CursorMobileWorkspace\CursorMobileWorkspace`
-- `GitTest\NextTest`, `GitTest\test`
+- `archive\2025.08.08 - GitTest\NextTest`, `archive\2025.08.08 - GitTest\test` (moved Cycle 7)
 - `HTTP Battles\http-battles`
-- `NextPWATraining\blogr-nextjs-prisma`
-- `NextTest\NextTest`
 - `Obsidian\Obsidian` (main vault; worktrees linked)
-- `PWAExemple\PWAExempleNext`, `PWAExemple\PWAFrontAuthTest`
-- `PWAExempleTristan\PWATristan`
-- `ReactRouterTest\ReactRouterTest`
-- `Simpl\Project-Simpl`
-- `Simpl_Next\SimplNext`
-- `TestRyan\python-mini-jeux`
-- `WorkSpace\OS-IA`, `WorkSpace\TestNewWorkspaceAgent`
-- `WorkStationPWA\WorkStationPWA`
+- `archive\2025.06.25 - PWAExemple\PWAExempleNext`, `archive\2025.06.25 - PWAExemple\PWAFrontAuthTest` (moved Cycle 8); also nested `…\PWAExempleAuth\PWAExempleAuth\PWAExempleAuth`
+- `archive\2025.06.23 - NextPWATraining\blogr-nextjs-prisma` (moved Cycle 6)
+- `archive\2025.06.23 - NextTest\NextTest` (moved Cycle 5)
+- `archive\2025.07.04 - PWAExempleTristan\PWATristan` (moved Cycle 5)
+- `archive\2025.08.12 - ReactRouterTest\ReactRouterTest` (moved Cycle 4)
+- `archive\2025.06.05 - Simpl\Project-Simpl` (moved Cycle 4)
+- `archive\2025.06.23 - Simpl_Next\SimplNext` (moved Cycle 5)
+- `archive\2025.06.25 - TestRyan\python-mini-jeux` (moved Cycle 4)
+- `paused\2026.06.17 - CursorMobileWorkspace\CursorMobileWorkspace` (moved Cycle 6)
+- `WorkSpace\OS-IA`, `WorkSpace\TestNewWorkspaceAgent` (Cycle 9 live: **7** nested roots total under WorkSpace incl. deeper + `_backups`/`_quarantine` hermes-agent clones — depth ≤2 list remains lower bound)
+- `archive\2025.07.01 - WorkStationPWA\WorkStationPWA` (moved Cycle 7)
 
 ### Depth 2 (notable)
 
@@ -117,13 +117,21 @@
 - `ProjetOrif\springAuth\spring-auth`
 - `ProjetOrif\testSpringDoc\gs-rest-service`, `gs-testing-restdocs`
 - `WorkSpace\TestNewWorkspaceAgent\hermes-agent`
-- `WorkStationPWA\WorkStationRouterPWA\workstation-app`
+- `archive\2025.07.01 - WorkStationPWA\WorkStationRouterPWA\workstation-app` (moved Cycle 7)
 
 ## Secrets (path presence only)
 
 | Path | Note |
 | --- | --- |
-| `NextPWATraining\blogr-nextjs-prisma\.env` | Presence only — **never** open or quote contents |
+| `archive\2025.06.23 - NextPWATraining\blogr-nextjs-prisma\.env` | Presence only (moved Cycle 6 with wrapper) — **never** open or quote contents |
+| `archive\2025.06.23 - NextTest\NextTest\app-test\.env` | Presence only (moved Cycle 5 with wrapper) — **never** open or quote contents |
+| `archive\2025.06.23 - Simpl_Next\SimplNext\simpl-app\.env` | Presence only (moved Cycle 5 with wrapper) — **never** open or quote contents |
+| `archive\2025.07.04 - PWAExempleTristan\PWATristan\pwa-tristan-app\.env` | Presence only (moved Cycle 5 with wrapper) — **never** open or quote contents |
+| `archive\2025.06.05 - Simpl\Project-Simpl\simpl-app\api\env\.env` | Presence only (moved Cycle 4 with wrapper) — **never** open or quote contents |
+| `archive\2025.06.25 - PWAExemple\PWAExempleAuth\PWAExempleAuth\PWAExempleAuth\pwa-exemple-auth-app\.env` | Presence only (moved Cycle 8 with wrapper) — **never** open or quote contents |
+| `archive\2025.06.25 - PWAExemple\PWAExempleNext\pwa-test-app\.env` | Presence only (moved Cycle 8 with wrapper) — **never** open or quote contents |
+| `archive\2025.06.25 - PWAExemple\PWAExempleNext\pwa-test-app\.env.local` | Presence only (moved Cycle 8 with wrapper) — **never** open or quote contents |
+| `archive\2025.06.25 - PWAExemple\PWAFrontAuthTest\pwa-front-auth-test-app\.env` | Presence only (moved Cycle 8 with wrapper) — **never** open or quote contents |
 
 ## Root orphans (presence only)
 
@@ -132,8 +140,9 @@
 ## Patterns for later cycles
 
 1. Many top-level folders are **thin wrappers** around one nested project (canonical label on wrapper).
-2. **Containers** (`ProjetOrif`, `PWAExemple`, `WorkSpace`, `WorkStationPWA`, `GitTest`) need keep-vs-split decisions.
+2. **Containers** (`ProjetOrif`, `WorkSpace`; archived Cycle 7: `WorkStationPWA`, `GitTest`; archived Cycle 8: `PWAExemple`) need keep-vs-split decisions for remaining roots. `WorkSpace` still root — Cycle 9 deferred; Cycle 10–13 docs remediation / continue-strategy only (no move).
 3. **Obsidian** worktrees must move as a linked set (after git-strategy).
 4. **HTTP Battles** empty parent vs real child — classify before rename/move.
 5. **CreationTime wins** for proposed date labels; LastWrite ≈ activity for “next.”
-6. Early/simple (no-git): `PostManResponses`, `IA`, `AngularTest`, `PlayTestTristan`, `epsic`, `ZedTest`.
+6. Early/simple (no-git): **all moved** — Cycle 2: `PostManResponses`, `PlayTestTristan`, `ZedTest`; Cycle 3: `IA`, `AngularTest`, `epsic`.
+7. Medium wrappers: **all moved** — Cycle 4: `TestRyan`, `ReactRouterTest`, `Simpl` → `archive`; Cycle 5: `NextTest`, `Simpl_Next`, `PWAExempleTristan` → `archive`; Cycle 6: `NextPWATraining` → `archive`; `CursorMobileWorkspace` → `paused`.
