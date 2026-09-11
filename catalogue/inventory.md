@@ -65,7 +65,7 @@
 | `Simpl_Next` | 2025-06-23 | 2025-06-23 | 1.75 | M | thin-wrapper-1git | Medium → **moved Cycle 5** to `C:\Project\archive\2025.06.23 - Simpl_Next` |
 | `TestRyan` | 2025-06-25 | 2025-06-25 | 0.20 | S | thin-wrapper-1git | Medium → **moved Cycle 4** to `C:\Project\archive\2025.06.25 - TestRyan` |
 | `WebCatalogue` | 2025-11-07 | 2025-12-22 | 0.02 | S | **top-git-flat** | Special git; active-looking project |
-| `WorkSpace` | 2026-05-29 | 2026-06-10 | 2308.43 | **XL** | multi-nested (**7** live Cycle 9–13; was undercount 3) | Multi-experiment — remains at `C:\Project\WorkSpace`; Cycle 9 defer; Cycle 10 (`sessions/2026.09.10-0907/`) **docs_only hazard remediation**; Cycle 11 (`sessions/2026.09.10-1047/`) **docs_only continue-strategy**; Cycle 12 (`sessions/2026.09.10-1247/`) **docs_only continue-strategy**; Cycle 13 (`sessions/2026.09.10-1630/`) **docs_only continue-strategy** ([`../program/git-strategy-workspace-hazards.md`](../program/git-strategy-workspace-hazards.md); nested **7**; ~5786 MB re-measured; **no material delta**); **not** moved |
+| `WorkSpace` | 2026-05-29 | 2026-06-10 | 2308.43 | **XL** | multi-nested (**5** live after Cycle 14; was **7**) | Multi-experiment — remains at `C:\Project\WorkSpace`; Cycle 9–13 docs_only; Cycle 14 (`sessions/2026.09.11/`) Appendix A isolation: `_backups`/`_quarantine` → `archive\hygiene\` (nested **7→5**); Cycle 15 live hermes multi-remote **Cleared** (sole `origin`; confirmed Cycle 16 `sessions/2026.09.11-1038/` — no `cada` regression); whole tree **not** archived; still at root; row **not** Complete; opaque `.env*` **7 live** (presence only); cheap size ~1086 MB excl `.git` (~716 MB also excl `node_modules`) — still **XL** / clearance **NO** (historical size cell 2308.43 optional refresh) |
 | `WorkStationPWA` | 2025-07-01 | 2025-08-12 | 0.62 | S | multi-nested (2) | Multi-experiment → **moved Cycle 7** to `C:\Project\archive\2025.07.01 - WorkStationPWA`; SSH nested origin path-only |
 | `ZedTest` | 2026-06-30 | 2026-07-01 | ~0 | S | no-git | Early/simple → **moved Cycle 2** to `C:\Project\paused\2026.06.30 - ZedTest` |
 | `.dockerignore` | 2025-09-05 | 2025-09-05 | — | S | orphan file | Hygiene |
@@ -107,7 +107,7 @@
 - `archive\2025.06.23 - Simpl_Next\SimplNext` (moved Cycle 5)
 - `archive\2025.06.25 - TestRyan\python-mini-jeux` (moved Cycle 4)
 - `paused\2026.06.17 - CursorMobileWorkspace\CursorMobileWorkspace` (moved Cycle 6)
-- `WorkSpace\OS-IA`, `WorkSpace\TestNewWorkspaceAgent` (Cycle 9 live: **7** nested roots total under WorkSpace incl. deeper + `_backups`/`_quarantine` hermes-agent clones — depth ≤2 list remains lower bound)
+- `WorkSpace\OS-IA`, `WorkSpace\TestNewWorkspaceAgent` (Cycle 14 live: **5** nested roots under WorkSpace — `_backups`/`_quarantine` hermes clones isolated to `archive\hygiene\`; depth ≤2 list remains lower bound)
 - `archive\2025.07.01 - WorkStationPWA\WorkStationPWA` (moved Cycle 7)
 
 ### Depth 2 (notable)
@@ -140,7 +140,7 @@
 ## Patterns for later cycles
 
 1. Many top-level folders are **thin wrappers** around one nested project (canonical label on wrapper).
-2. **Containers** (`ProjetOrif`, `WorkSpace`; archived Cycle 7: `WorkStationPWA`, `GitTest`; archived Cycle 8: `PWAExemple`) need keep-vs-split decisions for remaining roots. `WorkSpace` still root — Cycle 9 deferred; Cycle 10–13 docs remediation / continue-strategy only (no move).
+2. **Containers** (`ProjetOrif`, `WorkSpace`; archived Cycle 7: `WorkStationPWA`, `GitTest`; archived Cycle 8: `PWAExemple`) need keep-vs-split decisions for remaining roots. `WorkSpace` still root — Cycle 14 Appendix A isolated `_backups`/`_quarantine` only; whole-tree still fail-closed.
 3. **Obsidian** worktrees must move as a linked set (after git-strategy).
 4. **HTTP Battles** empty parent vs real child — classify before rename/move.
 5. **CreationTime wins** for proposed date labels; LastWrite ≈ activity for “next.”
