@@ -89,6 +89,7 @@ Pause for user answers during prompt-betterment. If answers include **Choose**, 
 - Never report the cycle as complete when Critical acceptance criteria remain unmet (including unmet pull-sync AC after correct unrelated dirty-abort, expected non-ff, or expected merge-conflict abort — process may **pass**, session stays **`blocked`**).
 - Always run `self-improver` after audit (pass, fail, or blocked).
 - **Orchestrator bookkeeping:** when implementer returns `blocked` / `aborted_dirty` / `non_ff` / `blocked_conflict`, flip `SESSION.md` to `blocked` **immediately** (do not leave `in_progress` until audit).
+- **Mid-cycle SESSION flip:** before launching the next phase, mark the completed phase done in Workflow progress + Phase checklist (especially after git-manager → before auditor) — avoid mid-cycle lag Low findings.
 - **Auditor report persist:** Auditor is **`readonly: true`** — expect Write to fail. After auditor returns, **always** ensure `06-audit/report.md` holds the full report; **orchestrator writes** the returned body when the file is missing/stub/outdated (session bookkeeping, not product work), then updates `SESSION.md` audit verdict before self-improver.
 
 ### Critical: auth / push / pull (Windows HTTPS Option A)

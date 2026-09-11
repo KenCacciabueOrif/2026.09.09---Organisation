@@ -77,6 +77,8 @@ When launching a subagent, include:
 
 After each phase, update `SESSION.md` (phase status, one-line summary, artifact paths). When editing **Workflow progress**, update the existing checklist in place — do **not** append a second unchecked copy of the same steps.
 
+**Mid-cycle bookkeeping before next launch (hard):** Before launching the **next** phase subagent, flip that completed phase in **Workflow progress** (`[x]` / done), **Phase checklist**, and **Phase summaries** (status + one-liner). Especially after **`git-manager` → before `auditor`**: do not leave git `in_progress` / audit `pending` if `05-git/log.md` already returned complete. Mid-cycle lag is process debt (auditor Low) — fix by flipping in the same turn as the handoff, not only at close.
+
 **Immediate bookkeeping on implementer return:** If implementer reports `status: blocked` / outcome `aborted_dirty` / `non_ff` / `blocked_conflict` / `merge_conflict` (or equivalent), set `SESSION.md` **`blocked`** + `blocker_type` **in the same turn** — do not leave `in_progress` until audit/close. Auditor Low findings for lag are process debt, not implementer fail.
 
 **Auditor report persist (mandatory bookkeeping):** The auditor agent is **`readonly: true`** — expect Write to fail every cycle. After `auditor` returns, **always** ensure `06-audit/report.md` holds the full report: if the file is missing, stubby, or older than this return, **write the returned report body** into that path yourself (session bookkeeping, not product implementation). Prefer the inline full body / `write_status: blocked_returned_inline`. Do not leave audit-only content solely in chat. Then update `SESSION.md` audit verdict / phase summary before launching self-improver.

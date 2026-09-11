@@ -3,7 +3,7 @@
 **Phase:** `05-git/`  
 **Binary:** Git for Windows `C:\Users\CaDa\AppData\Local\Programs\Git\cmd\git.exe` (PATH was MSYS without preferred helper)  
 **Credential helper (GfW):** `manager`  
-**Started:** 2026-09-11
+**Completed:** 2026-09-11
 
 ---
 
@@ -48,17 +48,31 @@ Re-probe attestation (no material delta), inventory multi-remote Cleared,
 INDEX/ROADMAP footnotes; docs_only zero corpus moves.
 ```
 
-- **Commit:** _(filled after commit)_
-- **Branch created:** none (work committed on `main`)
-- **Merged to main:** N/A — already on `main`
+| Field | Value |
+| --- | --- |
+| Commit | `9f09dc7` (`9f09dc7c22cb37c20c220db7970b9a0896ec75fa`) |
+| Subject | `docs(cycle-16): WorkSpace hazard honesty + session artifacts` |
+| Files | 20 changed, +1052 / −31 |
+| Branch created | none (committed on `main`) |
+| Merged to main | yes — already on `main` (direct commit; no side branch) |
 
 ---
 
 ## Push & verify
 
-- Command: `git push origin main` (GfW)
-- Post-push ahead/behind: _(filled after push)_
-- **Pushed:** _(filled after push)_
+| Step | Result |
+| --- | --- |
+| Pre-push ahead/behind | behind `0` / ahead `1` |
+| Command | `git push origin main` (GfW) |
+| Exit | `0` |
+| Remote update | `2b0172e..9f09dc7  main -> main` |
+| Post-fetch ahead/behind | behind `0` / ahead `0` |
+| `status -sb` | `## main...origin/main` (in sync) |
+| **Pushed** | `main` → `origin/main` — **verified** |
+
+Unrelated dirt remains unstaged after push (expected): `AGENTS.md`, `sessions/_templates/*`, `sessions/2026.09.11-0859/`, `sessions/2026.09.11/`.
+
+Post-push finalize of this log may leave `05-git/log.md` dirty vs committed seed — expected; not a cycle failure.
 
 ---
 
@@ -66,9 +80,10 @@ INDEX/ROADMAP footnotes; docs_only zero corpus moves.
 
 | Field | Value |
 | --- | --- |
-| status | _(filled)_ |
-| blocker_type | none |
-| commits | _(filled)_ |
-| pushed | _(filled)_ |
+| status | **complete** |
+| blocker_type | **none** |
+| commits | [`9f09dc7` docs(cycle-16): WorkSpace hazard honesty + session artifacts] |
+| pushed | `main` (verified 0/0) |
 | merged_to_main | yes (direct on main) |
 | branches_created | none |
+| health | `main` == `origin/main` (0 ahead / 0 behind) |

@@ -21,6 +21,8 @@ You **verify** realization quality. You do not implement fixes unless the orches
 2. Re-check acceptance criteria one by one.
 3. Re-run key verification commands from the plan when safe/readonly allows; otherwise note what could not be run.
    - **Shell / porcelain unavailable:** If Ask-readonly blocks Shell or stdout is empty, verify path presence via filesystem **`Read` / `Glob`** (same absolute paths as plan `Test-Path`). For **remote-config**, Read the clone’s **`.git/config`** (and branch sections) instead of re-running `git remote -v`. Grade implementer Read-equivalent attestation as **Low/process** when semantic AC holds — **not** Critical and **not** automatic rework. Note probe method under gaps.
+   - **XL Glob timeout:** If a deep `Glob` under XL trees (e.g. `archive\hygiene`) times out, accept implementer `Test-Path` / strategy-inventory attestation for those leaves as **Low/process** when semantic AC holds — do **not** fail or demand rework solely for Glob timeout.
+   - **SESSION mid-cycle lag:** Workflow/phase checklist still showing prior phase `in_progress` while that phase’s log already exists = **Low/process** (orchestrator bookkeeping) — not implementer fail and not automatic rework.
 4. Produce the audit report as markdown in your return (full body always):
 
 ```markdown
@@ -72,6 +74,7 @@ When the plan or refined prompt is **`docs_only`** / zero-move:
 - [ ] **WorkSpace durable artifact:** If Continuity is post–strategy / hazard remediation, `program/git-strategy-workspace-hazards.md` exists (or plan explains absence); session docs may point to it; classified ≠ cleared for whole-tree.
 - [ ] **Appendix A / scoped isolation:** If implementer executed scoped `_backups`/`_quarantine` moves — evidence of **explicit Continuity opt-in** + **plan-gate approval** + `fs_mutation` map; Continuity Choose alone ≠ authorization. If Continuity was docs-only / continue-strategy — Appendix A must be **non-executed**.
 - [ ] **Remote-config / post–multi-remote clear:** If plan was remote-config — only approved remote command(s); `origin`/set-url/force-push/path moves absent unless mapped; honesty docs clear the named hazard without marking Multi-experiment **Complete**; next lock remains **WorkSpace only**.
+- [ ] **Post-clear Continuity A docs_only:** If multi-remote already CLEARED and cycle is continue-strategy — inventory/INDEX must not still claim **live multi-remote uncleared**; Cleared + still-at-root / not Complete is enough; optional size-cell skip ≠ fail when plan marked optional.
 - [ ] Pre-strategy pure defer (Q1=A research+defer): next-cycle Continuity may still be research+defer (valid repeat) until strategy docs or execute Continuity.
 
 When the plan is **`fs_mutation`**:
