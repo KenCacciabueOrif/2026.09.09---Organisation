@@ -2,8 +2,9 @@
 name: full-agent-workflow
 description: >-
   Runs the project full agent cycle with a pure orchestrator that only delegates
-  to prompt-betterment, researcher, planner, implementer, auditor, then mandatory
-  self-improver. Use when the user asks for the full agent workflow, /full-agent-workflow,
+  to prompt-betterment, researcher, planner, implementer, optional/early mid-cycle
+  git-manager, auditor, mandatory self-improver, then mandatory final closing-pass
+  git-manager. Use when the user asks for the full agent workflow, /full-agent-workflow,
   orchestrated delivery, or any non-trivial multi-phase goal in this organisation repo.
 ---
 
@@ -15,7 +16,7 @@ When this skill applies, **you are the orchestrator**. Follow `.cursor/agents/or
 
 - Do not research, plan, implement, or audit the user goal yourself.
 - Create the dated session folder, delegate each phase subagent, connect outputs, update `SESSION.md`.
-- Always end with `self-improver`.
+- Always end with `self-improver`, then a **final closing-pass** `git-manager` when allowlisted late dirt remains (before marking `complete`).
 
 ## Trigger
 
@@ -33,10 +34,11 @@ Workflow progress:
 - [ ] 3. planner → 03-plan/
 - [ ] 4. User plan gate → then implementer (mandatory if plan mutates corpus FS)
 - [ ] 5. implementer → 04-implementation/
-- [ ] 6. git-manager → 05-git/ (add/commit/push, branches, merge into main — MANDATORY for cycles with file changes)
+- [ ] 6. git-manager (mid) → 05-git/ (optional/early for implementer work — same allowlist + GfW/GCM; not a substitute for final close)
 - [ ] 7. auditor → 06-audit/ (rework loop if critical fail)
 - [ ] 8. self-improver → 07-self-improvement/  (MANDATORY)
-- [ ] 9. Close SESSION.md
+- [ ] 9. git-manager (final closing pass) → 05-git/ (MANDATORY when allowlisted late dirt remains: 06-audit/**, 07-self-improvement/**, SESSION.md close, cycle .cursor/** / other allowlisted cycle dirt)
+- [ ] 10. Close SESSION.md
 ```
 
 ### 0. Session bootstrap
@@ -62,7 +64,14 @@ Launch each custom subagent with a handoff matching [handoff-templates.md](refer
 | Audit | `auditor` |
 | Self-improve | `self-improver` |
 
-`git-manager` is a permanent phase: it owns local+remote Git health — stage/commit cycle work (never unrelated dirt or secrets), push, branch creation, and **merge into main as the default outcome** (prioritize merging over leaving branches separated; only verified, conflict-free branches merge; never force). Skip only for pure `docs_only` zero-mutation cycles with a recorded zero-mutation attestation. Handoff matches [handoff-templates.md](references/handoff-templates.md) and `.cursor/agents/git-manager.md`.
+`git-manager` owns local+remote Git health — stage/commit cycle work (never unrelated dirt or secrets), push, branch creation, and **merge into main as the default outcome** (prioritize merging over leaving branches separated; only verified, conflict-free branches merge; never force). **Dual-pass law (Q1=A):**
+
+- **Mid (phase 6, optional/early):** After implementer — commit/push implementer outputs and early session seeds when the cycle has file changes. Mid is **not** a substitute for the final close.
+- **Final closing pass (phase 9, mandatory when late allowlisted dirt remains):** After self-improver — stage/commit/push at least `06-audit/**`, `07-self-improvement/**`, `SESSION.md` (close), cycle `.cursor/**` edits, and other allowlisted cycle dirt. Prefer appending mid/final sections in the same `05-git/log.md` (write final log section **before** the final commit when practical). Tiny post-final log dirt may remain once (known Low).
+- **Leftover / finish-sync:** Explicit path-set pass when Continuity/plan names orphaned allowlisted paths from a prior cycle (same allowlist + GfW/GCM).
+- Skip git entirely only for pure `docs_only` zero-mutation cycles with a recorded zero-mutation attestation **and** no allowlisted late dirt.
+
+Handoff matches [handoff-templates.md](references/handoff-templates.md) and `.cursor/agents/git-manager.md`.
 
 Pause for user answers during prompt-betterment. If answers include **Choose**, Continuity bare **yes→defaults**, or pack items stay **unanswered** after a partial reply with disclosed defaults, prompt-betterment must decide and document — do not forward “Choose”/blanks downstream. For publish / git add-commit-push goals, use [publish-cycle.md](references/publish-cycle.md) (question pack + org-repo git-root boundary). For **git pull / sync-from-origin** goals, use [pull-cycle.md](references/pull-cycle.md) (same pattern; FAW default = allowlisted dirty autonomy + `--ff-only`; **when behind+allowlisted dirty → stash→ff-only→pop** (Q3c); commit-then-pull when not behind; abort only for unrelated dirty; GfW for gate+commit/stash+pull).
 
@@ -76,8 +85,8 @@ Pause for user answers during prompt-betterment. If answers include **Choose**, 
 
 - **Mandatory** when the plan is **`fs_mutation`**: moves/renames/deletes (or other corpus / catalogue-backed path mutations) **or** **remote-config** (e.g. `git remote remove` on a live nested `.git`) — wait for explicit per-batch approval before implementer. Zero path moves does **not** waive the gate for remote-config.
 - **`docs_only` (no mandatory gate):** org-repo scaffolding creates (new folders/READMEs/docs/index inside this organisation git root) and charter/index cycles with **zero** corpus moves — proceed when `ready_to_implement: yes` (still pause if the user asked to review the plan). Creating paths in the org repo ≠ `fs_mutation`.
-- **STAGE 1 / same-run auto-continue:** After planner, if **`docs_only`** + **`ready_to_implement: yes`** + no plan gate → continue implement → audit → self-improver **in the same run** (do not wait for a separate user “go” unless they asked to review). If `fs_mutation` (incl. remote-config) or not ready → stop at plan gate / blocking questions.
-- **STAGE 1 hold → STAGE 2 resume:** When Continuity says STAGE 1 = phases 1–3 only for `fs_mutation`, stop after planner. On later plan-gate **yes** (+ amendments), **resume the same session** for implement → audit → self-improver — do not bootstrap a parallel folder. Apply amendments in the implementer handoff.
+- **STAGE 1 / same-run auto-continue:** After planner, if **`docs_only`** + **`ready_to_implement: yes`** + no plan gate → continue implement → mid git (as appropriate) → audit → self-improver → **final closing-pass git** → Close **in the same run** (do not wait for a separate user “go” unless they asked to review). If `fs_mutation` (incl. remote-config) or not ready → stop at plan gate / blocking questions.
+- **STAGE 1 hold → STAGE 2 resume:** When Continuity says STAGE 1 = phases 1–3 only for `fs_mutation`, stop after planner. On later plan-gate **yes** (+ amendments), **resume the same session** for implement → mid git → audit → self-improver → **final closing-pass git** → Close — do not bootstrap a parallel folder. Apply amendments in the implementer handoff.
 - **Named Continuity B:** User names Continuity B / Appendix A execute / stop docs_only re-attest → lock `fs_mutation` path (scoped isolation **and/or** remaining live-hazard remote-config); do not steer toward Continuity A docs_only theater. Continuity B ≠ execute (gate still mandatory). **Post–multi-remote clear:** still lock `WorkSpace` only — never Complete while it remains; never invent whole-tree archive.
 - Never treat a prior cycle’s approval as approval for a new batch.
 - **Early/simple / first move:** also confirm taxonomy final sign-off or explicit waiver, and must-preserve draft review or waiver, before launching implementer on `fs_mutation` — with the same explanation + tradeoffs rule (not jargon-only).
@@ -89,7 +98,7 @@ Pause for user answers during prompt-betterment. If answers include **Choose**, 
 - Never report the cycle as complete when Critical acceptance criteria remain unmet (including unmet pull-sync AC after correct unrelated dirty-abort, expected non-ff, or expected merge-conflict abort — process may **pass**, session stays **`blocked`**).
 - Always run `self-improver` after audit (pass, fail, or blocked).
 - **Orchestrator bookkeeping:** when implementer returns `blocked` / `aborted_dirty` / `non_ff` / `blocked_conflict`, flip `SESSION.md` to `blocked` **immediately** (do not leave `in_progress` until audit).
-- **Mid-cycle SESSION flip:** before launching the next phase, mark the completed phase done in Workflow progress + Phase checklist (especially after git-manager → before auditor) — avoid mid-cycle lag Low findings.
+- **Mid-cycle SESSION flip:** before launching the next phase, mark the completed phase done in Workflow progress + Phase checklist (especially after mid git-manager → before auditor, and after final git-manager → before Close) — avoid mid-cycle lag Low findings.
 - **Auditor report persist:** Auditor is **`readonly: true`** — expect Write to fail. After auditor returns, **always** ensure `06-audit/report.md` holds the full report; **orchestrator writes** the returned body when the file is missing/stub/outdated (session bookkeeping, not product work), then updates `SESSION.md` audit verdict before self-improver.
 
 ### Critical: auth / push / pull (Windows HTTPS Option A)
@@ -106,6 +115,7 @@ Pause for user answers during prompt-betterment. If answers include **Choose**, 
 
 - All phase folders have their primary artifacts (or explicit blocked notes) — including a real `06-audit/report.md` (orchestrator-persisted if needed).
 - `07-self-improvement/changes-applied.md` exists.
+- **Final closing-pass gate:** If allowlisted late dirt remains (`06-audit/**`, `07-self-improvement/**`, `SESSION.md` close, cycle `.cursor/**` / other allowlisted cycle dirt), the final `git-manager` pass must have run and returned `complete` (committed+pushed) **or** honest `blocked` with `blocker_type`. **Do not** mark `SESSION.md` Status `complete` while that late allowlisted dirt remains after a **skipped** final pass. Mid-only push does **not** satisfy this gate.
 - User receives session path + audit verdict + self-improvement summary (and blocked reason if any).
 
 ## References

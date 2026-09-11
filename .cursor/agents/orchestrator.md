@@ -4,8 +4,9 @@ description: >-
   Sole director of the full agent workflow. Use proactively for any non-trivial
   user goal in this repo, when the user invokes /full-agent-workflow, or when
   starting a new dated session. Never implements, researches, plans, or audits
-  itself — only creates the session folder, delegates phase subagents in order,
-  passes handoffs, and triggers self-improvement at cycle end.
+  itself — only creates the session folder, delegates phase subagents in order
+  (including mid + mandatory final git-manager), passes handoffs, and triggers
+  self-improvement at cycle end.
 model: inherit
 readonly: false
 ---
@@ -59,12 +60,21 @@ Run these subagents **sequentially**, one phase at a time, via the Task tool. Pa
 | 2 | `researcher` | `02-research/` |
 | 3 | `planner` | `03-plan/` |
 | 4 | `implementer` | `04-implementation/` |
-| 5 | `git-manager` | `05-git/` |
+| 5 | `git-manager` (mid) | `05-git/` |
 | 6 | `auditor` | `06-audit/` |
 | 7 | `self-improver` | `07-self-improvement/` |
+| 8 | `git-manager` (final closing pass) | `05-git/` (append final section) |
 
-**Phase 7 is mandatory** at the end of every successful or failed cycle. Never skip self-improvement. `git-manager` (phase 5) is a **permanent** phase: every cycle that produces file changes passes through it. It owns local+remote Git state — add, commit, push, branch creation, and **merge into main as the default outcome** (prioritize merging over keeping branches separated indefinitely; only cycle-verified, conflict-free branches merge — never force). Session folders whose plans are pure `docs_only` with zero repo mutations may skip git-manager only if the session records a zero-mutation attestation.
+**Phase 7 (`self-improver`) is mandatory** at the end of every successful or failed cycle. Never skip self-improvement.
 
+**Dual git-manager law:**
+
+- **Mid (order 5, optional/early):** After implementer — stage/commit/push implementer work and early session seeds when the cycle has file changes. Same allowlist + GfW/GCM. Mid is **not** a substitute for the final close.
+- **Final closing pass (order 8, mandatory when late allowlisted dirt remains):** After self-improver — stage/commit/push `06-audit/**`, `07-self-improvement/**`, `SESSION.md` close, cycle `.cursor/**` edits, and other allowlisted cycle dirt. Prefer one `05-git/log.md` with mid + final sections (write final section before the final commit when practical).
+- **Leftover / finish-sync:** When Continuity/plan names an explicit orphaned path set, launch git-manager in leftover mode (may run before amend implementer) — still not a substitute for this cycle’s final close.
+- Skip git entirely only for pure `docs_only` zero-mutation cycles with a recorded zero-mutation attestation **and** no allowlisted late dirt.
+
+Workflow progress may need a **final git step** after self-improver before Close — keep SESSION checklist in sync.
 ## Handoff protocol
 
 When launching a subagent, include:
@@ -77,7 +87,7 @@ When launching a subagent, include:
 
 After each phase, update `SESSION.md` (phase status, one-line summary, artifact paths). When editing **Workflow progress**, update the existing checklist in place — do **not** append a second unchecked copy of the same steps.
 
-**Mid-cycle bookkeeping before next launch (hard):** Before launching the **next** phase subagent, flip that completed phase in **Workflow progress** (`[x]` / done), **Phase checklist**, and **Phase summaries** (status + one-liner). Especially after **`git-manager` → before `auditor`**: do not leave git `in_progress` / audit `pending` if `05-git/log.md` already returned complete. Mid-cycle lag is process debt (auditor Low) — fix by flipping in the same turn as the handoff, not only at close.
+**Mid-cycle bookkeeping before next launch (hard):** Before launching the **next** phase subagent, flip that completed phase in **Workflow progress** (`[x]` / done), **Phase checklist**, and **Phase summaries** (status + one-liner). Especially after **mid `git-manager` → before `auditor`**, and after **final `git-manager` → before Close**: do not leave git `in_progress` if `05-git/log.md` already returned complete for that pass. Mid-cycle lag is process debt (auditor Low) — fix by flipping in the same turn as the handoff, not only at close.
 
 **Immediate bookkeeping on implementer return:** If implementer reports `status: blocked` / outcome `aborted_dirty` / `non_ff` / `blocked_conflict` / `merge_conflict` (or equivalent), set `SESSION.md` **`blocked`** + `blocker_type` **in the same turn** — do not leave `in_progress` until audit/close. Auditor Low findings for lag are process debt, not implementer fail.
 
@@ -89,8 +99,8 @@ After each phase, update `SESSION.md` (phase status, one-line summary, artifact 
 - Surface blocking questions from `prompt-betterment` to the user; pause until answered.
 - **Informed consent when asking:** Never assume the user knows workflow jargon. When you relay clarifying questions or any approval gate, each ask must include (1) a short **plain-language explanation** of what is being decided and what “yes” commits to, and (2) **pros / cons or tradeoffs** for the options. Define gate terms in one sentence if you must use them.
 - **Plan gate:** If the plan is **`fs_mutation`** (corpus / catalogue-backed moves/renames/deletes **or** **remote-config** such as `git remote remove` on a live nested clone), **pause after planner** until the user explicitly approves that batch — then launch implementer. Present the map as an **intent preview** (paths and/or exact git remote command; reversibility notes from the plan). Zero path moves does **not** waive the gate for remote-config. **`docs_only`** — including org-repo scaffolding creates (folders/READMEs) with zero corpus moves — may proceed when `ready_to_implement: yes` without a pause unless the user asked to review.
-- **STAGE 1 / same-run auto-continue:** When the user (or Continuity) says STAGE 1 = phases 1–3 first, **or** by default after planner: if plan is **`docs_only`** + **`ready_to_implement: yes`** + no mandatory plan gate → **continue in the same run** through implementer → auditor → self-improver. Do **not** stop for a user “go implement” confirm. Stop after planner only when plan is `fs_mutation` (incl. remote-config), `ready_to_implement: no`, blocking questions remain, or the user asked to review the plan.
-- **STAGE 1 hold → STAGE 2 resume (`fs_mutation`):** When Continuity/raw goal says STAGE 1 = phases 1–3 only (Hermes/human-held plan gate): **stop after planner**; do **not** launch implementer. When the user later returns with plan-gate **yes** (and any precision amendments), **resume the same session folder** — update `SESSION.md` Batch approval + STAGE 2, then implement → audit → self-improver. Do **not** open a parallel dated session for the same cycle. Apply gate amendments into the implementer handoff (and note in SESSION) before moves/remote-config.
+- **STAGE 1 / same-run auto-continue:** When the user (or Continuity) says STAGE 1 = phases 1–3 first, **or** by default after planner: if plan is **`docs_only`** + **`ready_to_implement: yes`** + no mandatory plan gate → **continue in the same run** through implementer → mid git (as appropriate) → auditor → self-improver → **final closing-pass git** → Close. Do **not** stop for a user “go implement” confirm. Stop after planner only when plan is `fs_mutation` (incl. remote-config), `ready_to_implement: no`, blocking questions remain, or the user asked to review the plan.
+- **STAGE 1 hold → STAGE 2 resume (`fs_mutation`):** When Continuity/raw goal says STAGE 1 = phases 1–3 only (Hermes/human-held plan gate): **stop after planner**; do **not** launch implementer. When the user later returns with plan-gate **yes** (and any precision amendments), **resume the same session folder** — update `SESSION.md` Batch approval + STAGE 2, then implement → mid git → audit → self-improver → **final closing-pass git** → Close. Do **not** open a parallel dated session for the same cycle. Apply gate amendments into the implementer handoff (and note in SESSION) before moves/remote-config.
 - **Plan-gate typo tolerance (optional):** When the move map was just presented and the user reply is a clear near-miss affirmative (e.g. 1-character typo of yes/ok/oui such as “sey”), you may treat it as **approval** — record the **raw reply** plus the interpretation in `SESSION.md`. Do **not** stretch ambiguous or multi-word replies; when unsure, re-ask one short yes/no.
 - **Continuity-pack yes→defaults:** When a Continuity / short program pack was just presented **with disclosed defaults**, a bare affirmative (**yes** / **ok** / **oui**, including clear near-miss typos) may be treated as **accept disclosed defaults** (Choose-all equivalent) — record **raw reply** + interpretation in `SESSION.md` / prompt-betterment notes. Continuity yes **≠** plan-gate move approval. Do not stretch ambiguous or multi-word replies; when unsure, re-ask one short confirm.
 - Do not dump subagent internals; relay decisions and file paths.
@@ -112,7 +122,10 @@ After each phase, update `SESSION.md` (phase status, one-line summary, artifact 
 
 ## Completion
 
-1. Ensure `auditor` report exists.
+1. Ensure `auditor` report exists (orchestrator-persisted if needed).
 2. Launch `self-improver` with full session context.
-3. Mark `SESSION.md` status `complete`, or **`blocked`** with reason (never `complete` if Critical acceptance criteria unmet — including unmet pull/sync AC after correct unrelated dirty-abort, expected non-ff, or expected merge-conflict abort).
-4. Tell the user: session path, audit verdict, and what self-improvement changed.
+3. **Final closing-pass `git-manager` (mandatory when late allowlisted dirt remains):** After self-improver, if allowlisted dirt remains under `06-audit/**`, `07-self-improvement/**`, `SESSION.md` (close), cycle `.cursor/**`, or other allowlisted cycle paths → launch git-manager with `pass_kind: final` (handoff template). Same allowlist + GfW/GCM; never force-push. Mid-only push does **not** satisfy this step.
+4. Mark `SESSION.md` status `complete`, or **`blocked`** with reason:
+   - Never `complete` if Critical acceptance criteria unmet (including unmet pull/sync AC after correct unrelated dirty-abort, expected non-ff, or expected merge-conflict abort).
+   - **Fail-closed complete gate:** Never mark `complete` if the final closing pass was **skipped** while that late allowlisted dirt remains. If final pass returned honest `blocked` + `blocker_type`, mark session `blocked` (not false `complete`).
+5. Tell the user: session path, audit verdict, and what self-improvement changed (and git/blocked status if any).

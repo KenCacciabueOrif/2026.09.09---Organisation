@@ -81,16 +81,18 @@ Push goals: prefer GfW absolute git on Windows HTTPS (not PATH/MSYS alone); conf
 Pull goals: same GfW for status --porcelain, allowlist commit/stash, and pull; unrelated dirty abort → blocked + dirty_working_tree; behind+allowlisted → stash→ff→pop; not-behind allowlist → auto-commit then --ff-only; non-ff → blocked + other/non_ff; content-conflict abort under Q3b=A → blocked + other/merge_conflict (keep WIP/stash); Q3b=B resolve only if all conflicts ⊆ allowlist + R1 (continuity may supply combined-best); never claim pull success on block; auth/env types unchanged.
 ```
 
-## git-manager
+## git-manager (mid)
 
 ```
 Session phase dir: <abs>/05-git/
+pass_kind: mid
 Read 04-implementation/log.md + changes.md and the cycle acceptance criteria.
-Permanent phase for any cycle with file changes: health-check (status/remotes/ahead-behind) → stage only cycle paths (no unrelated dirt, no secrets) → commit (small, clear messages; GfW binary on Windows; BOM-free -F) → push → verify push via ahead/behind, not exit text.
+Mid pass (optional/early after implementer): health-check (status/remotes/ahead-behind) → stage only cycle implementer / early session paths (no unrelated dirt, no secrets) → commit (small, clear messages; GfW binary on Windows; BOM-free -F) → push → verify push via ahead/behind, not exit text.
+Mid is NOT a substitute for the final closing pass — leave 06-audit / 07-self-improvement / SESSION close for later.
 Branches: create feature/<topic> / fix/<topic> when the work warrants; MERGE INTO MAIN BY DEFAULT when verified and conflict-free — do not let cycle work strand on long-lived branches; never force-push, never rewrite history, never delete unmerged branches.
 Conflict/non-ff on merge or push → do NOT force; log conflict paths, return blocked with blocker_type (same taxonomy as implementer).
-docs_only zero-mutation cycle → write zero-mutation attestation in 05-git/log.md and skip git ops.
-Write log.md (health snapshot + commits + push + merge record).
+docs_only zero-mutation cycle with no allowlisted dirt → write zero-mutation attestation in 05-git/log.md and skip git ops.
+Write/append ## Mid pass section in log.md (health snapshot + commits + push + merge record). Return pass_kind: mid.
 ```
 
 ## auditor
@@ -106,6 +108,7 @@ fs_mutation: verify user approval, batch bounds (paths **or** remote-config), gi
 Push goals: Option A docs + optional GfW smoke; true credential gaps → rework_owner: user; wrong-git/sandbox may be agent_environment (user settings, not re-login alone). Fail if session marked complete with unmet push criterion.
 Pull goals: unrelated dirty-abort or expected non-ff with unmet sync AC → process pass + session blocked (+ rework_owner user for unrelated dirty / non-allowlist conflict only) is valid; allowlist-only merge_conflict under Q3b=A → rework_owner orchestrator (next FAW continuity), not user; fail if session marked complete after unmet pull AC. Allowlisted commit then pull attempted = correct. Flag Low if SESSION still in_progress while implementer recommended blocked.
 Single-commit publish: expected post-push dirty finalize on session logs only → Low, not rework_needed.
+Fail / flag if session marked **complete** while final closing-pass git was skipped and allowlisted late dirt (06/07/SESSION/.cursor) remains.
 ```
 
 ## self-improver
@@ -119,5 +122,38 @@ Read SESSION.md and all phase artifacts especially 06-audit/report.md.
 4) changes-applied.md + backlog.md
 This step is mandatory.
 **User-workload priority:** encode autonomy defaults so recurring sync/conflict cleanup is agent-owned; avoid backlog that assigns constant checks to the user; still fail-closed for unrelated/non-allowlist.
-Focus when relevant: publish/pull question packs / Q3c behind+allowlisted stash path / Q3b finish-sync continuity (B + combined-best) / allowlisted auto-commit / git-root staging / GfW vs MSYS / dirty_working_tree (unrelated) vs non_ff|merge_conflict/other vs agent_environment vs user_credentials / SESSION blocked bookkeeping on implementer return / unanswered→Choose defaults / Continuity **yes→defaults** / **STAGE 1 same-run auto-continue when docs_only + ready_to_implement yes** / **STAGE 1 hold → STAGE 2 resume same session after fs_mutation plan-gate yes (+ amendments)** / **Named Continuity B / stop docs_only re-attest → lock fs_mutation (Appendix A and/or remote-config); do not re-propose Continuity A theater** / **Post–Appendix A / post–multi-remote clear → still WorkSpace only; never Complete while WorkSpace remains** / **remote-config fs_mutation (git remote remove) = gated; zero path moves ≠ waive plan gate** / **nested-clone worktree list (not parent dirs that resolve to outer repo)** / **nested+parent dirty WT disclose + NO_AUTO_COMMIT** / post-push dirty=Low; proposed-ratified vs final; draft must-preserve; ROADMAP row-completion → Primary next (no reopen finished row) / **Medium Complete → Multi-experiment** (small subset + multi nested-git + SSH path-only) / **Multi-experiment partial → same row + remaining names** (not Primary next; not Medium reopen; WorkSpace git-strategy candidate) / **Multi-experiment WorkSpace-only → lock WorkSpace; never Complete while it remains; pre-strategy research+defer unless cleared or git-strategy; post–hazard-strategy docs (`program/git-strategy-workspace-hazards.md`) → continue strategy or explicit Appendix A / remote-config Continuity (plan gate); never re-default Cycle 9 pure defer after strategy docs; never invent whole-tree archive; not Medium finalize; not re-propose PWAExemple** / **Shell/porcelain unavailable → Read/Glob / `.git/config` path-presence fallback** (log probe method; Low not fail when semantic AC holds) / **auditor readonly → always return full report; orchestrator always persist 06-audit/report.md** / **resume incomplete same-cycle SESSION when user names it as prior** (no parallel folder) / **Windows nested-.git lock → reunify / robocopy Continuity** (prefer clean Move-Item; no user PATH chores) / **partial multi-batch → same row + remaining names** / **movable soft-deferred finalization → finalize remaining (not re-defer by default)** / Medium remaining Continuity (no re-ask first pack) / INDEX live path truth (no re-move) / dest nested-git + opaque `.env` attestations / Choose→decide (incl. Choose-all); ad-hoc org-repo scaffolding vs corpus fs_mutation (docs_only clarity); informed-consent asks (explanation + pros/cons) if jargon friction appeared; plan-gate near-miss typo tolerance if relevant.
+Focus when relevant: publish/pull question packs / Q3c behind+allowlisted stash path / Q3b finish-sync continuity (B + combined-best) / allowlisted auto-commit / git-root staging / GfW vs MSYS / dirty_working_tree (unrelated) vs non_ff|merge_conflict/other vs agent_environment vs user_credentials / SESSION blocked bookkeeping on implementer return / unanswered→Choose defaults / Continuity **yes→defaults** / **STAGE 1 same-run auto-continue when docs_only + ready_to_implement yes** / **STAGE 1 hold → STAGE 2 resume same session after fs_mutation plan-gate yes (+ amendments)** / **Named Continuity B / stop docs_only re-attest → lock fs_mutation (Appendix A and/or remote-config); do not re-propose Continuity A theater** / **Post–Appendix A / post–multi-remote clear → still WorkSpace only; never Complete while WorkSpace remains** / **remote-config fs_mutation (git remote remove) = gated; zero path moves ≠ waive plan gate** / **nested-clone worktree list (not parent dirs that resolve to outer repo)** / **nested+parent dirty WT disclose + NO_AUTO_COMMIT** / post-push dirty=Low; proposed-ratified vs final; draft must-preserve; ROADMAP row-completion → Primary next (no reopen finished row) / **Medium Complete → Multi-experiment** (small subset + multi nested-git + SSH path-only) / **Multi-experiment partial → same row + remaining names** (not Primary next; not Medium reopen; WorkSpace git-strategy candidate) / **Multi-experiment WorkSpace-only → lock WorkSpace; never Complete while it remains; pre-strategy research+defer unless cleared or git-strategy; post–hazard-strategy docs (`program/git-strategy-workspace-hazards.md`) → continue strategy or explicit Appendix A / remote-config Continuity (plan gate); never re-default Cycle 9 pure defer after strategy docs; never invent whole-tree archive; not Medium finalize; not re-propose PWAExemple** / **Shell/porcelain unavailable → Read/Glob / `.git/config` path-presence fallback** (log probe method; Low not fail when semantic AC holds) / **auditor readonly → always return full report; orchestrator always persist 06-audit/report.md** / **resume incomplete same-cycle SESSION when user names it as prior** (no parallel folder) / **Windows nested-.git lock → reunify / robocopy Continuity** (prefer clean Move-Item; no user PATH chores) / **partial multi-batch → same row + remaining names** / **movable soft-deferred finalization → finalize remaining (not re-defer by default)** / Medium remaining Continuity (no re-ask first pack) / INDEX live path truth (no re-move) / dest nested-git + opaque `.env` attestations / Choose→decide (incl. Choose-all); ad-hoc org-repo scaffolding vs corpus fs_mutation (docs_only clarity); informed-consent asks (explanation + pros/cons) if jargon friction appeared; plan-gate near-miss typo tolerance if relevant / **dual git-manager: mid optional/early + mandatory final closing pass after self-improver; no complete with late allowlisted dirt**.
+```
+
+## git-manager (final closing pass)
+
+```
+Session phase dir: <abs>/05-git/
+pass_kind: final
+MANDATORY when allowlisted late dirt remains after self-improver.
+Late stage set (explicit paths; never git add -A): 
+- <abs>/06-audit/**
+- <abs>/07-self-improvement/**
+- <abs>/SESSION.md (close / status)
+- cycle .cursor/** edits (agents/skill/rules) and other allowlisted cycle dirt (AGENTS.md, sessions/_templates/**, …) as present
+Optional leftover path list from Continuity/plan (if any remaining orphans): <paste or none>
+Same allowlist + GfW absolute git.exe + GCM as mid/publish law; dual preflight; no secrets; no force-push; no non-allowlist / TNA.
+Prefer append ## Final closing pass section in the SAME 05-git/log.md BEFORE the final commit when practical (tiny post-final log dirt = known Low).
+Health-check → stage only listed allowlisted late paths → commit → push → verify ahead/behind.
+Mid-only prior push does NOT satisfy this pass.
+Return pass_kind: final; status complete | blocked (+ blocker_type). Orchestrator must NOT mark SESSION complete if this pass was skipped while late allowlisted dirt remains; honest blocked → session blocked (never false complete).
+```
+
+## git-manager (leftover / finish-sync)
+
+```
+Session phase dir: <abs>/05-git/
+pass_kind: leftover
+Explicit path set from Continuity/plan (orphaned allowlisted paths): <paste exact list>
+Exclude: <paste>
+Defer (optional later): <paste>
+Same allowlist + GfW/GCM; explicit git add of listed paths only; commit + push; verify ahead/behind.
+Append ## Leftover / finish-sync section in 05-git/log.md.
+This does NOT replace this cycle’s final closing pass when 06/07/SESSION late dirt remains here.
+Return pass_kind: leftover.
 ```
