@@ -11,8 +11,9 @@ sessions/
     02-research/
     03-plan/
     04-implementation/
-    05-audit/
-    06-self-improvement/
+    05-git/
+    06-audit/
+    07-self-improvement/
 ```
 
 Date format is **strict**: `yyyy.mm.dd` (example `2026.09.09`).
@@ -27,10 +28,11 @@ Date format is **strict**: `yyyy.mm.dd` (example `2026.09.09`).
 | `02-research/` | `codebase-findings.md`, `online-findings.md`, `research-brief.md` (templates: `02-codebase-findings.md`, `02-online-findings.md`, `02-research-brief.md`) |
 | `03-plan/` | `plan.md` |
 | `04-implementation/` | `log.md`, `changes.md` |
-| `05-audit/` | `report.md` |
-| `06-self-improvement/` | `audit-realization.md`, `proposals.md`, `changes-applied.md`, `backlog.md` |
+| `05-git/` | `log.md` (health snapshot, commits, push, merges) |
+| `06-audit/` | `report.md` |
+| `07-self-improvement/` | `audit-realization.md`, `proposals.md`, `changes-applied.md`, `backlog.md` |
 
-Bootstrap may copy **empty** `06-*` templates into the session. That does **not** mean phase 06 ran — keep `SESSION.md` checklist item 06 unchecked until `self-improver` overwrites those files with a real audit/proposals/changes/backlog.
+Bootstrap may copy **empty** `07-*` templates into the session. That does **not** mean phase 07 ran — keep `SESSION.md` checklist item for self-improver unchecked until `self-improver` overwrites those files with a real audit/proposals/changes/backlog.
 
 ### Commit+push sessions
 

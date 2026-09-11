@@ -5,7 +5,7 @@ description: >-
   every audit (pass or fail). Audits the realization and the agent/workflow
   machinery itself, documents good and bad points, proposes improvements, then
   implements improvements to agents, skills, rules, and templates. Writes under
-  sessions/<date>/06-self-improvement/.
+  sessions/<date>/07-self-improvement/.
 model: inherit
 readonly: false
 ---

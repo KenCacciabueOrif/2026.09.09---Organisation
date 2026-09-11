@@ -33,21 +33,22 @@ Workflow progress:
 - [ ] 3. planner → 03-plan/
 - [ ] 4. User plan gate → then implementer (mandatory if plan mutates corpus FS)
 - [ ] 5. implementer → 04-implementation/
-- [ ] 6. auditor → 05-audit/ (rework loop if critical fail)
-- [ ] 7. self-improver → 06-self-improvement/  (MANDATORY)
-- [ ] 8. Close SESSION.md
+- [ ] 6. git-manager → 05-git/ (add/commit/push, branches, merge into main — MANDATORY for cycles with file changes)
+- [ ] 7. auditor → 06-audit/ (rework loop if critical fail)
+- [ ] 8. self-improver → 07-self-improvement/  (MANDATORY)
+- [ ] 9. Close SESSION.md
 ```
 
 ### 0. Session bootstrap
 
 1. **Resume check:** If user names an **incomplete** (`in_progress` / unchecked later phases) session as prior/resume/continue → **reuse that folder** and continue from the next incomplete phase; do **not** open a parallel dated folder for the same cycle. Completed prior for Continuity only → new folder as usual.
 2. Else date folder: `sessions/yyyy.mm.dd` (collision → `sessions/yyyy.mm.dd-HHMM`).
-3. Create phase subfolders `01`–`06` as named in [session-structure.md](references/session-structure.md) (skip on resume if already present).
+3. Create phase subfolders `01`–`07` as named in [session-structure.md](references/session-structure.md) (skip on resume if already present).
 4. Seed files from `sessions/_templates/` on **new** sessions only — never overwrite finished phase artifacts on resume.
 5. Write/update `SESSION.md` with raw goal + checklist. If this is a **program cycle**, fill Program framing (cycle id, docs-only vs mutation, `program/ROADMAP.md` pointer, **locked ROADMAP row**, prior session + **pending user gates**). One session per cycle; do not start moves inside a docs-only FAW after it passes.
-6. If the user did not name the row, **orchestrator chooses** the ROADMAP primary-next (or next sensible slice), documents it, and passes it to prompt-betterment — do not re-litigate mid-cycle. When a multi-batch row is already **Complete**, lock **Primary next →** — do not reopen the finished row. When Medium wrappers are **Complete**, lock **Multi-experiment** (small first subset + multi nested-git caution + SSH path-only Continuity) — do not reopen Medium. When the row is **in progress** (partial subset done), re-lock the **same** row scoped to **remaining** names — do not jump Primary next or re-propose already-moved folders (e.g. Multi-experiment remaining `PWAExemple` + `WorkSpace`; keep `WorkSpace` fail-closed / git-strategy candidate until cleared). When only **movable soft-deferred** names remain (**nearly complete**), lock those named remaining and default Continuity to **finalize** them (do not re-soft-defer by default); after last move → Complete → Primary next. When only **fail-closed / git-strategy** remaining (e.g. Multi-experiment **`WorkSpace` only**): lock that name; **never force-move**; **never** mark Complete or jump Primary next while it remains; **never** reopen Medium / archived Multi-experiment peers as sources. **Pre–strategy:** default Continuity = research then defer **unless** hazards cleared **or** dedicated git-strategy Continuity; **repeated research+defer is valid**. **Post–hazard-strategy docs** (`program/git-strategy-workspace-hazards.md` exists): point phases at that artifact; default Continuity = **continue strategy** (docs) **or** explicit **Appendix A execute** Continuity (plan gate required) — **do not** re-default to pure Cycle 9 defer after strategy docs; **do not** invent whole-tree archive; “solve hazards” after docs ≠ Complete. After implementer shrinks remaining, refresh SESSION Program framing lock to post-move remaining names.
+6. If the user did not name the row, **orchestrator chooses** the ROADMAP primary-next (or next sensible slice), documents it, and passes it to prompt-betterment — do not re-litigate mid-cycle. When a multi-batch row is already **Complete**, lock **Primary next →** — do not reopen the finished row. When Medium wrappers are **Complete**, lock **Multi-experiment** (small first subset + multi nested-git caution + SSH path-only Continuity) — do not reopen Medium. When the row is **in progress** (partial subset done), re-lock the **same** row scoped to **remaining** names — do not jump Primary next or re-propose already-moved folders (e.g. Multi-experiment remaining `PWAExemple` + `WorkSpace`; keep `WorkSpace` fail-closed / git-strategy candidate until cleared). When only **movable soft-deferred** names remain (**nearly complete**), lock those named remaining and default Continuity to **finalize** them (do not re-soft-defer by default); after last move → Complete → Primary next. When only **fail-closed / git-strategy** remaining (e.g. Multi-experiment **`WorkSpace` only**): lock that name; **never force-move**; **never** mark Complete or jump Primary next while it remains; **never** reopen Medium / archived Multi-experiment peers as sources. **Pre–strategy:** default Continuity = research then defer **unless** hazards cleared **or** dedicated git-strategy Continuity; **repeated research+defer is valid**. **Post–hazard-strategy docs** (`program/git-strategy-workspace-hazards.md` exists): point phases at that artifact; default Continuity = **continue strategy** (docs) **or** explicit **Appendix A execute** Continuity (plan gate required) — **do not** re-default to pure Cycle 9 defer after strategy docs; **do not** invent whole-tree archive; “solve hazards” after docs ≠ Complete. **Named Continuity B / stop docs_only re-attest** → lock `fs_mutation` Appendix A **and/or** remaining live-hazard remote-config; do not steer Continuity A theater. **Post–Appendix A:** still lock `WorkSpace` only. **Post–multi-remote / remote-config clear:** still lock `WorkSpace` only — never Complete / Primary next while it remains; never invent whole-tree archive. After implementer shrinks remaining, refresh SESSION Program framing lock to post-move remaining names.
 
-### 1–6. Delegate
+### 1–7. Delegate
 
 Launch each custom subagent with a handoff matching [handoff-templates.md](references/handoff-templates.md).
 
@@ -57,8 +58,11 @@ Launch each custom subagent with a handoff matching [handoff-templates.md](refer
 | Research | `researcher` |
 | Plan | `planner` |
 | Implement | `implementer` |
+| Git management | `git-manager` |
 | Audit | `auditor` |
 | Self-improve | `self-improver` |
+
+`git-manager` is a permanent phase: it owns local+remote Git health — stage/commit cycle work (never unrelated dirt or secrets), push, branch creation, and **merge into main as the default outcome** (prioritize merging over leaving branches separated; only verified, conflict-free branches merge; never force). Skip only for pure `docs_only` zero-mutation cycles with a recorded zero-mutation attestation. Handoff matches [handoff-templates.md](references/handoff-templates.md) and `.cursor/agents/git-manager.md`.
 
 Pause for user answers during prompt-betterment. If answers include **Choose**, Continuity bare **yes→defaults**, or pack items stay **unanswered** after a partial reply with disclosed defaults, prompt-betterment must decide and document — do not forward “Choose”/blanks downstream. For publish / git add-commit-push goals, use [publish-cycle.md](references/publish-cycle.md) (question pack + org-repo git-root boundary). For **git pull / sync-from-origin** goals, use [pull-cycle.md](references/pull-cycle.md) (same pattern; FAW default = allowlisted dirty autonomy + `--ff-only`; **when behind+allowlisted dirty → stash→ff-only→pop** (Q3c); commit-then-pull when not behind; abort only for unrelated dirty; GfW for gate+commit/stash+pull).
 
@@ -70,9 +74,11 @@ Pause for user answers during prompt-betterment. If answers include **Choose**, 
 
 **User plan gate (step 4):**
 
-- **Mandatory** when the plan is **`fs_mutation`**: moves/renames/deletes (or other corpus / catalogue-backed path mutations) — wait for explicit per-batch approval before implementer.
+- **Mandatory** when the plan is **`fs_mutation`**: moves/renames/deletes (or other corpus / catalogue-backed path mutations) **or** **remote-config** (e.g. `git remote remove` on a live nested `.git`) — wait for explicit per-batch approval before implementer. Zero path moves does **not** waive the gate for remote-config.
 - **`docs_only` (no mandatory gate):** org-repo scaffolding creates (new folders/READMEs/docs/index inside this organisation git root) and charter/index cycles with **zero** corpus moves — proceed when `ready_to_implement: yes` (still pause if the user asked to review the plan). Creating paths in the org repo ≠ `fs_mutation`.
-- **STAGE 1 / same-run auto-continue:** After planner, if **`docs_only`** + **`ready_to_implement: yes`** + no plan gate → continue implement → audit → self-improver **in the same run** (do not wait for a separate user “go” unless they asked to review). If `fs_mutation` or not ready → stop at plan gate / blocking questions.
+- **STAGE 1 / same-run auto-continue:** After planner, if **`docs_only`** + **`ready_to_implement: yes`** + no plan gate → continue implement → audit → self-improver **in the same run** (do not wait for a separate user “go” unless they asked to review). If `fs_mutation` (incl. remote-config) or not ready → stop at plan gate / blocking questions.
+- **STAGE 1 hold → STAGE 2 resume:** When Continuity says STAGE 1 = phases 1–3 only for `fs_mutation`, stop after planner. On later plan-gate **yes** (+ amendments), **resume the same session** for implement → audit → self-improver — do not bootstrap a parallel folder. Apply amendments in the implementer handoff.
+- **Named Continuity B:** User names Continuity B / Appendix A execute / stop docs_only re-attest → lock `fs_mutation` path (scoped isolation **and/or** remaining live-hazard remote-config); do not steer toward Continuity A docs_only theater. Continuity B ≠ execute (gate still mandatory). **Post–multi-remote clear:** still lock `WorkSpace` only — never Complete while it remains; never invent whole-tree archive.
 - Never treat a prior cycle’s approval as approval for a new batch.
 - **Early/simple / first move:** also confirm taxonomy final sign-off or explicit waiver, and must-preserve draft review or waiver, before launching implementer on `fs_mutation` — with the same explanation + tradeoffs rule (not jargon-only).
 
@@ -83,7 +89,7 @@ Pause for user answers during prompt-betterment. If answers include **Choose**, 
 - Never report the cycle as complete when Critical acceptance criteria remain unmet (including unmet pull-sync AC after correct unrelated dirty-abort, expected non-ff, or expected merge-conflict abort — process may **pass**, session stays **`blocked`**).
 - Always run `self-improver` after audit (pass, fail, or blocked).
 - **Orchestrator bookkeeping:** when implementer returns `blocked` / `aborted_dirty` / `non_ff` / `blocked_conflict`, flip `SESSION.md` to `blocked` **immediately** (do not leave `in_progress` until audit).
-- **Auditor report persist:** Auditor is **`readonly: true`** — expect Write to fail. After auditor returns, **always** ensure `05-audit/report.md` holds the full report; **orchestrator writes** the returned body when the file is missing/stub/outdated (session bookkeeping, not product work), then updates `SESSION.md` audit verdict before self-improver.
+- **Auditor report persist:** Auditor is **`readonly: true`** — expect Write to fail. After auditor returns, **always** ensure `06-audit/report.md` holds the full report; **orchestrator writes** the returned body when the file is missing/stub/outdated (session bookkeeping, not product work), then updates `SESSION.md` audit verdict before self-improver.
 
 ### Critical: auth / push / pull (Windows HTTPS Option A)
 
@@ -97,8 +103,8 @@ Pause for user answers during prompt-betterment. If answers include **Choose**, 
 
 ### Done criteria
 
-- All phase folders have their primary artifacts (or explicit blocked notes) — including a real `05-audit/report.md` (orchestrator-persisted if needed).
-- `06-self-improvement/changes-applied.md` exists.
+- All phase folders have their primary artifacts (or explicit blocked notes) — including a real `06-audit/report.md` (orchestrator-persisted if needed).
+- `07-self-improvement/changes-applied.md` exists.
 - User receives session path + audit verdict + self-improvement summary (and blocked reason if any).
 
 ## References

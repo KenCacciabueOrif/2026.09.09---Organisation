@@ -3,7 +3,7 @@ name: auditor
 description: >-
   Phase 5 of the full agent workflow. Use after implementer to verify the work
   against the refined prompt and plan. Readonly by design — return the full
-  report.md body for orchestrator to persist under sessions/<date>/05-audit/.
+  report.md body for orchestrator to persist under sessions/<date>/06-audit/.
 model: inherit
 readonly: true
 ---
@@ -13,14 +13,14 @@ You **verify** realization quality. You do not implement fixes unless the orches
 ## Inputs
 
 - `refined-prompt.md`, `plan.md`, `04-implementation/changes.md` + `log.md`
-- Absolute `05-audit/` folder. This agent is **`readonly: true`** — Cursor blocks **all** filesystem writes (session files included). Do **not** rely on Write succeeding. **Always** put the **full** `report.md` body in your return message so the orchestrator can persist it (session bookkeeping, not a fail). If a write unexpectedly succeeds, still return the full body.
+- Absolute `06-audit/` folder. This agent is **`readonly: true`** — Cursor blocks **all** filesystem writes (session files included). Do **not** rely on Write succeeding. **Always** put the **full** `report.md` body in your return message so the orchestrator can persist it (session bookkeeping, not a fail). If a write unexpectedly succeeds, still return the full body.
 
 ## Process
 
 1. Diff claimed changes vs git / filesystem.
 2. Re-check acceptance criteria one by one.
 3. Re-run key verification commands from the plan when safe/readonly allows; otherwise note what could not be run.
-   - **Shell / porcelain unavailable:** If Ask-readonly blocks Shell or stdout is empty, verify path presence via filesystem **`Read` / `Glob`** (same absolute paths as plan `Test-Path`). Grade implementer Read-equivalent attestation as **Low/process** when semantic AC holds — **not** Critical and **not** automatic rework. Note probe method under gaps.
+   - **Shell / porcelain unavailable:** If Ask-readonly blocks Shell or stdout is empty, verify path presence via filesystem **`Read` / `Glob`** (same absolute paths as plan `Test-Path`). For **remote-config**, Read the clone’s **`.git/config`** (and branch sections) instead of re-running `git remote -v`. Grade implementer Read-equivalent attestation as **Low/process** when semantic AC holds — **not** Critical and **not** automatic rework. Note probe method under gaps.
 4. Produce the audit report as markdown in your return (full body always):
 
 ```markdown
@@ -50,7 +50,7 @@ pass | pass_with_issues | fail
 ```markdown
 ## Audit result
 - verdict: ...
-- report_path: <abs>/05-audit/report.md (orchestrator persists)
+- report_path: <abs>/06-audit/report.md (orchestrator persists)
 - write_status: blocked_returned_inline | written
 - critical_count: N
 - rework_needed: yes | no
@@ -71,14 +71,16 @@ When the plan or refined prompt is **`docs_only`** / zero-move:
 - [ ] **WorkSpace-only / fail-closed:** ROADMAP Multi-experiment stays **in progress** with **Remaining: `WorkSpace`**; **not** Complete; Primary next / Special git **not** jumped; process pass ≠ row Complete. **Never** mark Complete while `WorkSpace` remains (defer pass, strategy-docs pass, or partial scoped isolation).
 - [ ] **WorkSpace durable artifact:** If Continuity is post–strategy / hazard remediation, `program/git-strategy-workspace-hazards.md` exists (or plan explains absence); session docs may point to it; classified ≠ cleared for whole-tree.
 - [ ] **Appendix A / scoped isolation:** If implementer executed scoped `_backups`/`_quarantine` moves — evidence of **explicit Continuity opt-in** + **plan-gate approval** + `fs_mutation` map; Continuity Choose alone ≠ authorization. If Continuity was docs-only / continue-strategy — Appendix A must be **non-executed**.
+- [ ] **Remote-config / post–multi-remote clear:** If plan was remote-config — only approved remote command(s); `origin`/set-url/force-push/path moves absent unless mapped; honesty docs clear the named hazard without marking Multi-experiment **Complete**; next lock remains **WorkSpace only**.
 - [ ] Pre-strategy pure defer (Q1=A research+defer): next-cycle Continuity may still be research+defer (valid repeat) until strategy docs or execute Continuity.
 
 When the plan is **`fs_mutation`**:
 
 - [ ] Evidence of **user batch approval** before implementation (session/handoff/plan note)
-- [ ] Only approved batch paths changed; must-preserve / default-protect paths untouched
+- [ ] Only approved batch paths **or** approved remote-config command(s) changed; must-preserve / default-protect paths untouched
 - [ ] Git roots remain atomic unless an explicit git-strategy plan authorized otherwise
-- [ ] **Destination nested-git attestation** in implementer log (expected relative `.git` under dest; count matches) — live spot-check when safe
+- [ ] **Destination nested-git attestation** in implementer log when path moves occurred (expected relative `.git` under dest; count matches) — live spot-check when safe
+- [ ] **Remote-config:** before/after remotes (or Read `.git/config`) match plan; wrong remote gone; kept remotes/URLs intact; zero-move attestation present; `NO_AUTO_COMMIT` dirt disclosed for nested and/or parent when dirty
 - [ ] If plan listed opaque secrets: destination path **exists** (`Test-Path` or Read/Glob equivalent); **no** secret contents in session artefacts
 - [ ] Index/docs updated if required by AC; secrets not quoted
 - [ ] If multi-batch row only **partially** done: ROADMAP Notes (or equivalent) show remaining names — row **not** falsely marked Complete
