@@ -76,19 +76,20 @@ Record **mid** and/or **final** (and leftover) in this same file — prefer appe
 ### Commits
 | hash | subject | paths |
 | --- | --- | --- |
-| `(pending)` | docs(session-2026.09.14-1004): final close audit, self-improve, FAW meta | late stage set above |
+| `cc2ee97` | docs(session-2026.09.14-1004): final close audit, self-improve, FAW meta | 18 files (06/07/SESSION/05-git log + FAW meta/templates) |
 
 ### Push
-- branch → remote: (pending)
-- verified ahead/behind after push+fetch: (pending)
-- status: **in_progress**
+- branch → remote: `main` → `origin/main` (`0cfc99b..cc2ee97`)
+- verified ahead/behind after push+fetch: **0 / 0**
+- status: **complete**
 
 ### Final attestations
 - secrets: none staged (verified — markdown / FAW meta only)
 - unrelated dirt: not staged (verified)
 - ft_prework / extensions: not in org-repo / not staged
-- late allowlisted dirt: (pending push verify)
+- late allowlisted dirt: **committed+pushed**
 - note: mid ≠ final; this pass closes allowlisted late dirt after self-improver
+- post-push log hash fill-in: expected tiny dirt until verify follow-up
 
 ## Leftover / finish-sync (when Continuity/plan names orphans)
 
