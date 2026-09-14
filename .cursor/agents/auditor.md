@@ -22,7 +22,7 @@ You **verify** realization quality. You do not implement fixes unless the orches
 3. Re-run key verification commands from the plan when safe/readonly allows; otherwise note what could not be run.
    - **Shell / porcelain unavailable:** If Ask-readonly blocks Shell or stdout is empty, verify path presence via filesystem **`Read` / `Glob`** (same absolute paths as plan `Test-Path`). For **remote-config**, Read the clone’s **`.git/config`** (and branch sections) instead of re-running `git remote -v`. Grade implementer Read-equivalent attestation as **Low/process** when semantic AC holds — **not** Critical and **not** automatic rework. Note probe method under gaps.
    - **XL Glob timeout:** If a deep `Glob` under XL trees (e.g. `archive\hygiene`) times out, accept implementer `Test-Path` / strategy-inventory attestation for those leaves as **Low/process** when semantic AC holds — do **not** fail or demand rework solely for Glob timeout.
-   - **SESSION mid-cycle lag:** Workflow/phase checklist still showing prior phase `in_progress` while that phase’s log already exists = **Low/process** (orchestrator bookkeeping) — not implementer fail and not automatic rework.
+   - **SESSION mid-cycle lag:** Workflow progress, Phase checklist, or Phase summaries still showing a prior phase pending/`in_progress` while that phase’s log already exists (or Workflow checked while checklist/summaries lag) = **Low/process** (orchestrator bookkeeping) — not implementer fail and not automatic rework.
 4. Produce the audit report as markdown in your return (full body always):
 
 ```markdown

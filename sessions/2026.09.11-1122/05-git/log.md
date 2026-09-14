@@ -117,3 +117,80 @@
 | Diffstat | 19 files changed, 1209 insertions(+), 46 deletions(-) |
 | Message encoding | utf8NoBOM via `UTF8Encoding($false)` + `git commit --trailer "Co-authored-by: Cursor <cursoragent@cursor.com>" -F` |
 | Note | Mid section of this log was missing from first commit (PS 5.1 encoding); follow-up commit below records mid section |
+
+### Push verify
+
+| Item | Result |
+| --- | --- |
+| Push | `origin/main` `caec66d..353cb7e` (exit 0) — includes `55b7341` + log follow-up `353cb7e` |
+| Ahead / behind (post fetch) | `0 / 0` |
+| Porcelain on mid stage set | clean |
+| Remaining untracked (expected) | `?? sessions/2026.09.11-1122/06-audit/`, `?? sessions/2026.09.11-1122/07-self-improvement/` (final); `?? sessions/2026.09.11-0859/`, `?? sessions/2026.09.11/` (deferred) |
+| merged_to_main | **n/a** — already on `main` |
+| blocker_type | **none** |
+| status | **complete** |
+| Note | Mid ≠ final close; 06/07 + SESSION close remain for final pass. Post-push push-verify lines on this log may stay uncommitted (expected Low). |
+---
+
+## Pass: final (Cycle 17 closing) — after self-improver
+
+**pass_kind:** `final`  
+**Hermes:** YES as-is (Continuity Q1=A mid+final)  
+**Scope:** Late allowlisted dirt only — `06-audit/**`, `07-self-improvement/**`, `SESSION.md` close, `05-git/log.md`, cycle `.cursor/**` + `sessions/_templates/SESSION.md`. Mid-only prior push (`353cb7e`) does **not** satisfy this pass. Exclude deferred `0859/` + bare `2026.09.11/`. Exclude unrelated `sessions/2026.09.14*/SESSION.md`.
+
+### Health check (pre-commit)
+
+| Item | Result |
+| --- | --- |
+| Binary | Git for Windows `C:\Users\CaDa\AppData\Local\Programs\Git\cmd\git.exe` (PATH MSYS avoided) |
+| Credential helper | `manager` (GfW system) |
+| Dual preflight | `ls-remote origin main` OK; GCM present (`gh` absent ≠ credentials failure) |
+| `rev-parse --show-toplevel` | org-repo OK |
+| Branch | `main` tracking `origin/main` |
+| Ahead / behind (pre) | `0 / 0` (HEAD `90d4284` after later session pushes) |
+| Remotes | `origin` → `https://github.com/KenCacciabueOrif/2026.09.09---Organisation.git` |
+| GfW refresh | phantom dirt on prior sessions cleared; real late dirt remains |
+
+### Working tree (pre-stage)
+
+**Stage set (explicit paths):**
+1. `sessions/2026.09.11-1122/06-audit/report.md`
+2. `sessions/2026.09.11-1122/07-self-improvement/audit-realization.md`
+3. `sessions/2026.09.11-1122/07-self-improvement/backlog.md`
+4. `sessions/2026.09.11-1122/07-self-improvement/changes-applied.md`
+5. `sessions/2026.09.11-1122/07-self-improvement/proposals.md`
+6. `sessions/2026.09.11-1122/SESSION.md`
+7. `sessions/2026.09.11-1122/05-git/log.md`
+8. `.cursor/agents/auditor.md`
+9. `.cursor/skills/full-agent-workflow/SKILL.md`
+10. `.cursor/skills/full-agent-workflow/references/handoff-templates.md`
+11. `sessions/_templates/SESSION.md`
+
+**Excluded (not staged):** `M sessions/2026.09.14-1004/SESSION.md`, `M sessions/2026.09.14/SESSION.md` (other cycles)  
+**Deferred (not staged):** `?? sessions/2026.09.11-0859/`, `?? sessions/2026.09.11/`  
+**Secrets:** none  
+**TNA:** not touched
+
+### Stage & commit
+
+| Item | Result |
+| --- | --- |
+| Method | Explicit `git add --` of listed paths only (no `git add -A`) |
+| paths_staged | **11** |
+| defer_0859_bare_attested | **yes** |
+| Commit | _(filled after commit)_ |
+| Subject | `docs(cycle-17): final closing pass audit, self-improve, FAW meta` |
+| Message encoding | utf8NoBOM via `UTF8Encoding($false)` + `git commit --trailer "Co-authored-by: Cursor <cursoragent@cursor.com>" -F` |
+
+### Push verify
+
+| Item | Result |
+| --- | --- |
+| Push | _(filled after push)_ |
+| Ahead / behind (post fetch) | _(filled after push)_ |
+| Porcelain on final stage set | _(filled after push)_ |
+| Remaining untracked (expected) | `?? sessions/2026.09.11-0859/`, `?? sessions/2026.09.11/` (deferred); other-cycle SESSION dirt if still present |
+| merged_to_main | **n/a** — already on `main` |
+| blocker_type | _(filled after push)_ |
+| status | _(filled after push)_ |
+| Note | Post-push fill-in on this log may stay uncommitted (expected Low). |
