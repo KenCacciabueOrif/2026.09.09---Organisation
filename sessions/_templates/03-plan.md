@@ -12,7 +12,7 @@
 | User approval before implementer | required \| not required (`docs_only` \| `product_settings`) |
 | First-move gates (if fs_mutation) | taxonomy sign-off/waiver · must-preserve review/waiver · batch approval |
 
-Note: `docs_only` covers **org-repo scaffolding creates** (folders/READMEs/docs inside this organisation git root) when there are **no** corpus moves/renames/deletes. `product_settings` covers editor/IDE extension install-switch, settings, and/or local evidence fixtures — **not** corpus `fs_mutation`; plan-gate **n/a**; same-run when ready. `fs_mutation` is for corpus / catalogue-backed path batches **or** **remote-config** (e.g. `git remote remove` on a pinned live nested `.git`) — remote-config still needs the plan gate even with zero path moves.
+Note: `docs_only` covers **org-repo scaffolding creates** (folders/READMEs/docs inside this organisation git root) when there are **no** corpus moves/renames/deletes. `product_settings` covers editor/IDE extension install-switch, settings, **local installed-extension `dist/`/`src/` patches** (document **re-apply after Marketplace/Open VSX update**; Soft Reload tip after patch), and/or local evidence fixtures — **not** corpus `fs_mutation`; plan-gate **n/a**; same-run when ready. For Python 42-header + flake8 Continuity: prefer **≤79 generator** over Norminette-80 art or ignore-first. `fs_mutation` is for corpus / catalogue-backed path batches **or** **remote-config** (e.g. `git remote remove` on a pinned live nested `.git`) — remote-config still needs the plan gate even with zero path moves.
 
 ## What the user is approving (required if `fs_mutation`)
 

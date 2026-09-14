@@ -44,6 +44,12 @@ You gather **evidence** so planning and implementation are grounded.
 
 Prefer recent, official sources. Do not invent APIs.
 
+### Python 42-header / flake8 (when in scope)
+
+- Measure fixture header line lengths; confirm flake8 default (**79**) vs any project config; note classic Norminette / 42 art often **80**.
+- Check whether the installed header extension has a **width setting** or only hardcoded template + detect regex (`.{80}` etc.).
+- Recommend options with tradeoffs: **generator ≤79** (settings or local `dist` patch) vs switch fork vs flake8 ignore/max-length — Continuity usually ranks **generator first**; ignore-first last. Flag Marketplace overwrite / re-apply risk for local patches.
+
 ## Output (return to orchestrator)
 
 ```markdown

@@ -77,14 +77,16 @@ When the plan or refined prompt is **`docs_only`** / zero-move:
 - [ ] **Post-clear Continuity A docs_only:** If multi-remote already CLEARED and cycle is continue-strategy — inventory/INDEX must not still claim **live multi-remote uncleared**; Cleared + still-at-root / not Complete is enough; optional size-cell skip ≠ fail when plan marked optional.
 - [ ] Pre-strategy pure defer (Q1=A research+defer): next-cycle Continuity may still be research+defer (valid repeat) until strategy docs or execute Continuity.
 
-When the plan is **`product_settings`** (editor extension / settings / local fixture):
+When the plan is **`product_settings`** (editor extension / settings / local fixture / local `dist` patch):
 
 - [ ] Claimed artefacts exist; **not** corpus `fs_mutation`; plan-gate **n/a** attested
 - [ ] Zero ROADMAP / catalogue move attestation; settings identity not silently shortened when AC forbids it
 - [ ] Extension primary failure + **fallback** (if used) logged with IDs/versions; verify via `extensions.json` / FS when CLI list blocked
-- [ ] Soft **Reload** remaining = **Low** only — **not** Critical; **not** `rework_owner: user` solely for Reload
+- [ ] If local **`dist/`/`src/` patch** claimed: backup + frame/detect edits attested; **re-apply after Marketplace update** documented; primary fix is generator (not ignore-first) when Continuity required it
+- [ ] Soft **Reload** remaining (after install/switch **or** dist patch) = **Low** only — **not** Critical; **not** `rework_owner: user` solely for Reload
 - [ ] Template-math / equivalent regenerate OK when live Command Palette insert unavailable (disclose method)
 - [ ] No secret dumps beyond fixture necessity; product paths not wrongly staged into org-repo mid git
+- [ ] Dual git: mid-only publish while 06/07/SESSION late dirt remains → flag for orchestrator final pass (not false complete)
 
 When the plan is **`fs_mutation`**:
 
