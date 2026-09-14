@@ -46,29 +46,44 @@ Record **mid** and/or **final** (and leftover) in this same file — prefer appe
 
 ## Final closing pass (mandatory when allowlisted late dirt remains)
 
-### Late stage set
-- 06-audit/**:
-- 07-self-improvement/**:
-- SESSION.md:
-- cycle .cursor/** / other allowlisted:
+- pass_kind: final
+- session: `sessions/2026.09.14`
+- git binary: `C:\Users\CaDa\AppData\Local\Programs\Git\cmd\git.exe` (GfW; system credential.helper=`manager`)
+
+### Late stage set (explicit; staged)
+- 06-audit/**: `sessions/2026.09.14/06-audit/report.md`
+- 07-self-improvement/**: audit-realization, backlog, changes-applied, proposals
+- SESSION.md: `sessions/2026.09.14/SESSION.md`
+- cycle .cursor/**: auditor, implementer, orchestrator, planner agents; `full-agent-workflow.mdc`; SKILL + handoff-templates
+- other allowlisted: `AGENTS.md`, `sessions/_templates/03-plan.md`, `sessions/_templates/SESSION.md`
+- this log: `sessions/2026.09.14/05-git/log.md` (final section before commit)
 
 ### Health snapshot
-- branch:
-- ahead/behind:
-- remotes:
+- branch: `main` tracking `origin/main`
+- ahead/behind (pre): 0 / 0 (after `fetch`)
+- remotes: `origin` → `https://github.com/KenCacciabueOrif/2026.09.09---Organisation.git` (fetch/push)
 - unrelated dirt (untouched, disclosed):
+  - `M sessions/2026.09.11-1122/05-git/log.md`
+  - `M sessions/2026.09.11-1122/SESSION.md`
+  - `?? sessions/2026.09.11-0859/`
+  - `?? sessions/2026.09.11-1122/06-audit/`
+  - `?? sessions/2026.09.11-1122/07-self-improvement/`
+  - `?? sessions/2026.09.11/`
+  - Product / machine-local (never staged): `C:\Project\current\ft_prework\**`
 
 ### Commits
 | hash | subject | paths |
 | --- | --- | --- |
+| (pending) | docs(session-2026.09.14): final close audit, self-improve, FAW meta | late allowlisted set above |
 
 ### Push
-- branch → remote: (verified via ahead/behind after push)
+- branch → remote: (pending verify via ahead/behind after push)
 
 ### Final attestations
-- secrets: none staged (verified)
+- secrets: none staged (verified — session/workflow markdown only)
 - unrelated dirt: not staged (verified)
-- late allowlisted dirt: committed+pushed | blocked (blocker_type) | n/a (none remained)
+- late allowlisted dirt: pending commit+push
+- ft_prework: not staged
 
 ## Leftover / finish-sync (when Continuity/plan names orphans)
 

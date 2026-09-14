@@ -6,7 +6,7 @@
 - **Raw goal:** `/full-agent-workflow The 42 extention header is buggy because my official mail is too long — Fix it`
 - **Resume:** yes — user asked to retry after implementer/orchestrator interrupt; implementer artifacts already complete — resume at mid git
 - **Refined prompt:** `01-prompt-betterment/refined-prompt.md`
-- **Audit verdict:**
+- **Audit verdict:** pass_with_issues (0 Critical; soft Reload remaining)
 - **Self-improvement:** `07-self-improvement/changes-applied.md`
 
 ## Program framing (optional)
@@ -41,9 +41,9 @@ Retry: `implementtation stopped. retry` → resume same session after interrupt.
 - [x] 3. planner → 03-plan/
 - [x] 4. User plan gate → n/a (`product_settings`; not corpus `fs_mutation`)
 - [x] 5. implementer → 04-implementation/
-- [ ] 6. git-manager (mid) → 05-git/ (optional/early for implementer work)
-- [ ] 7. auditor → 06-audit/
-- [ ] 8. self-improver → 07-self-improvement/  (MANDATORY)
+- [x] 6. git-manager (mid) → 05-git/ (optional/early for implementer work)
+- [x] 7. auditor → 06-audit/
+- [x] 8. self-improver → 07-self-improvement/  (MANDATORY)
 - [ ] 9. git-manager (final closing pass) → 05-git/ (MANDATORY when allowlisted late dirt remains)
 - [ ] 10. Close SESSION.md
 
@@ -53,9 +53,9 @@ Retry: `implementtation stopped. retry` → resume same session after interrupt.
 - [x] 02 research
 - [x] 03 plan
 - [x] 04 implementation
-- [ ] 05 git (mid + final sections in same log when both run)
-- [ ] 06 audit
-- [ ] 07 self-improvement
+- [x] 05 git (mid done; final pending)
+- [x] 06 audit
+- [x] 07 self-improvement
 
 ## Phase summaries
 
@@ -65,6 +65,6 @@ Retry: `implementtation stopped. retry` → resume same session after interrupt.
 | 02 | done | AUTHOR 39 truncates By:; recommend secondfry.42header-long | `02-research/` |
 | 03 | done | product_settings: switch to secondfry.42header-long; ready yes | `03-plan/` |
 | 04 | done | ensui fallback installed; fixture By: fixed; reload soft remaining | `04-implementation/` |
-| 05 | in_progress | Mid pass for session allowlisted dirt | `05-git/` |
-| 06 | | | `06-audit/` |
-| 07 | | | `07-self-improvement/` |
+| 05 | mid done; final in_progress | Mid pushed; final closing pass for audit/self-improve/SESSION/.cursor | `05-git/` |
+| 06 | done | pass_with_issues — AC met; soft Reload / leftover kube folder | `06-audit/` |
+| 07 | done | Encoded product_settings same-run + Marketplace fallback + retry resume | `07-self-improvement/` |

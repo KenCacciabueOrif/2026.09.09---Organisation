@@ -61,7 +61,7 @@ pass | pass_with_issues | fail
 
 Default `write_status` under `readonly: true` is **`blocked_returned_inline`** — include the full report.md markdown above or immediately after this block.
 
-### Docs-only / FS-mutation checklist (corpus / multi-cycle programs)
+### Docs-only / product_settings / FS-mutation checklist (corpus / multi-cycle programs)
 
 When the plan or refined prompt is **`docs_only`** / zero-move:
 
@@ -76,6 +76,15 @@ When the plan or refined prompt is **`docs_only`** / zero-move:
 - [ ] **Remote-config / post–multi-remote clear:** If plan was remote-config — only approved remote command(s); `origin`/set-url/force-push/path moves absent unless mapped; honesty docs clear the named hazard without marking Multi-experiment **Complete**; next lock remains **WorkSpace only**.
 - [ ] **Post-clear Continuity A docs_only:** If multi-remote already CLEARED and cycle is continue-strategy — inventory/INDEX must not still claim **live multi-remote uncleared**; Cleared + still-at-root / not Complete is enough; optional size-cell skip ≠ fail when plan marked optional.
 - [ ] Pre-strategy pure defer (Q1=A research+defer): next-cycle Continuity may still be research+defer (valid repeat) until strategy docs or execute Continuity.
+
+When the plan is **`product_settings`** (editor extension / settings / local fixture):
+
+- [ ] Claimed artefacts exist; **not** corpus `fs_mutation`; plan-gate **n/a** attested
+- [ ] Zero ROADMAP / catalogue move attestation; settings identity not silently shortened when AC forbids it
+- [ ] Extension primary failure + **fallback** (if used) logged with IDs/versions; verify via `extensions.json` / FS when CLI list blocked
+- [ ] Soft **Reload** remaining = **Low** only — **not** Critical; **not** `rework_owner: user` solely for Reload
+- [ ] Template-math / equivalent regenerate OK when live Command Palette insert unavailable (disclose method)
+- [ ] No secret dumps beyond fixture necessity; product paths not wrongly staged into org-repo mid git
 
 When the plan is **`fs_mutation`**:
 
