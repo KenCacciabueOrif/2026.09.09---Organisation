@@ -80,15 +80,18 @@ Record **mid** and/or **final** (and leftover) in this same file — prefer appe
 ### Commits
 | hash | subject | paths |
 | --- | --- | --- |
-| (pending) | docs(cycle-19): final audit, self-improvement, Continuity X law | late stage set above |
+| `9720495` | docs(cycle-19): final audit, self-improvement, Continuity X law | late stage set above (18 files) |
 
 ### Push
-- branch → remote: (pending verify)
+- branch → remote: `main` → `origin/main` (`f147a01..9720495`)
+- verified: `rev-list HEAD...@{u}` = 0 / 0 after `fetch`
 
 ### Final attestations
 - secrets: none staged (verified)
 - unrelated dirt: not staged (verified)
-- late allowlisted dirt: committed+pushed (pending push verify)
+- late allowlisted dirt: committed+pushed
+- status: **complete**
+- note: tiny post-push dirt on this `05-git/log.md` hash/verify fill-in is expected Low
 
 ## Leftover / finish-sync (when Continuity/plan names orphans)
 

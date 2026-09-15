@@ -178,7 +178,7 @@
 | Method | Explicit `git add --` of listed paths only (no `git add -A`) |
 | paths_staged | **11** |
 | defer_0859_bare_attested | **yes** |
-| Commit | _(filled after commit)_ |
+| Commit | `bd628f4` (`bd628f454090f5c8b6617d8eccddf34c5903ecbf`) |
 | Subject | `docs(cycle-17): final closing pass audit, self-improve, FAW meta` |
 | Message encoding | utf8NoBOM via `UTF8Encoding($false)` + `git commit --trailer "Co-authored-by: Cursor <cursoragent@cursor.com>" -F` |
 
@@ -186,11 +186,11 @@
 
 | Item | Result |
 | --- | --- |
-| Push | _(filled after push)_ |
-| Ahead / behind (post fetch) | _(filled after push)_ |
-| Porcelain on final stage set | _(filled after push)_ |
+| Push | `origin/main` `90d4284..bd628f4` (exit 0) |
+| Ahead / behind (post fetch) | `0 / 0` |
+| Porcelain on final stage set | clean |
 | Remaining untracked (expected) | `?? sessions/2026.09.11-0859/`, `?? sessions/2026.09.11/` (deferred); other-cycle SESSION dirt if still present |
 | merged_to_main | **n/a** — already on `main` |
-| blocker_type | _(filled after push)_ |
-| status | _(filled after push)_ |
+| blocker_type | **none** |
+| status | **complete** |
 | Note | Post-push fill-in on this log may stay uncommitted (expected Low). |

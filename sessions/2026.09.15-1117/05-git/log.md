@@ -66,16 +66,18 @@ Record **mid** and/or **final** (and leftover) in this same file — prefer appe
 ### Commits
 | hash | subject | paths |
 | --- | --- | --- |
-| *(pending)* | docs(cycle-20): final audit, self-improvement, Continuity X law | late stage set above |
+| `ba96846` | docs(cycle-20): final audit, self-improvement, Continuity X law | late stage set above (18 files) |
 
 ### Push
-- branch → remote: *(pending verify via ahead/behind after push)*
+- branch → remote: `main` → `origin/main` (`1fcc7a0..ba96846`)
+- verified: post-fetch `ahead/behind = 0	0`; `HEAD` == `@{u}` == `ba968460a63245846638c088dc1ead0a5abb6d40`
 
 ### Final attestations
 - secrets: none staged (verified)
 - unrelated dirt: not staged (verified)
 - excluded: WorkSpace/TNA trees; archive OS-IA; catalogue timeline; prior sessions; `program/git-strategy-tna-parent-surgery.md`
-- late allowlisted dirt: committed+pushed *(pending push verify)*
+- late allowlisted dirt: committed+pushed
+- note: tiny post-push log.md hash/verify note may remain dirty (expected Low)
 
 ## Leftover / finish-sync (when Continuity/plan names orphans)
 

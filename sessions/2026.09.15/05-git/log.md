@@ -46,15 +46,17 @@ Record **mid** and/or **final** (and leftover) in this same file — prefer appe
 ### Commits
 | hash | subject | paths |
 | --- | --- | --- |
-| (pending) | docs(cycle-18): final closing pass session, ROADMAP Continuity X, FAW meta | late stage set above |
+| b6a6cf1 | docs(cycle-18): final closing pass session, ROADMAP Continuity X, FAW meta | late stage set above (29 files) |
 
 ### Push
-- branch → remote: (pending verify after push)
+- branch → remote: main → origin/main (bd628f4..b6a6cf1)
+- verified: ahead/behind 0/0; HEAD=b6a6cf1 == origin/main
 
 ### Final attestations
 - secrets: none staged (verified — no .env/credentials)
 - unrelated dirt: not staged (verified)
-- late allowlisted dirt: committing+pushing this pass
+- late allowlisted dirt: committed+pushed
+- post-push note: this log hash fill may remain as expected Low session dirt
 
 ## Leftover / finish-sync (when Continuity/plan names orphans)
 
