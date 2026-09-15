@@ -6,13 +6,14 @@
 
 | Field | Value |
 | --- | --- |
-| Class | `docs_only` \| `product_settings` \| `fs_mutation` |
+| Class | `docs_only` \| `product_settings` \| `fs_mutation` \| `escalate_break_loop` |
 | Mutation kind (if fs_mutation) | `path_batch` \| `remote-config` \| `scoped_isolation` \| other |
-| Corpus FS | (zero intentional mutations \| approved batch paths \| remote-config only — zero path moves) |
-| User approval before implementer | required \| not required (`docs_only` \| `product_settings`) |
+| Continuity gate (if escalate_break_loop) | `X` \| `P` \| `N` (+name) \| optional `H` \| pending |
+| Corpus FS | (zero intentional mutations \| approved batch paths \| remote-config only — zero path moves \| escalate: zero FS) |
+| User approval before implementer | required \| not required (`docs_only` \| `product_settings`) \| Continuity gate only (`escalate_break_loop`) |
 | First-move gates (if fs_mutation) | taxonomy sign-off/waiver · must-preserve review/waiver · batch approval |
 
-Note: `docs_only` covers **org-repo scaffolding creates** (folders/READMEs/docs inside this organisation git root) when there are **no** corpus moves/renames/deletes. `product_settings` covers editor/IDE extension install-switch, settings, **local installed-extension `dist/`/`src/` patches** (document **re-apply after Marketplace/Open VSX update**; Soft Reload tip after patch), and/or local evidence fixtures — **not** corpus `fs_mutation`; plan-gate **n/a**; same-run when ready. For Python 42-header + flake8 Continuity: prefer **≤79 generator** over Norminette-80 art or ignore-first. `fs_mutation` is for corpus / catalogue-backed path batches **or** **remote-config** (e.g. `git remote remove` on a pinned live nested `.git`) — remote-config still needs the plan gate even with zero path moves.
+Note: `docs_only` covers **org-repo scaffolding creates** (folders/READMEs/docs inside this organisation git root) when there are **no** corpus moves/renames/deletes. `product_settings` covers editor/IDE extension install-switch, settings, **local installed-extension `dist/`/`src/` patches** (document **re-apply after Marketplace/Open VSX update**; Soft Reload tip after patch), and/or local evidence fixtures — **not** corpus `fs_mutation`; plan-gate **n/a**; same-run when ready. For Python 42-header + flake8 Continuity: prefer **≤79 generator** over Norminette-80 art or ignore-first. `fs_mutation` is for corpus / catalogue-backed path batches **or** **remote-config** (e.g. `git remote remove` on a pinned live nested `.git`) — remote-config still needs the plan gate even with zero path moves. **`escalate_break_loop`:** anti-loop when research `concrete_advance_candidate: none` — Continuity gate **X/P/N/H** only; `ready_to_implement: no`; skip implementer + mid git; orchestrator Step 3 records Continuity in notes + SESSION + ROADMAP Next FAW hint; Continuity **X** = next FAW XL/whole-tree git-strategy + future plan gate (still WorkSpace only / not Complete). Forbidden: Continuity A theater as cycle outcome.
 
 ## What the user is approving (required if `fs_mutation`)
 

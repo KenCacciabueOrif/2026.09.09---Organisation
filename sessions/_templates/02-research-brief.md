@@ -2,6 +2,14 @@
 
 ## Recommended approach
 
+## Anti-loop / WorkSpace-only (when in scope)
+
+```
+concrete_advance_candidate: <named gated step | none>
+```
+
+If **none** (no material delta vs hazard strategy / prior cycles): recommend planner **`escalate_break_loop`** — **not** Continuity A / `docs_only` re-attest theater.
+
 ## Options considered
 
 1. 
