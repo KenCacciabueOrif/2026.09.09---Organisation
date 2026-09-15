@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
-"""Regenerate the JSON data blob inside catalogue/work_timeline.html.
+"""Regenerate Organisation Dashboard data siblings (L-both).
 
 Scans C:\\Project for git repos, commit history, and top-level dirs, then
-swaps the <script id="data" type="application/json"> blob in-place so the
-dashboard reflects the current state of the corpus.
+writes:
+  - catalogue/work_timeline_data.json  (canonical for tooling / HTTP fetch)
+  - catalogue/work_timeline_data.js    (classic script: window.__WORK_TIMELINE_DATA__)
+
+HTML (work_timeline.html) loads the JS module on file:// and fetches JSON
+over http(s). This script no longer patches a mega-inline JSON blob into HTML.
 
 Run:  uv run python generate_work_timeline.py
 """
@@ -15,12 +19,12 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 CORPUS = Path(r"C:\Project")
-HTML = Path(r"C:\Project\2026.09.09 - Organisation\2026.09.09---Organisation\catalogue\work_timeline.html")
+CATALOGUE = Path(r"C:\Project\2026.09.09 - Organisation\2026.09.09---Organisation\catalogue")
+HTML = CATALOGUE / "work_timeline.html"
+DATA_JSON = CATALOGUE / "work_timeline_data.json"
+DATA_JS = CATALOGUE / "work_timeline_data.js"
 GIT = r"C:\Users\CaDa\AppData\Local\Programs\Git\cmd\git.exe"  # GfW git (GCM); PATH git hangs on push, may also misbehave here
 OWN_AUTHORS = {"ken cacciabue", "u-secinfo\\cada", "kencacciabueorif", "cada"}
-
-MARK_OPEN = '<script id="data" type="application/json">'
-MARK_CLOSE = "</script>"
 
 
 def find_git_repos(root: Path, depth=0, max_depth=4):
@@ -205,15 +209,26 @@ def build():
     return data
 
 
-def main():
-    html = HTML.read_text(encoding="utf-8")
-    start = html.index(MARK_OPEN) + len(MARK_OPEN)
-    end = html.index(MARK_CLOSE, start)
-    data = build()
+def write_data_siblings(data: dict) -> None:
+    """Emit canonical JSON + classic JS global for file:// boot."""
     blob = json.dumps(data, ensure_ascii=False)
-    HTML.write_text(html[:start] + blob + html[end:], encoding="utf-8")
-    print(f"updated {HTML.name}: generated={data['generated']} "
-          f"repos={len(data['repos'])} commits={len(data['commits'])} top_level={len(data['top_level'])}")
+    DATA_JSON.write_text(blob, encoding="utf-8")
+    # Classic script (not type=module) so double-click file:// works without CORS.
+    DATA_JS.write_text(
+        "window.__WORK_TIMELINE_DATA__ = " + blob + ";\n",
+        encoding="utf-8",
+    )
+
+
+def main():
+    data = build()
+    write_data_siblings(data)
+    html_note = "present" if HTML.exists() else "missing"
+    print(
+        f"wrote {DATA_JSON.name} + {DATA_JS.name}: generated={data['generated']} "
+        f"repos={len(data['repos'])} commits={len(data['commits'])} "
+        f"top_level={len(data['top_level'])} html={html_note}"
+    )
 
 
 if __name__ == "__main__":

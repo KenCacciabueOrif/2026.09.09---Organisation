@@ -1,9 +1,10 @@
 # Organisation Dashboard (`work_timeline.html`) — Refinement Plan
 
-> **Status 2026-09-15: Runs 1 & 2 implemented and verified** (Node syntax check + runtime smoke test).
+> **Status 2026-09-15: Runs 1–3 + Cycle 22 (items 20+22) implemented and verified** (Node smoke).
 > Run 1: commit-log pagination + month grouping, calendar heatmap (Activity), quick-actions (folder/remote links), sort indicators + `aria-sort`, keyboard access (family tree rows, calendar squares, Enter/Space), drawer dialog semantics + focus restore, KPI trend context + last-14-days strip, granularity switch fixed (was inert inside `<style>`) + persisted to URL/localStorage, O(1) repo index.
 > Run 2: shared styled tooltip (replaces native `title`), compact-density toggle (persisted), init error-guard (fatal panel on JSON parse failure + script-error banner in DQ strip), Clear-filters buttons + empty-state reset link, `aria-live` result counts, `th` contrast `--text-3`→`--text-2`.
-> Known remaining: ~~292 duplicate commits originate in the **generator**~~ **FIXED Run 3 (2026-09-15, session 2026.09.15-1320)**: generator dedupes by commit hash (`--all` ref double-counting was the root cause); commits carry `path`; dashboard dedupe/DQ keyed by path (same-named repo copies like `template_frontback`×4 no longer collide); DQ relabels same-day same-subject re-commits as informational (verified distinct hashes). Verified: 3490 commits, dqDuplicateEntries=0, Node runtime smoke pass. Global `/` search **done Run 3**: header input, `/` focuses, Enter routes to Projects (project-name/path match) or Commit log with query pre-filled. Remaining: data-split-to-JSON not yet done.
+> Run 3 (session 2026.09.15-1320): generator dedupe by commit hash; path-keyed DQ; global `/` search. Item **21** debounce (`#c-q` 150 ms) already live.
+> **Cycle 22 (session 2026.09.15-1340, L-both):** Item **20** done — generator emits `work_timeline_data.json` (canonical) + `work_timeline_data.js` (`window.__WORK_TIMELINE_DATA__`); HTML drops mega-inline blob; boot prefers module on `file://`, `fetch` JSON on http(s); fatal UX on load failure; DQ reports payload `generated` + load source/time. Item **22** done — `repoIndex` Map replaces `D.repos.indexOf` in `renderProjects`. HTML ~43 KB (was ~830 KB). Verified: regenerate + Node smoke PASS. **Dashboard workstream done for now** — next FAW must rotate / research-justify vs ROADMAP (not inherit dashboard). Remaining perf note: item 23 generator assert optional polish only.
 
 Audit date: 2026-09-15 · Source: full read of `catalogue/work_timeline.html` (479 lines) + external research (UXPin dashboard principles 2026, UX Pilot / NNGroup eye-tracking patterns, Pencil & Paper data-table UX, Microsoft/Esri dashboard accessibility guides).
 
@@ -44,9 +45,9 @@ Audit date: 2026-09-15 · Source: full read of `catalogue/work_timeline.html` (4
 19. **Spark bar hover** highlights with teal box-shadow, but teal means nothing in the system — use `--accent` brightening instead, and show a vertical crosshair + value label for the hovered bucket.
 
 ## F. Performance & robustness
-20. **594 KB single file** with the JSON blob inline. Fine for local use; if it grows, split data to `work_timeline_data.json` fetched at load (keeps HTML cacheable), with the DQ strip reporting fetch age.
-21. **`renderCommits` rebuilds all 500 rows per keystroke** on the search field. Debounce input (~150 ms) or build once + `filter`/`hidden` toggling on rows.
-22. **`D.repos.indexOf(r)` in loops** — O(n²) map to index once. Trivial but free.
+20. ~~**594 KB single file** with the JSON blob inline…~~ **DONE Cycle 22 (L-both):** sibling `work_timeline_data.json` + `work_timeline_data.js`; HTML loads async (module on `file://`, fetch on HTTP); DQ reports age + load meta.
+21. ~~**`renderCommits` rebuilds…** Debounce…~~ **DONE earlier (pre–Cycle 22):** `#c-q` `setTimeout(…, 150)` — left as-is this cycle.
+22. ~~**`D.repos.indexOf(r)` in loops**~~ **DONE Cycle 22:** `const repoIndex = new Map(D.repos.map((r,i)=>[r,i]))` used in `renderProjects`.
 23. **Duplicate suppression happens client-side every load** ("fix generator" warning acknowledged in code) — fix the generator so dedupe is a validation assert, not a runtime patch.
 
 ## G. Accessibility checklist (from MS/Esri/WCAG guidance)
