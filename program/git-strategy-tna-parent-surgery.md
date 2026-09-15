@@ -1,10 +1,12 @@
 # Git-strategy — TNA parent-surgery (ignored nested clones)
 
 **Program:** organise `C:\Project` · Multi-experiment remaining **`WorkSpace` only**  
-**Cycle 20 session:** [`../sessions/2026.09.15-1117/`](../sessions/2026.09.15-1117/)  
+**Cycle 20 session:** [`../sessions/2026.09.15-1117/`](../sessions/2026.09.15-1117/) (policy **written**)  
+**Cycle 23 session:** [`../sessions/2026.09.15-1432/`](../sessions/2026.09.15-1432/) (#4 **approved-for-named-map**; nest execute **held**)  
 **Baseline hazards:** [`git-strategy-workspace-hazards.md`](git-strategy-workspace-hazards.md) (Continuity X; do not rewrite Cycle 10–19 classification)  
-**Mutation class (this cycle):** **`docs_only`** — this file is **policy written**; nest FS **not** authorized by creating it.  
-**Clearance #4 status:** **DRAFT written (Cycle 20) / approval pending**
+**Mutation class (Cycle 20):** **`docs_only`** — policy **written**; nest FS not authorized by creating this file.  
+**Mutation class (Cycle 23):** **`docs_only`** (plan-gate **A**) — #4 status flip + honesty only; **zero** nest / TNA / WorkSpace FS moves.  
+**Clearance #4 status:** **approved-for-named-map** (Cycle 23 plan-gate **A**) — map only: `C:\Project\WorkSpace\TestNewWorkspaceAgent\hermes-agent` → `C:\Project\archive\2026.09.15 - hermes-agent`. Nest **execute held**. **A+E deliberately reserved** for a later dedicated user-reviewed execute gate (**not declined** — dirty TNA ~**2300** absolute-path consumer risk). Other nests still need their own named-map gate. Whole-tree clearance still **NO**.
 
 **Taxonomy:** **proposed-ratified — ready for user sign-off** (not final).  
 **Must-preserve:** **draft — not auto-locked / for user review**.  
@@ -27,7 +29,7 @@
 | Unit | Absolute path | Role | Status under this policy |
 | --- | --- | --- | --- |
 | **TNA** | `C:\Project\WorkSpace\TestNewWorkspaceAgent` | Envelope (dirty ~2307; **NO_AUTO_COMMIT**) | Keep at root interim; **not** moved by nest extract |
-| **hermes-agent** | `C:\Project\WorkSpace\TestNewWorkspaceAgent\hermes-agent` | In-TNA nest (ignored) | Future gated `path_batch` candidate only |
+| **hermes-agent** | `C:\Project\WorkSpace\TestNewWorkspaceAgent\hermes-agent` | In-TNA nest (ignored) | **#4 approved-for-named-map** (Cycle 23) → dest `C:\Project\archive\2026.09.15 - hermes-agent`; **execute held** (A+E reserved, not declined); still live under TNA |
 | **orchestrateur** | `C:\Project\WorkSpace\TestNewWorkspaceAgent\Projects\Project Atelier IA\Projet Adrien\orchestrateur` | In-TNA nest (ignored) | Future gated `path_batch` candidate only |
 | **WorkshopOrif** | `C:\Project\WorkSpace\TestNewWorkspaceAgent\Projects\Project Atelier IA\Workshop\WorkshopOrif` | In-TNA nest (ignored) | Future gated `path_batch` candidate only |
 | **OS-IA** | `C:\Project\archive\2026.09.15 - OS-IA` | Archived Cycle 19 Continuity X | **Verify-only** — do not reverse / re-archive / re-propose |
@@ -44,16 +46,17 @@ Whole-tree clearance criterion **#4** in [`git-strategy-workspace-hazards.md`](g
 
 > Parent-surgery policy for dirty TNA is **written and approved** if any in-TNA nest moves are in map.
 
-| Half | Meaning | Cycle 20 |
+| Half | Meaning | Status |
 | --- | --- | --- |
-| **Written** | This policy exists with procedure + fail-closed rules + post-attest + non-goals | **Satisfied** by this artifact |
-| **Approved** | Later dedicated plan-gate **yes** for a **named** nest `path_batch` (exact source → destination map), **or** explicit user waiver of #4 for a stated reason | **Pending** — not granted by Continuity / Choose / STAGE 1 docs / Cycle 20 docs gate |
+| **Written** | This policy exists with procedure + fail-closed rules + post-attest + non-goals | **Satisfied** (Cycle 20) |
+| **Approved (named map)** | Dedicated plan-gate **A** / **A+E** / **yes** for an **exact** nest source → destination map, **or** explicit user waiver of #4 for a stated reason | **Cycle 23 plan-gate A:** **approved-for-named-map** for hermes-agent → `C:\Project\archive\2026.09.15 - hermes-agent` only. Nest execute **held** this cycle. **A+E reserved** (not declined). Other nests / maps still **pending** their own gate. Continuity / Choose / docs alone **≠** approval. |
 
 **Hard distinctions:**
 
 - Continuity X / Choose / STAGE 1 docs / creating or amending this file **≠** nest-move approval.
 - Writing alone **≠** flip whole-tree clearance **NO → yes** (criteria **#1–#6** must **all** be true).
-- Do **not** claim clearance #4 **approved** until a future nest `path_batch` gate (or waiver) is recorded.
+- **#4 approved-for-named-map** unlocks a **future** dedicated execute gate for **that map only** — it does **not** move files (**A**) and does **not** flip whole-tree clearance **NO → yes**.
+- Do **not** treat #4 approved-for-one-map as blanket approval for orchestrateur / WorkshopOrif / TNA envelope / whole WorkSpace.
 
 ---
 
@@ -74,7 +77,7 @@ Run **immediately before** any approved extract. Probe the **nested clone direct
 
 ## Atomic nest relocate procedure (future execute only)
 
-**Authorize only** after #4 **Approved** + plan-gate **yes** for the named map. Prefer one atomic OS rename per nest.
+**Authorize only** after #4 **approved-for-named-map** **and** a dedicated **execute** plan-gate (**A+E** or later execute-only yes) for that same map. Cycle 23 = #4 approved-for-hermes-map; **execute still held** (A+E reserved). Prefer one atomic OS rename per nest.
 
 1. **Intact move** — relocate the **entire** nest tree including its `.git` (e.g. PowerShell `Move-Item -LiteralPath <source> -Destination <dest>`). Confirm parameter names parse **before** the first real move.
 2. **No history rewrite** — no `filter-repo`, no dissolve into parent index, no force-push, no remote URL rewrite.
@@ -152,7 +155,8 @@ After each approved nest relocate:
 - Moving the dirty **TNA envelope** itself under this policy without a separate envelope gate
 - Remote `set-url` / force-push / history rewrite
 - Auto-commit or stash-clean of dirty TNA (~2307)
-- Claiming clearance #4 **approved** from Continuity / docs alone
+- Claiming clearance #4 **approved** from Continuity / docs alone (Cycle 23 approval is **plan-gate A** for the named hermes map only)
+- Claiming nest **execute** authorized from #4 approved-for-map alone (still needs dedicated execute / **A+E** gate)
 - Claiming **`clearance_whole_tree` yes** after docs alone or after a single nest extract
 - Inventing absolute-path consumer lists or destination picks as **execute** decisions in a docs-only cycle
 
@@ -176,12 +180,12 @@ Mark **held / choose at nest `path_batch` gate** — Continuity and this docs fi
 
 1. Lock ROADMAP **Multi-experiment / WorkSpace only** (TNA envelope).
 2. Confirm this file still accurate (paths, ignore model, NO_AUTO_COMMIT).
-3. Plan `fs_mutation` `path_batch` with **exact** nest map + destinations.
-4. User plan-gate **yes** → that satisfies clearance #4 **Approved** for **that map only** (or record waiver).
-5. Implementer: preflight → atomic move → post-attest → honesty; **never** auto-commit TNA.
+3. For **hermes-agent** (Cycle 23 #4 already **approved-for-named-map**): plan dedicated **execute** gate (**A+E** reserved / execute-only) with the **same** exact map — do **not** re-litigate #4 for this map unless amending source→dest.
+4. For **other** nests: plan `fs_mutation` `path_batch` with **exact** nest map + destinations; user plan-gate **A** / **A+E** / **yes** → #4 **approved-for-that-map** (or record waiver).
+5. Implementer (execute): preflight + absolute-path consumer scan → atomic move → post-attest → honesty; **never** auto-commit TNA.
 6. Whole-tree archive of WorkSpace remains **blocked** until **all** clearance criteria #1–#6 are true **and** a dedicated whole-tree / envelope gate says so.
 
-**Next FAW lock hint:** keep **`WorkSpace` only** + continue Continuity X clearance / keep-at-root — nest extracts only after #4 approved for a named map.
+**Next FAW lock hint:** keep **`WorkSpace` only** + continue Continuity X clearance / keep-at-root — hermes nest extract still **pending** (dedicated execute / **A+E** reserved; ~2300 TNA absolute-path consumers); other nests still need named-map #4 gates.
 
 ---
 
@@ -192,3 +196,4 @@ Mark **held / choose at nest `path_batch` gate** — Continuity and this docs fi
 - Index / inventory: [`../catalogue/INDEX.md`](../catalogue/INDEX.md) · [`../catalogue/inventory.md`](../catalogue/inventory.md)
 - Cycle 19 OS-IA execute: [`../sessions/2026.09.15-1014/`](../sessions/2026.09.15-1014/)
 - Cycle 20 docs: [`../sessions/2026.09.15-1117/`](../sessions/2026.09.15-1117/)
+- Cycle 23 #4 approved-for-map: [`../sessions/2026.09.15-1432/`](../sessions/2026.09.15-1432/)
