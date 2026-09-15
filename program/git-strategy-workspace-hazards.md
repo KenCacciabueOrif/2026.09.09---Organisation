@@ -6,25 +6,27 @@
 **Cycle 12 session:** [`../sessions/2026.09.10-1247/`](../sessions/2026.09.10-1247/)  
 **Cycle 13 session:** [`../sessions/2026.09.10-1630/`](../sessions/2026.09.10-1630/)  
 **Cycle 19 session:** [`../sessions/2026.09.15-1014/`](../sessions/2026.09.15-1014/)  
-**Research:** [`../sessions/2026.09.10-0907/02-research/`](../sessions/2026.09.10-0907/02-research/) · Cycle 11 re-probe [`../sessions/2026.09.10-1047/02-research/`](../sessions/2026.09.10-1047/02-research/) · Cycle 12 re-probe [`../sessions/2026.09.10-1247/02-research/`](../sessions/2026.09.10-1247/02-research/) · Cycle 13 re-probe [`../sessions/2026.09.10-1630/02-research/`](../sessions/2026.09.10-1630/02-research/) · Cycle 19 Continuity X [`../sessions/2026.09.15-1014/02-research/`](../sessions/2026.09.15-1014/02-research/)  
+**Cycle 20 session:** [`../sessions/2026.09.15-1117/`](../sessions/2026.09.15-1117/)  
+**Research:** [`../sessions/2026.09.10-0907/02-research/`](../sessions/2026.09.10-0907/02-research/) · Cycle 11 re-probe [`../sessions/2026.09.10-1047/02-research/`](../sessions/2026.09.10-1047/02-research/) · Cycle 12 re-probe [`../sessions/2026.09.10-1247/02-research/`](../sessions/2026.09.10-1247/02-research/) · Cycle 13 re-probe [`../sessions/2026.09.10-1630/02-research/`](../sessions/2026.09.10-1630/02-research/) · Cycle 19 Continuity X [`../sessions/2026.09.15-1014/02-research/`](../sessions/2026.09.15-1014/02-research/) · Cycle 20 parent-surgery [`../sessions/2026.09.15-1117/02-research/`](../sessions/2026.09.15-1117/02-research/)  
 **Mutation class (Cycle 10–13):** **`docs_only`** — zero corpus moves; this file is strategy + honesty, not an execute map.  
-**Mutation class (Cycle 19 Continuity X):** **`docs_only`** strategy extension + optional gated **`fs_mutation`** (OS-IA-only) when plan gate selects **M** / **D+M** — Continuity **X ≠ execute** by itself.
+**Mutation class (Cycle 19 Continuity X):** **`docs_only`** strategy extension + optional gated **`fs_mutation`** (OS-IA-only) when plan gate selects **M** / **D+M** — Continuity **X ≠ execute** by itself.  
+**Mutation class (Cycle 20 Continuity X):** **`docs_only`** — parent-surgery policy **written**; nest / TNA / WorkSpace FS **out of map**; #4 **approval** still pending.
 
 **Taxonomy:** **proposed-ratified — ready for user sign-off** (not final).  
 **Must-preserve:** **draft — not auto-locked / for user review** (Medium caution for WorkSpace; not sole gate).
 
 ---
 
-## Continuity X / Cycle 19 — XL / whole-tree git-strategy (2026-09-15 / `sessions/2026.09.15-1014/`)
+## Continuity X / Cycle 19–20 — XL / whole-tree git-strategy (2026-09-15)
 
-**Purpose:** Material keep-vs-split / fate + whole-tree clearance criteria (not Continuity A theater). Continuity **X ≠ execute** — path mutation only after plan-gate letter (**D** / **M** / **D+M**). Prior Cycle 10–16 attestations below retained as history.
+**Purpose:** Material keep-vs-split / fate + whole-tree clearance criteria (not Continuity A theater). Continuity **X ≠ execute** — path mutation only after plan-gate letter (**D** / **M** / **D+M**) or a later dedicated nest `path_batch` gate. Prior Cycle 10–16 attestations below retained as history.
 
-### Cycle 19 live attestation
+### Cycle 19 live attestation (historical — pre–OS-IA execute map)
 
 | Field | Value |
 | --- | --- |
 | Continuity | **X** — dedicated XL / whole-tree git-strategy; Q1=**A**; Q2=**A** (taxonomy/must-preserve waive); Q3=**A** |
-| Nested roots (live) | **5** atomic units: `OS-IA`, `TestNewWorkspaceAgent` (TNA), `hermes-agent`, `orchestrateur`, `WorkshopOrif` |
+| Nested roots (live at Cycle 19 research) | **5** atomic units then: `OS-IA`, `TestNewWorkspaceAgent` (TNA), `hermes-agent`, `orchestrateur`, `WorkshopOrif` |
 | Live multi-remote | **CLEARED** (Cycle 15; confirmed Cycle 16) — do not re-clear without regression |
 | Appendix A parents | **Isolated** Cycle 14 under `archive\hygiene\…` — **do not re-propose** |
 | Linked worktrees | Re-probe immediately before any approved move on **nested clone path** only |
@@ -36,13 +38,28 @@
 | Plan gate (Cycle 19) | User **D+M** (default archive) — docs slice then OS-IA intact relocate |
 | STAGE 2 execute (D+M) | **Done** — OS-IA → `C:\Project\archive\2026.09.15 - OS-IA`; remotes path-only unchanged; WorkSpace remains with TNA; live nested under WorkSpace **5→4**; Multi-experiment still **not** Complete |
 
+### Cycle 20 live attestation (post–OS-IA / parent-surgery docs)
+
+| Field | Value |
+| --- | --- |
+| Continuity | **X** — continue clearance; Q1=**A**; Q2=**A**; Q3=**A** (**NO_AUTO_COMMIT**) |
+| Session | [`../sessions/2026.09.15-1117/`](../sessions/2026.09.15-1117/) |
+| Nested roots (live under WorkSpace) | **4**: TNA + `hermes-agent` + `orchestrateur` + `WorkshopOrif` (all under TNA); OS-IA **archived verify-only** |
+| Nest model | **Ignored nested clones** (TNA `.gitignore`; no `.gitmodules`) — not submodules |
+| Parent-surgery artifact | [`git-strategy-tna-parent-surgery.md`](git-strategy-tna-parent-surgery.md) |
+| Clearance criterion **#4** | **DRAFT written (Cycle 20) / approval pending** — docs ≠ nest-move approval |
+| Dirty WT (disclose) | TNA **~2307** — **NO_AUTO_COMMIT**; nest porcelain disclose-only |
+| Corpus FS this cycle | **Zero** nest / TNA envelope / WorkSpace moves |
+| **Clearance for whole-tree archive** | Still **NO** — #4 draft **≠** all criteria #1–#6 |
+| Multi-experiment row | Still **in progress** — **Remaining: `WorkSpace` only**; **not** Complete; **not** Primary next / Special git |
+
 ### Fate matrix (keep / split / eventual-archive)
 
 | Unit / envelope | Default fate | Notes |
 | --- | --- | --- |
 | Non-git wrapper `C:\Project\WorkSpace` | **Keep at root** until clearance criteria met **or** dedicated gated fate | Never silent whole-tree archive |
-| TNA envelope (`TestNewWorkspaceAgent` + nests `#3–#5`) | **Keep at root** interim | Inner nest extract needs dedicated **parent-surgery** plan (dirty TNA) — out of OS-IA-first map |
-| `OS-IA` (#1) | **Split (Cycle 19 D+M)** → `C:\Project\archive\2026.09.15 - OS-IA` | Intact nested-git relocate; remotes path-only; does **not** Complete Multi-experiment |
+| TNA envelope (`TestNewWorkspaceAgent` + in-TNA nests) | **Keep at root** interim | Inner nest extract needs **parent-surgery** [`git-strategy-tna-parent-surgery.md`](git-strategy-tna-parent-surgery.md) **written and approved** — Cycle 20 = written only |
+| `OS-IA` | **Split (Cycle 19 D+M)** → `C:\Project\archive\2026.09.15 - OS-IA` | Intact nested-git relocate; remotes path-only; does **not** Complete Multi-experiment; verify-only thereafter |
 | Eventual archive (whole WorkSpace) | **Future gated fate only** after clearance criteria flip **NO → yes** | Forbidden without clearance + explicit gate |
 
 ### Whole-tree clearance criteria (flip **NO → yes** only when **all** true)
@@ -50,9 +67,9 @@
 1. Live multi-remote remains **CLEARED** (no `cada` / unexpected multi-remote regression on live nests).
 2. Linked worktrees on every in-scope nested clone = **expected only** (re-probe immediately before any whole-tree gate).
 3. User has **explicitly** chosen whole-tree or full-split fate at a dedicated plan gate (not Continuity / Choose alone).
-4. Parent-surgery policy for dirty TNA is **written and approved** if any in-TNA nest moves are in map.
+4. Parent-surgery policy for dirty TNA is **written and approved** if any in-TNA nest moves are in map. **Cycle 20:** **DRAFT written** — see [`git-strategy-tna-parent-surgery.md`](git-strategy-tna-parent-surgery.md); **approval pending** (later dedicated nest `path_batch` plan gate or explicit waiver). Continuity / docs alone **≠** approved. Draft alone **≠** flip whole-tree clearance **NO → yes**.
 5. Opaque `.env*` inventory (presence-only) re-attested for units in map.
-6. Program honesty: Multi-experiment Complete / Primary next only when **no** WorkSpace remainder at root **and** locked fate for every atomic unit is executed or explicitly parked — **OS-IA move alone never Completes the row**.
+6. Program honesty: Multi-experiment Complete / Primary next only when **no** WorkSpace remainder at root **and** locked fate for every atomic unit is executed or explicitly parked — **OS-IA move alone never Completes the row**; **parent-surgery docs alone never Completes the row**.
 
 ### OS-IA-first-subset pointer (held map — execute only if gate **M** / **D+M**)
 
@@ -66,7 +83,7 @@
 | Out of map | Whole `WorkSpace`; TNA; hermes / orchestrateur / WorkshopOrif; Appendix A re-move; remote-config; Medium/Early/archived peers |
 | After success | WorkSpace remains at root with TNA; Multi-experiment **Remaining: WorkSpace only** — **not** Complete |
 
-**Next FAW lock hint:** keep Multi-experiment / **`WorkSpace` only** (TNA envelope after optional OS-IA split) — continue strategy for remaining whole-tree / XL clearance; **never** Complete / Primary next / Special git while WorkSpace remains.
+**Next FAW lock hint:** keep Multi-experiment / **`WorkSpace` only** (TNA envelope; nested **4**) — continue Continuity X clearance / keep-at-root (parent-surgery **approved** nest extract only after dedicated move gate); **never** Complete / Primary next / Special git while WorkSpace remains.
 
 ---
 
@@ -242,18 +259,21 @@ For any **future** plan-gated cycle (scoped or otherwise):
 **Cycle 15 cleared live multi-remote** — Hermes plan-gate yes Option A; remote-config only.  
 **Cycle 16** — Continuity Q1=A `docs_only` re-probe; **no material hazard delta**; inventory multi-remote honesty fixed.  
 **Cycle 18** — escalate_break_loop → user Continuity **X**.  
-**Cycle 19** — Continuity **X** fate matrix + clearance criteria written; plan gate may authorize OS-IA-first subset only — whole-tree still **NO**.
+**Cycle 19** — Continuity **X** fate matrix + clearance criteria written; plan gate **D+M** authorized OS-IA-first subset — OS-IA archived; live nested **5→4**; whole-tree still **NO**.  
+**Cycle 20** — Continuity **X** `docs_only`: [`git-strategy-tna-parent-surgery.md`](git-strategy-tna-parent-surgery.md) created; clearance **#4** → **DRAFT written (Cycle 20) / approval pending**; zero nest FS; whole-tree still **NO**.
 
-**Next FAW lock hint:** keep Multi-experiment / **`WorkSpace` only**; continue strategy for remaining whole-tree / XL clearance — **not** Complete / Primary next while WorkSpace remains.
+**Next FAW lock hint:** keep Multi-experiment / **`WorkSpace` only** (TNA + hermes / orchestrateur / WorkshopOrif); continue Continuity X clearance / keep-at-root — nest extracts only after #4 **approved** for a named map; **not** Complete / Primary next while WorkSpace remains.
 
 ---
 
 ## Related catalogue pointers
 
-- Index: [`../catalogue/INDEX.md`](../catalogue/INDEX.md) (WorkSpace still at `C:\Project\WorkSpace`; nested live count depends on OS-IA gate; live multi-remote cleared Cycle 15 / confirmed Cycle 16)
-- Inventory: [`../catalogue/inventory.md`](../catalogue/inventory.md) (multi-remote **Cleared** Cycle 15; confirmed Cycle 16; Continuity X Cycle 19)
+- Index: [`../catalogue/INDEX.md`](../catalogue/INDEX.md) (WorkSpace still at `C:\Project\WorkSpace`; nested live **4** post–OS-IA; live multi-remote cleared Cycle 15 / confirmed Cycle 16)
+- Inventory: [`../catalogue/inventory.md`](../catalogue/inventory.md) (multi-remote **Cleared** Cycle 15; confirmed Cycle 16; Continuity X Cycle 19–20)
+- Parent-surgery (clearance #4 draft): [`git-strategy-tna-parent-surgery.md`](git-strategy-tna-parent-surgery.md)
 - Must-preserve draft: [`../catalogue/must-preserve.md`](../catalogue/must-preserve.md)
 - Roadmap: [`ROADMAP.md`](ROADMAP.md)
 - Cycle 15 session: [`../sessions/2026.09.11-0859/`](../sessions/2026.09.11-0859/)
 - Cycle 16 session: [`../sessions/2026.09.11-1038/`](../sessions/2026.09.11-1038/)
 - Cycle 19 Continuity X: [`../sessions/2026.09.15-1014/`](../sessions/2026.09.15-1014/)
+- Cycle 20 parent-surgery docs: [`../sessions/2026.09.15-1117/`](../sessions/2026.09.15-1117/)
