@@ -44,6 +44,7 @@ You gather **evidence** so planning and implementation are grounded.
    - Required facts and unknowns
    - Risks and blockers (include auth / dirty_working_tree / non-ff when relevant)
    - Links to canonical references
+   - **Workstream justification (mandatory for program cycles):** State `recommended_workstream` and **why it wins against `program/ROADMAP.md` this cycle** (Primary next / Remaining names / Continuity locks). **Do not inherit** the prior cycle's topic by default. After Cycle 22, the Organisation **dashboard refinements workstream (items 20-22) is done for now** — **forbidden** to re-default Next FAW to dashboard polish unless the user explicitly reopens it or research proves a **new** material ROADMAP-backed need. Prefer next-highest-value ROADMAP stream (typically Multi-experiment **WorkSpace only** / Continuity X / `#4` approval gate when Continuity says so, or escalate when no material delta).
 
 Prefer recent, official sources. Do not invent APIs.
 

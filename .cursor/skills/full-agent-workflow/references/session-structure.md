@@ -46,4 +46,4 @@ Use `references/pull-cycle.md`. FAW default = order-aware allowlisted autonomy +
 
 Must track: raw goal, refined goal link, status, phase checklist, artifact links, final audit verdict, self-improvement summary.
 
-For **program cycles**, also fill Program framing: roadmap pointer, cycle id, **ROADMAP row locked**, mutation class (`docs_only` | `fs_mutation`), batch approval state, **pending user gates** (taxonomy sign-off / must-preserve review / waivers), prior session / locked answers.
+For **program cycles**, also fill Program framing: roadmap pointer, cycle id, **ROADMAP row locked**, mutation class (`docs_only` | `product_settings` | `catalogue_product` | `fs_mutation` | `escalate_break_loop`), batch approval state, **pending user gates** (taxonomy sign-off / must-preserve review / waivers), prior session / locked answers.

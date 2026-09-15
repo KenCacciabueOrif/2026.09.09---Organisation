@@ -63,6 +63,11 @@ Default `write_status` under `readonly: true` is **`blocked_returned_inline`** â
 
 ### Docs-only / product_settings / FS-mutation checklist (corpus / multi-cycle programs)
 
+When the plan is **`catalogue_product`**:
+- [ ] Org-repo catalogue only (no WorkSpace/corpus path moves); plan gate recorded if Continuity Q6 required
+- [ ] If L-both gated: JSON + JS siblings exist; HTML has no mega-inline data blob; boot path matches gate
+- [ ] Next FAW / standing amendments in SESSION or implementer log honored when present (e.g. rotate off dashboard)
+
 When the plan or refined prompt is **`docs_only`** / zero-move:
 
 - [ ] Claimed artefacts exist; no intentional corpus moves/renames/deletes attributable to this cycle

@@ -6,7 +6,7 @@
 - **Raw goal:** Cycle 22 FAW — dashboard 20+22; Continuity Choose all A; plan gate yes + L-both + future-cycle rotation amendment.
 - **Resume:** STAGE 2 same session after plan-gate **yes + L-both**
 - **Refined prompt:** `01-prompt-betterment/refined-prompt.md`
-- **Audit verdict:**
+- **Audit verdict:** pass
 - **Self-improvement:** `07-self-improvement/changes-applied.md`
 
 ## Program framing
@@ -19,9 +19,9 @@
 - **Load strategy:** **L-both** — generator emits JSON + JS module; HTML prefers module on `file://`, fetch over HTTP
 - **Pending user gates:** none (gate answered)
 - **Clearance #4 status:** DRAFT (unchanged)
-- **STAGE:** STAGE 2 — implement → mid git → audit → SI → final git → Close
+- **STAGE:** closing — SI done; final git next
 - **Continuity locks:** Q1–Q6 = A
-- **Next FAW lock hint:** (set at close) rotate off dashboard; research-justify vs ROADMAP (WorkSpace Continuity X / #4 approval per Q3=A or other)
+- **Next FAW lock hint:** Dashboard workstream **done for now**. Next FAW must **research-justify workstream vs ROADMAP** (default candidate: WorkSpace Continuity X / `#4` approval gate per Q3=A, or other highest-value row) — **do not** inherit / re-default dashboard.
 
 ## Workflow progress
 
@@ -31,9 +31,9 @@
 - [x] 3. planner → 03-plan/ (catalogue_product; ready_to_implement: no until gate)
 - [x] 4. User plan gate → **approved yes + L-both** (+ rotation amendment)
 - [x] 5. implementer → 04-implementation/ (20+22 L-both; Node 14/14; zero WorkSpace FS)
-- [ ] 6. git-manager (mid) → 05-git/
-- [ ] 7. auditor → 06-audit/
-- [ ] 8. self-improver → 07-self-improvement/
+- [x] 6. git-manager (mid) → 05-git/ (`2cd4b7e` pushed)
+- [x] 7. auditor → 06-audit/ (verdict: pass)
+- [x] 8. self-improver → 07-self-improvement/ (workstream rotation + catalogue_product/L-both encoded)
 - [ ] 9. git-manager (final closing pass) → 05-git/
 - [ ] 10. Close SESSION.md
 
@@ -43,9 +43,9 @@
 - [x] 02 research
 - [x] 03 plan
 - [x] 04 implementation
-- [ ] 05 git (mid + final)
-- [ ] 06 audit
-- [ ] 07 self-improvement
+- [x] 05 git (mid done; final pending)
+- [x] 06 audit
+- [x] 07 self-improvement
 
 ## Phase summaries
 
@@ -55,6 +55,6 @@
 | 02 | done | Highest-value: dashboard 20+22; skip 21; WorkSpace would escalate | `02-research/` |
 | 03 | done | catalogue_product 20+22; L-http default → gate L-both | `03-plan/` |
 | 04 | done | L-both 20+22; HTML ~830KB→43KB; Map; Node 14/14; rotate-off-dashboard logged | `04-implementation/` |
-| 05 | | | `05-git/` |
-| 06 | | | `06-audit/` |
-| 07 | | | `07-self-improvement/` |
+| 05 | mid done | Mid `2cd4b7e` → origin/main; final after SI | `05-git/` |
+| 06 | done | pass — L-both 20+22 verified; WorkSpace untouched | `06-audit/report.md` |
+| 07 | done | Workstream rotation law + catalogue_product/L-both encoded | `07-self-improvement/` |

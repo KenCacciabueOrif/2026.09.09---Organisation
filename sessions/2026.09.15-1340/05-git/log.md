@@ -36,45 +36,60 @@ Record **mid** and/or **final** (and leftover) in this same file — prefer appe
 ### Commits
 | hash | subject | paths |
 | --- | --- | --- |
-| (pending) | dashboard(cycle-22): L-both external data + items 20+22; session 2026.09.15-1340 mid | catalogue product + session 01–05 |
+| `2cd4b7e` | dashboard(cycle-22): L-both external data + items 20+22; session 2026.09.15-1340 mid | catalogue product + session 01–05 (16 files) |
 
 ### Push
-- branch → remote: (verified via ahead/behind after push)
+- branch → remote: `main` → `origin/main` (`6bd30f8..2cd4b7e`)
+- verified: ahead/behind **0 / 0**; `HEAD` == `origin/main` == `2cd4b7e73b4b863b086ed1cd92babc73483ae10b`
 
 ### Merge to main
 - merged: n/a — already on `main` (no feature branch)
 
 ### Mid attestations
 - secrets: none staged (verified)
-- unrelated dirt: not staged (verified)
+- unrelated dirt: not staged (verified) — `__pycache__/`, `.bak-cycle22wsl`, `06-audit/`, `07-self-improvement/` left unstaged
 - WorkSpace/TNA: not touched
 - note: mid is not a substitute for final closing pass (06/07 remain)
+- post-push log finalize dirt: expected Low (this hash/push note may stay dirty until final)
 
 ## Final closing pass (mandatory when allowlisted late dirt remains)
 
-### Late stage set
-- 06-audit/**:
-- 07-self-improvement/**:
-- SESSION.md:
-- cycle .cursor/** / other allowlisted:
+### Pass metadata
+- pass_kind: final
+- session: `sessions/2026.09.15-1340`
+- prior mid: `2cd4b7e` already on `origin/main`
 
-### Health snapshot
-- branch:
-- ahead/behind:
-- remotes:
+### Late stage set (explicit; never `git add -A`)
+- `sessions/2026.09.15-1340/06-audit/**` (`report.md`)
+- `sessions/2026.09.15-1340/07-self-improvement/**` (`audit-realization.md`, `proposals.md`, `changes-applied.md`, `backlog.md`)
+- `sessions/2026.09.15-1340/SESSION.md`
+- `sessions/2026.09.15-1340/05-git/log.md`
+- cycle `.cursor/**` (agents: auditor, implementer, orchestrator, planner, prompt-betterment, researcher; rules/full-agent-workflow.mdc; skill + handoff-templates + session-structure)
+- `AGENTS.md`
+- `sessions/_templates/SESSION.md`
+
+### Health snapshot (pre-commit)
+- branch: `main` @ `2cd4b7e` tracking `origin/main`
+- ahead/behind (pre-commit): 0 / 0
+- remotes: `origin` → `https://github.com/KenCacciabueOrif/2026.09.09---Organisation.git`
+- git binary: `C:/Users/CaDa/AppData/Local/Programs/Git/cmd/git.exe` (GfW) + credential.helper=`manager` (GCM)
 - unrelated dirt (untouched, disclosed):
+  - `catalogue/__pycache__/` (bytecode — not staged)
+  - `catalogue/work_timeline.html.bak-cycle22wsl` (backup — excluded)
 
 ### Commits
 | hash | subject | paths |
 | --- | --- | --- |
+| _(pending)_ | docs(cycle-22): final audit, self-improvement, dual-git closing-pass law | late allowlist below |
 
 ### Push
 - branch → remote: (verified via ahead/behind after push)
 
 ### Final attestations
 - secrets: none staged (verified)
-- unrelated dirt: not staged (verified)
-- late allowlisted dirt: committed+pushed | blocked (blocker_type) | n/a (none remained)
+- unrelated dirt: not staged (verified) — `__pycache__/`, `.bak-cycle22wsl`
+- WorkSpace/TNA: not touched
+- late allowlisted dirt: committed+pushed (post-push verify below)
 
 ## Leftover / finish-sync (when Continuity/plan names orphans)
 
