@@ -15,11 +15,12 @@
 
 Note: `docs_only` covers **org-repo scaffolding creates** (folders/READMEs/docs inside this organisation git root) when there are **no** corpus moves/renames/deletes. `product_settings` covers editor/IDE extension install-switch, settings, **local installed-extension `dist/`/`src/` patches** (document **re-apply after Marketplace/Open VSX update**; Soft Reload tip after patch), and/or local evidence fixtures — **not** corpus `fs_mutation`; plan-gate **n/a**; same-run when ready. For Python 42-header + flake8 Continuity: prefer **≤79 generator** over Norminette-80 art or ignore-first. `fs_mutation` is for corpus / catalogue-backed path batches **or** **remote-config** (e.g. `git remote remove` on a pinned live nested `.git`) — remote-config still needs the plan gate even with zero path moves. **`escalate_break_loop`:** anti-loop when research `concrete_advance_candidate: none` — Continuity gate **X/P/N/H** only; `ready_to_implement: no`; skip implementer + mid git; orchestrator Step 3 records Continuity in notes + SESSION + ROADMAP Next FAW hint; Continuity **X** = next FAW XL/whole-tree git-strategy + future plan gate (still WorkSpace only / not Complete). Forbidden: Continuity A theater as cycle outcome.
 
-## What the user is approving (required if `fs_mutation`)
+## What the user is approving (required if `fs_mutation` **or** Clearance #4 / A vs A+E gate)
 
 Plain-language intent preview for the orchestrator plan gate:
 
 - What “yes” does on disk (paths / parents) **and/or** exact git remote command(s) + clone cwd.
+- For Clearance #4: distinguish **A** (approved-for-named-map / docs only) vs **A+E** (approve + nest-execute now). **A+E reserved** (held later) ≠ declined. Dirty TNA + large absolute-path consumer surface → prefer **A** then dedicated execute by default.
 - Pros / cons (tradeoffs) — e.g. path bookmarks break, new parents, partial-batch risk, lost remote-tracking refs.
 - What “no / edit” means (no moves/remote edits until revised).
 

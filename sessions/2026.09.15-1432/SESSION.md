@@ -4,26 +4,26 @@
 - **Status:** `in_progress`
 - **Blocker (if blocked):** n/a
 - **Raw goal:** Cycle 23 FAW — WorkSpace Continuity X / #4; never dashboard; material advance or escalate.
-- **Resume:** STAGE 2 same session after plan-gate **A** (docs_only)
+- **Resume:** STAGE 2 after plan-gate **A** (docs_only); A+E reserved
 - **Refined prompt:** `01-prompt-betterment/refined-prompt.md`
-- **Audit verdict:**
+- **Audit verdict:** pass
 - **Self-improvement:** `07-self-improvement/changes-applied.md`
 
 ## Program framing
 
 - **Program / roadmap:** `program/ROADMAP.md`
-- **Cycle id:** Cycle 23 — Clearance #4 **approved-for-map** (named hermes-agent; docs_only)
+- **Cycle id:** Cycle 23 — Clearance #4 **approved-for-named-map** (hermes-agent; docs_only)
 - **ROADMAP row locked:** Multi-experiment **remaining `WorkSpace` only** — **in progress / not Complete**
 - **Mutation class:** `docs_only` (gate **A** — zero nest FS)
-- **Batch approval:** **approved** — **A** (docs_only). Raw: approve #4 for named hermes-agent → `C:\Project\archive\2026.09.15 - hermes-agent`; honesty docs; zero nest moves. **A+E deliberately reserved** for a later user-reviewed execute gate (not declined — TNA absolute-path consumer risk).
+- **Batch approval:** **approved** — **A**; **A+E reserved** (not declined)
 - **Named map (approved-for-map; execute held):** `C:\Project\WorkSpace\TestNewWorkspaceAgent\hermes-agent` → `C:\Project\archive\2026.09.15 - hermes-agent`
-- **Clearance #4 status:** flipping DRAFT → **approved-for-named-map** (hermes-agent archive); nest execute still held
+- **Clearance #4 status:** **approved-for-named-map** (hermes-agent archive); nest execute held
 - **Pending user gates:** future dedicated **A+E** / nest execute gate (user-reserved)
 - **Continuity locks:** Q1–Q5 = A
-- **STAGE:** STAGE 2 — implement → mid git → audit → SI → final git → Close
+- **STAGE:** closing — SI done; final git next
 - **ANTI-LOOP:** material #4 flip; no surgery procedure rewrite
 - **FORBIDDEN:** dashboard; nest FS this cycle; Complete; Primary next jump
-- **Next FAW lock hint:** (set at close)
+- **Next FAW lock hint:** Multi-experiment **WorkSpace only** + Continuity X — candidate = dedicated hermes **A+E**/execute gate (user-reviewed) or other ROADMAP-justified advance; never dashboard; never Complete while WorkSpace remains; A+E reserved ≠ declined
 
 ## Workflow progress
 
@@ -33,9 +33,9 @@
 - [x] 3. planner → 03-plan/ (A vs A+E; ready_to_implement: no until gate)
 - [x] 4. User plan gate → **approved A** (docs_only; A+E reserved)
 - [x] 5. implementer → 04-implementation/ (#4 approved-for-map; zero nest FS; A+E reserved)
-- [ ] 6. git-manager (mid) → 05-git/
-- [ ] 7. auditor → 06-audit/
-- [ ] 8. self-improver → 07-self-improvement/
+- [x] 6. git-manager (mid) → 05-git/ (`172e892` pushed)
+- [x] 7. auditor → 06-audit/ (verdict: pass)
+- [x] 8. self-improver → 07-self-improvement/ (#4 states + A+E reserved encoded)
 - [ ] 9. git-manager (final closing pass) → 05-git/
 - [ ] 10. Close SESSION.md
 
@@ -45,9 +45,9 @@
 - [x] 02 research
 - [x] 03 plan
 - [x] 04 implementation
-- [ ] 05 git (mid + final)
-- [ ] 06 audit
-- [ ] 07 self-improvement
+- [x] 05 git (mid done; final pending)
+- [x] 06 audit
+- [x] 07 self-improvement
 
 ## Phase summaries
 
@@ -57,6 +57,6 @@
 | 02 | done | ROADMAP: WorkSpace/#4 wins; material = #4 approve hermes-agent map | `02-research/` |
 | 03 | done | Gate A (docs) vs A+E (approve+move); ready_to_implement no | `03-plan/` |
 | 04 | done | #4 approved-for-named-map hermes; zero moves; A+E reserved | `04-implementation/` |
-| 05 | | | `05-git/` |
-| 06 | | | `06-audit/` |
-| 07 | | | `07-self-improvement/` |
+| 05 | mid done | Mid `172e892` → origin/main; final after SI | `05-git/` |
+| 06 | done | pass — #4 approved-for-map; A+E reserved; zero nest FS | `06-audit/report.md` |
+| 07 | done | #4 DRAFT→approved-for-map→execute; A+E reserved≠declined | `07-self-improvement/` |
